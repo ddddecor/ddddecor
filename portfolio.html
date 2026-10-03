@@ -4,34 +4,151 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Portfolio | DDD Decor</title>
+  <link rel="stylesheet" href="vendor/glightbox/glightbox.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="vendor/glightbox/glightbox.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 <body>
-  <header>
-    <p><a href="index.html">DDD Decor</a></p>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="curtains-blinds.html">Curtains &amp; Blinds</a></li>
-        <li><a href="portfolio.html" aria-current="page">Portfolio</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="container header-inner">
+      <p class="site-brand"><a href="index.html">DDD Decor</a></p>
+      <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="site-nav" id="primary-navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="curtains-blinds.html">Curtains &amp; Blinds</a></li>
+          <li><a href="wallpaper.html">Wallpaper</a></li>
+          <li><a href="portfolio.html" aria-current="page">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <h1>Portfolio</h1>
-    <p>Show examples of completed work here.</p>
+  <main class="container portfolio-page">
+    <div class="portfolio-intro">
+      <p class="portfolio-eyebrow">Selected work</p>
+      <h1>Portfolio</h1>
+      <p>Sample layout, imagery, and categories. Replace these examples with photos and details from completed DDD Decor installations.</p>
+      <nav class="portfolio-filters" aria-label="Portfolio categories" hidden>
+        <ul>
+          <li><button class="portfolio-filter" type="button" data-category="all" aria-pressed="true">All</button></li>
+          <li><button class="portfolio-filter" type="button" data-category="curtains" aria-pressed="false">Curtains</button></li>
+          <li><button class="portfolio-filter" type="button" data-category="blinds" aria-pressed="false">Blinds</button></li>
+          <li><button class="portfolio-filter" type="button" data-category="wallpaper" aria-pressed="false">Wallpaper</button></li>
+        </ul>
+      </nav>
+    </div>
 
-    <section aria-labelledby="featured-projects">
-      <h2 id="featured-projects">Featured projects</h2>
-      <p>Add project photos and brief descriptions when available.</p>
-    </section>
+    <div class="portfolio-feed">
+      <article class="portfolio-item portfolio-item--featured" data-categories="curtains" aria-labelledby="project-living-room">
+        <div class="portfolio-media portfolio-media--details">
+          <a class="gallery-link portfolio-photo" href="images/portfolio/sample-living-room.jpg" data-gallery="sample-living-room" data-alt="Sample living room with full-height sheer curtains and purple side panels" aria-label="Open sample living room photo in lightbox">
+            <img src="images/portfolio/sample-living-room.jpg" alt="Sample living room with full-height sheer curtains and purple side panels" width="1536" height="1024">
+          </a>
+          <div class="portfolio-supporting">
+            <a class="gallery-link portfolio-photo" href="images/portfolio/sample-fabric-detail.jpg" data-gallery="sample-living-room" data-alt="Sample close view of layered curtain fabrics" aria-label="Open sample curtain fabric detail in lightbox">
+              <img src="images/portfolio/sample-fabric-detail.jpg" alt="Sample close view of layered curtain fabrics" width="1536" height="1024" loading="lazy">
+            </a>
+            <a class="gallery-link portfolio-photo" href="images/portfolio/sample-track-detail.jpg" data-gallery="sample-living-room" data-alt="Sample close view of a ceiling-mounted curtain track" aria-label="Open sample curtain track detail in lightbox">
+              <img src="images/portfolio/sample-track-detail.jpg" alt="Sample close view of a ceiling-mounted curtain track" width="1536" height="1024" loading="lazy">
+            </a>
+          </div>
+        </div>
+        <div class="portfolio-caption">
+          <div>
+            <p class="portfolio-category">Sample project · Curtains</p>
+            <h2 id="project-living-room">[Living room project title]</h2>
+          </div>
+          <div class="portfolio-summary">
+            <p>[Add a short description of the installation and materials.]</p>
+            <a class="portfolio-project-link" href="project-pages/khao-yai-film.html">View full project <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <div class="portfolio-pair">
+        <article class="portfolio-item" data-categories="wallpaper" aria-labelledby="item-bedroom">
+          <a class="gallery-link portfolio-photo portfolio-photo--portrait" href="images/portfolio/sample-bedroom.jpg" data-gallery="sample-bedroom" data-alt="Sample bedroom with full-height linen curtains" aria-label="Open sample bedroom curtains photo in lightbox">
+            <img src="images/portfolio/sample-bedroom.jpg" alt="Sample bedroom with full-height linen curtains" width="1024" height="1536" loading="lazy">
+          </a>
+          <div class="portfolio-caption">
+            <div>
+              <p class="portfolio-category">Sample installation · Wallpaper</p>
+              <h2 id="item-bedroom">[Bedroom installation]</h2>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-item" data-categories="curtains blinds" aria-labelledby="item-blinds">
+          <a class="gallery-link portfolio-photo" href="images/portfolio/sample-roman-blinds.jpg" data-gallery="sample-roman-blinds" data-alt="Sample dining room with warm white Roman blinds" aria-label="Open sample Roman blinds photo in lightbox">
+            <img src="images/portfolio/sample-roman-blinds.jpg" alt="Sample dining room with warm white Roman blinds" width="1536" height="1024" loading="lazy">
+          </a>
+          <div class="portfolio-caption">
+            <div>
+              <p class="portfolio-category">Sample installation · Curtains &amp; Blinds</p>
+              <h2 id="item-blinds">[Dining room blinds]</h2>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <article class="portfolio-item" data-categories="curtains" aria-labelledby="item-bedroom-curtains">
+        <a class="gallery-link portfolio-photo" href="images/portfolio/curtains-bedroom-pleated.webp" data-gallery="bedroom-pleated-curtains" data-alt="Bedroom with pleated curtains framing full-height sheer curtains" aria-label="Open bedroom pleated curtains photo in lightbox">
+          <img src="images/portfolio/curtains-bedroom-pleated.webp" alt="Bedroom with pleated curtains framing full-height sheer curtains" width="1448" height="1086" loading="lazy">
+        </a>
+        <div class="portfolio-caption">
+          <div>
+            <p class="portfolio-category">Curtains</p>
+            <h2 id="item-bedroom-curtains">[Bedroom curtain installation]</h2>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item portfolio-item--standard" data-categories="curtains" aria-labelledby="project-plum-drapery">
+        <a class="gallery-link portfolio-photo portfolio-photo--portrait" href="images/portfolio/sample-plum-drapery.jpg" data-gallery="sample-plum-drapery" data-alt="Sample sitting room with plum drapery and sheer curtains" aria-label="Open sample sitting room photo in lightbox">
+          <img src="images/portfolio/sample-plum-drapery.jpg" alt="Sample sitting room with plum drapery and sheer curtains" width="1024" height="1536" loading="lazy">
+        </a>
+        <div class="portfolio-caption">
+          <div>
+            <p class="portfolio-category">Sample project · Curtains</p>
+            <h2 id="project-plum-drapery">[Sitting room project title]</h2>
+          </div>
+          <div class="portfolio-summary">
+            <p>[Add a brief note about this project.]</p>
+            <!-- Add href="projects/sitting-room.html" when the project page is published. -->
+            <a class="portfolio-project-link" aria-disabled="true">View full project <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; DDD Decor</p>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-details">
+          <p class="footer-brand">DDD</p>
+          <p class="footer-name">Design Delight Decorative</p>
+          <p><a href="#"><svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 16.4v2.7a2 2 0 0 1-2.2 2A18.9 18.9 0 0 1 3 5.2 2 2 0 0 1 5 3h2.7a2 2 0 0 1 2 1.7l.4 2.7a2 2 0 0 1-.6 1.7L8 10.6a15 15 0 0 0 5.4 5.4l1.5-1.5a2 2 0 0 1 1.7-.6l2.7.4a2 2 0 0 1 1.7 2Z"/></svg>Phone: [phone number]</a></p>
+          <p><a href="#"><svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3.5 6 8.5 7 8.5-7"/></svg>Email: [email address]</a></p>
+        </div>
+        <div class="footer-connect">
+          <h2>CONNECT WITH US</h2>
+          <ul>
+            <li><a href="#"><svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="M14.7 7.3h-1.5c-1.2 0-1.8.7-1.8 1.9V21M9 12.4h5.2"/></svg>Facebook</a></li>
+            <li><a href="#"><svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3C6.5 3 2 6.6 2 11.1c0 3.9 3.2 7.1 7.5 7.9l-.6 2.2 3.4-2.1c5.4-.1 9.7-3.6 9.7-8C22 6.6 17.5 3 12 3Z"/><path d="M6.5 11.1h2m2.5 0h2m2.5 0h2"/></svg>LINE</a></li>
+          </ul>
+          <a class="footer-line-button" href="#">Add Friend on LINE</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Design Delight Decorative. All rights reserved. <span class="footer-policy"><span class="footer-separator" aria-hidden="true">|</span><a href="#">Privacy Policy</a></span></p>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
