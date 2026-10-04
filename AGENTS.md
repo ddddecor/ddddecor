@@ -7,3 +7,6 @@
 - Follow an elegant, premium interior design identity: deep purple, muted warm gold, and white or off-white backgrounds. Use gold sparingly as an accent, and favor clean, modern design over excessive decoration.
 - Do not invent final marketing copy. Use clearly identifiable placeholder content until real content is provided.
 - Work incrementally: change only the requested component or area, and preserve existing functionality unless the request requires changing it.
+- Project photos live in `images/portfolio/projects/<project-name>/`.
+- A filename ending in `-thumb` before the extension is a thumbnail of the file with the same name without `-thumb`. Display the thumbnail, but link it to the full-size image.
+- If no matching thumbnail exists, use the full-size image for both display and the link. Do not add thumbnail files as separate gallery images.
