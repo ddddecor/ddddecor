@@ -896,7 +896,8 @@ main section {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
-  gap: var(--space-5);
+  column-gap: var(--space-5);
+  row-gap: var(--space-6);
 }
 
 .portfolio-item,
@@ -1179,7 +1180,7 @@ main section {
 
   .portfolio-feed {
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    row-gap: calc(var(--space-6) + var(--space-3));
   }
 
   .portfolio-item--featured {
@@ -1464,6 +1465,7 @@ main section {
 .cta-actions {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-3);
   margin-top: var(--space-5);
 }
@@ -1485,6 +1487,12 @@ main section {
   flex: none;
   width: 1.25rem;
   height: 1.25rem;
+}
+
+.cta-line-icon {
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 .cta-button--primary {
