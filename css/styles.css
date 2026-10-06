@@ -8,6 +8,7 @@
   --color-muted: #68616b;
   --color-border: #e8dfd4;
   --color-footer-background: #30251f;
+  --color-trust-background: #fbfaf8;
   --color-gold-on-dark: #d6b47f;
 
   --space-1: 0.5rem;
@@ -353,6 +354,11 @@ main section {
   margin-top: var(--space-6);
 }
 
+/* The main container already pads its top; avoid doubling the gap under the trust strip */
+main > .feature-section:first-child {
+  margin-top: 0;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
@@ -591,7 +597,7 @@ main section {
 /* Trust strip */
 .trust-strip {
   border-bottom: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: var(--color-trust-background);
 }
 
 .trust-list {
@@ -700,21 +706,64 @@ main section {
 }
 
 .feature-link {
+  position: relative;
   display: inline-block;
-  font-weight: var(--font-weight-emphasis);
-  text-decoration: underline;
-  text-decoration-color: var(--color-gold);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.3em;
+  padding-bottom: 0.35rem;
+  color: var(--color-purple);
+  font-weight: 400;
+  text-decoration: none;
+}
+
+/* Thin gold accent line under the text and arrow. Drawn as a background (not a transformed
+   element) so it snaps to whole pixels and looks the same weight in every section. */
+.feature-link {
+  background: linear-gradient(var(--color-gold), var(--color-gold)) left bottom / 82% 1px no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.feature-link:hover,
+.feature-link:focus-visible {
+  background-size: 100% 1px;
 }
 
 .feature-link span {
   display: inline-block;
-  transition: transform 0.2s ease;
+  margin-left: 0.35em;
+  transition: transform 0.3s ease;
 }
 
-.feature-link:hover span {
+.feature-link:hover span,
+.feature-link:focus-visible span {
   transform: translateX(0.25rem);
+}
+
+/* Quiet label above a gallery of real installation work (reusable) */
+.gallery-label {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-1);
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-normal);
+  opacity: 0.85;
+}
+
+.feature-link + .gallery-label {
+  margin-top: var(--space-6);
+}
+
+.gallery-label + .feature-media,
+.gallery-label + .feature-portraits,
+.gallery-label + .feature-wide {
+  margin-top: 0;
+}
+
+/* Wrapper that keeps the label and its images together in split sections */
+.feature-gallery {
+  margin-top: var(--space-6);
+}
+
+.feature-gallery .gallery-label {
+  margin-top: 0;
 }
 
 /* Image ratios: large 5:4 (export 1500x1200), small 3:2 (export 1200x800) */
@@ -835,7 +884,7 @@ main section {
     align-items: center;
   }
 
-  .feature-section--split .feature-portraits {
+  .feature-section--split .feature-gallery {
     margin-top: 0;
   }
 
@@ -846,7 +895,7 @@ main section {
 }
 
 @media (min-width: 64rem) {
-  .feature-section--split .feature-portraits {
+  .feature-section--split .feature-gallery {
     width: 89%;
     justify-self: end;
   }
@@ -876,7 +925,7 @@ main section {
 }
 
 @media (min-width: 64rem) {
-  .feature-section--reverse .feature-wide {
+  .feature-section--reverse .feature-gallery {
     width: 89%;
   }
 
@@ -891,6 +940,7 @@ main section {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .feature-link,
   .feature-link span {
     transition: none;
   }
@@ -899,6 +949,7 @@ main section {
 /* Split feature section reveal (desktop only): main.js adds .reveal-ready, then .is-revealed on scroll */
 @media (min-width: 64rem) {
   .feature-section--split.reveal-ready .feature-text,
+  .feature-section--split.reveal-ready .gallery-label,
   .feature-section--split.reveal-ready .feature-item {
     opacity: 0;
     transform: translateX(2.5rem);
@@ -909,6 +960,7 @@ main section {
     transform: translateX(-1.25rem);
   }
 
+  .feature-section--reverse.reveal-ready .gallery-label,
   .feature-section--reverse.reveal-ready .feature-item {
     transform: translateX(-2.5rem);
   }
@@ -922,6 +974,7 @@ main section {
   }
 
   .feature-section--split.reveal-ready.is-revealed .feature-text,
+  .feature-section--split.reveal-ready.is-revealed .gallery-label,
   .feature-section--split.reveal-ready.is-revealed .feature-item {
     opacity: 1;
     transform: none;
@@ -1820,4 +1873,79 @@ img.footer-icon {
   .contact-fab.is-open .contact-fab-list li {
     transition: none;
   }
+}
+
+/* Split hero: text on the left (45%), photo on the right, attached to the header. */
+.split-hero {
+  display: grid;
+}
+
+.split-hero-text {
+  padding: var(--space-5) var(--page-gutter);
+}
+
+.split-hero-eyebrow {
+  margin: 0 0 var(--space-2);
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.split-hero-text h1 {
+  margin: 0 0 var(--space-2);
+  font-size: clamp(1.5rem, 5.5vw, 2rem);
+}
+
+.split-hero-intro {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+/* On mobile the photo comes first, directly under the header. */
+.split-hero-media {
+  order: -1;
+}
+
+.split-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 48rem) {
+  .split-hero {
+    grid-template-columns: 45fr 55fr;
+    /* Match the .container content box so the hero lines up with the rest of the page. */
+    width: calc(100% - 2 * var(--page-gutter));
+    max-width: calc(var(--content-width) - 2 * var(--page-gutter));
+    margin-inline: auto;
+  }
+
+  .split-hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 0 var(--space-5);
+  }
+
+  .split-hero-media {
+    order: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Keep the photo's natural 4:3 ratio (no cropping); height sets the hero size. */
+  .split-hero-media img {
+    width: auto;
+    height: 24rem;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+
+/* Trust strip under the white split hero: add the top rule to match the bottom one. */
+.split-hero + .trust-strip {
+  border-top: 1px solid var(--color-border);
 }
