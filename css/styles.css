@@ -688,6 +688,12 @@ main section {
   text-transform: uppercase;
 }
 
+.feature-section h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
 .feature-intro {
   max-width: 40rem;
   color: var(--color-muted);
@@ -832,6 +838,11 @@ main section {
   .feature-section--split .feature-portraits {
     margin-top: 0;
   }
+
+  /* Bottom padding nudges the vertically centred text slightly above centre */
+  .feature-section--split .feature-text {
+    padding-bottom: 4rem;
+  }
 }
 
 @media (min-width: 64rem) {
@@ -841,7 +852,7 @@ main section {
   }
 }
 
-/* Centered feature section: centered text on desktop, one wide image (16:9) below */
+/* Reversed split feature section: text first in the markup (top on mobile), image left and text right on larger screens */
 .feature-photo--wide {
   aspect-ratio: 16 / 9;
 }
@@ -851,31 +862,29 @@ main section {
 }
 
 @media (min-width: 44rem) {
-  .feature-section--centered .feature-text {
-    text-align: center;
+  .feature-section--reverse {
+    grid-template-columns: 65fr 35fr;
   }
 
-  .feature-section--centered .feature-intro {
-    margin-inline: auto;
+  .feature-section--reverse .feature-text {
+    order: 2;
   }
 
-  .feature-section--centered .feature-photo--wide {
-    height: auto;
-    aspect-ratio: 16 / 9;
+  .feature-section--reverse .feature-wide {
+    margin-top: 0;
   }
 }
 
 @media (min-width: 64rem) {
-  .feature-section--centered .feature-wide {
-    width: 78%;
-    margin-inline: auto;
+  .feature-section--reverse .feature-wide {
+    width: 89%;
   }
 
-  .feature-section--centered .feature-photo--wide {
+  .feature-section--reverse .feature-photo--wide {
     aspect-ratio: auto;
   }
 
-  .feature-section--centered .feature-photo--wide img {
+  .feature-section--reverse .feature-photo--wide img {
     height: auto;
     aspect-ratio: auto;
   }
@@ -884,6 +893,38 @@ main section {
 @media (prefers-reduced-motion: reduce) {
   .feature-link span {
     transition: none;
+  }
+}
+
+/* Split feature section reveal (desktop only): main.js adds .reveal-ready, then .is-revealed on scroll */
+@media (min-width: 64rem) {
+  .feature-section--split.reveal-ready .feature-text,
+  .feature-section--split.reveal-ready .feature-item {
+    opacity: 0;
+    transform: translateX(2.5rem);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  }
+
+  .feature-section--split.reveal-ready .feature-text {
+    transform: translateX(-1.25rem);
+  }
+
+  .feature-section--reverse.reveal-ready .feature-item {
+    transform: translateX(-2.5rem);
+  }
+
+  .feature-section--reverse.reveal-ready .feature-text {
+    transform: translateX(1.25rem);
+  }
+
+  .feature-section--split.reveal-ready .feature-item + .feature-item {
+    transition-delay: 0.15s;
+  }
+
+  .feature-section--split.reveal-ready.is-revealed .feature-text,
+  .feature-section--split.reveal-ready.is-revealed .feature-item {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -933,8 +974,8 @@ main .contact-card {
 }
 
 .contact-card-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: clamp(1.4rem, 2.5vw, 1.8rem);
+  height: clamp(1.4rem, 2.5vw, 1.8rem);
   color: var(--color-purple);
 }
 
