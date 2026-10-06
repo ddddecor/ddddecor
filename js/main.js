@@ -65,7 +65,29 @@ if (menuButton && navigation) {
 }
 
 if (document.querySelector('.gallery-link, .project-gallery-link') && typeof GLightbox === 'function') {
-  GLightbox({ selector: '.gallery-link, .project-gallery-link' });
+  const lightbox = GLightbox({ selector: '.gallery-link, .project-gallery-link' });
+  let lightboxOpen = false;
+
+  // Let the browser Back button close the lightbox instead of leaving the page.
+  lightbox.on('open', () => {
+    lightboxOpen = true;
+    history.pushState({ lightbox: true }, '');
+  });
+
+  lightbox.on('close', () => {
+    lightboxOpen = false;
+    // Closed via X, Esc or swipe: drop the history entry we added on open.
+    if (history.state && history.state.lightbox) {
+      history.back();
+    }
+  });
+
+  window.addEventListener('popstate', () => {
+    // Back was pressed: the entry is already gone, so just close.
+    if (lightboxOpen) {
+      lightbox.close();
+    }
+  });
 }
 
 const portfolioFilters = document.querySelector('.portfolio-filters');

@@ -41,7 +41,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-background);
+  background: var(--color-surface);
   color: var(--color-text);
 }
 
@@ -73,6 +73,12 @@ h2 {
 
 p {
   margin: 0 0 var(--space-3);
+}
+
+/* Readable text width: apply to prose only, never to sections or containers. */
+.readable-width {
+  width: 100%;
+  max-width: 40rem;
 }
 
 a {
@@ -110,8 +116,19 @@ a:focus-visible {
 }
 
 .site-brand a {
+  display: flex;
+  flex-direction: column;
   color: var(--color-purple-dark);
   text-decoration: none;
+}
+
+.site-brand-name {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .menu-toggle {
@@ -231,6 +248,43 @@ html:not(.has-js) .has-submenu:focus-within > .submenu,
 
 main.container {
   padding-block: var(--space-6);
+}
+
+/* Page-title banner: reusable band for internal pages without a photographic hero.
+   Place it first inside main.page-main, followed by .container.page-body. */
+.page-main {
+  background: #ffffff;
+}
+
+.page-title-banner {
+  padding-block: var(--space-4);
+  background: var(--color-purple-dark);
+  color: #ffffff;
+}
+
+/* Tight eyebrow/H1 group: no gap margin and short line-heights. Equal block padding keeps it vertically centered. */
+.page-title-banner .page-title-eyebrow {
+  margin: 0;
+  color: var(--color-gold-on-dark);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.page-title-banner h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.75rem, 5.5vw, 2.25rem);
+  line-height: 1.2;
+}
+
+.page-body {
+  padding-block: var(--space-6);
+}
+
+.page-body > :first-child {
+  margin-top: 0;
 }
 
 .project-breadcrumb ol {
@@ -843,8 +897,75 @@ main section {
   color: var(--color-muted);
 }
 
+.contact-address {
+  font-style: normal;
+}
+
+.contact-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  max-height: 28rem;
+  margin-top: var(--space-4);
+  border: 1px dashed var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-muted);
+}
+
+.contact-intro {
+  color: var(--color-muted);
+}
+
+.contact-options {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+main .contact-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  column-gap: var(--space-3);
+  align-items: center;
+  margin-top: 0;
+}
+
+.contact-card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-purple);
+}
+
+.contact-card h2 {
+  margin: 0;
+}
+
+.contact-card p {
+  grid-column: 1 / -1;
+  align-self: start;
+  max-width: 22rem;
+  margin: var(--space-3) 0 var(--space-2);
+  color: var(--color-muted);
+}
+
+.contact-card .cta-button {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+@media (min-width: 60rem) {
+  .contact-options {
+    grid-template-columns: repeat(2, minmax(0, 22rem));
+    justify-content: start;
+    column-gap: 4rem;
+  }
+}
+
 .portfolio-eyebrow,
-.portfolio-category {
+.portfolio-category,
+.contact-eyebrow {
   color: var(--color-gold);
   font-size: 0.75rem;
   font-weight: var(--font-weight-emphasis);
@@ -853,7 +974,8 @@ main section {
   text-transform: uppercase;
 }
 
-.portfolio-eyebrow {
+.portfolio-eyebrow,
+.contact-eyebrow {
   margin-bottom: var(--space-2);
 }
 
@@ -1120,6 +1242,11 @@ main section {
   flex: none;
   width: 1.25rem;
   height: 1.25rem;
+  object-fit: contain;
+}
+
+img.footer-icon {
+  border-radius: 4px;
 }
 
 .footer-bottom a {
@@ -1361,22 +1488,22 @@ main section {
 
 /* Service process section */
 .process {
-  padding-block: var(--space-5);
-  background: var(--color-purple-dark);
-  color: rgba(255, 255, 255, 0.78);
+  padding-block: var(--space-6);
+  background: #f5f2f7;
+  color: var(--color-muted);
 }
 
 .process-eyebrow {
   margin: 0 0 var(--space-2);
-  color: var(--color-gold-on-dark);
+  color: var(--color-gold);
   font-size: 0.8rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .process h2 {
-  margin: 0 0 var(--space-2);
-  color: #fff;
+  margin: 0 0 var(--space-3);
+  color: var(--color-purple-dark);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 400;
   white-space: normal;
@@ -1390,22 +1517,26 @@ main section {
 .process-steps {
   display: grid;
   gap: var(--space-5);
-  margin: var(--space-5) 0 0;
+  margin: var(--space-6) 0 0;
   padding: 0;
   list-style: none;
 }
 
 .process-step {
   padding-left: var(--space-4);
-  border-left: 1px solid rgba(214, 180, 127, 0.35);
+  border-left: 1px solid rgba(163, 107, 25, 0.3);
 }
 
 .process-step h3 {
-  margin: 0 0 0.25rem;
-  color: var(--color-gold-on-dark);
+  margin: 0 0 0.5rem;
+  color: var(--color-purple-dark);
   font-size: 1rem;
   font-weight: var(--font-weight-emphasis);
   line-height: 1.4;
+}
+
+.process-number {
+  color: var(--color-gold);
 }
 
 .process-step p {
@@ -1415,31 +1546,31 @@ main section {
 
 @media (min-width: 64rem) {
   .process {
-    padding-block: var(--space-6);
+    padding-block: 5.5rem;
   }
 
   .process-steps {
-    margin-top: 2.5rem;
+    margin-top: 3.5rem;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
   }
 
   .process-step {
     position: relative;
-    padding: var(--space-4) var(--space-4) 0 0;
+    padding: var(--space-5) var(--space-4) 0 0;
     border-left: 0;
-    border-top: 1px solid rgba(214, 180, 127, 0.35);
+    border-top: 1px solid rgba(163, 107, 25, 0.3);
   }
 
   .process-step::before {
     content: "";
     position: absolute;
-    top: -3px;
+    top: -5px;
     left: 0;
-    width: 5px;
-    height: 5px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: var(--color-gold-on-dark);
+    background: var(--color-gold);
   }
 }
 

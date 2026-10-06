@@ -15,7 +15,7 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <p class="site-brand"><a href="index.html">DDD Decor</a></p>
+      <p class="site-brand"><a href="index.html" aria-label="Design Delight Decorative"><span class="site-brand-mark">DDD</span><span class="site-brand-name">Design Delight Decorative</span></a></p>
       <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
         <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
       </button>
@@ -36,161 +36,192 @@
     </div>
   </header>
 
-  <main class="container portfolio-page">
-    <div class="portfolio-intro">
-      <p class="portfolio-eyebrow">Selected work</p>
-      <h1>Portfolio</h1>
-      <p>Sample layout, imagery, and categories. Replace these examples with photos and details from completed DDD Decor installations.</p>
-      <nav class="portfolio-filters" aria-label="Portfolio categories" hidden>
-        <ul>
-          <li><button class="portfolio-filter" type="button" data-category="all" aria-pressed="true">All</button></li>
-          <li><button class="portfolio-filter" type="button" data-category="curtains" aria-pressed="false">Curtains</button></li>
-          <li><button class="portfolio-filter" type="button" data-category="blinds" aria-pressed="false">Blinds</button></li>
-          <li><button class="portfolio-filter" type="button" data-category="wallpaper" aria-pressed="false">Wallpaper</button></li>
-          <li><button class="portfolio-filter" type="button" data-category="film" aria-pressed="false">Film</button></li>
-        </ul>
-      </nav>
+  <main class="page-main portfolio-page">
+    <div class="page-title-banner">
+      <div class="container">
+        <p class="page-title-eyebrow">Selected work</p>
+        <h1>Portfolio</h1>
+      </div>
     </div>
 
-    <div class="portfolio-feed">
-      <article class="portfolio-item portfolio-item--featured" data-categories="curtains" aria-labelledby="project-khao-yai-house">
-        <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-house/house-project-livingroom.webp" data-gallery="portfolio" data-alt="Khao Yai House living room with layered curtains" aria-label="Open Khao Yai House living room photo in lightbox">
-          <img src="images/portfolio/projects/khao-yai-house/house-project-livingroom-thumb.webp" alt="Khao Yai House living room with layered curtains" width="1157" height="868">
-        </a>
-        <div class="portfolio-supporting">
-          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-house/house-project-livingroom2.webp" data-gallery="portfolio" data-alt="Another view of the Khao Yai House living room" aria-label="Open another Khao Yai House living room photo in lightbox">
-            <img src="images/portfolio/projects/khao-yai-house/house-project-livingroom2-thumb.webp" alt="Another view of the Khao Yai House living room" width="1086" height="1086" loading="lazy">
-          </a>
-          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-house/house-project-outside.webp" data-gallery="portfolio" data-alt="Exterior view of Khao Yai House" aria-label="Open Khao Yai House exterior photo in lightbox">
-            <img src="images/portfolio/projects/khao-yai-house/house-project-outside-thumb.webp" alt="Exterior view of Khao Yai House" width="900" height="900" loading="lazy">
-          </a>
-        </div>
-        <div class="portfolio-caption">
-          <div>
-            <p class="portfolio-category">Project · Curtains</p>
-            <h2 id="project-khao-yai-house">Khao Yai House</h2>
-          </div>
-          <div class="portfolio-summary">
-            <p>[Add a short description of the installation and materials.]</p>
-            <a class="portfolio-project-link" href="project-pages/khao-yai-house.html">View full project <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </article>
+    <div class="container page-body">
+      <div class="portfolio-intro">
+        <p>Sample layout, imagery, and categories. Replace these examples with photos and details from completed DDD Decor installations.</p>
+        <nav class="portfolio-filters" aria-label="Portfolio categories" hidden>
+          <ul>
+            <li><button class="portfolio-filter" type="button" data-category="all" aria-pressed="true">All</button></li>
+            <li><button class="portfolio-filter" type="button" data-category="curtains" aria-pressed="false">Curtains</button></li>
+            <li><button class="portfolio-filter" type="button" data-category="blinds" aria-pressed="false">Blinds</button></li>
+            <li><button class="portfolio-filter" type="button" data-category="wallpaper" aria-pressed="false">Wallpaper</button></li>
+            <li><button class="portfolio-filter" type="button" data-category="film" aria-pressed="false">Film</button></li>
+          </ul>
+        </nav>
+      </div>
 
-      <div class="portfolio-pair">
-        <article class="portfolio-item" data-categories="blinds" aria-labelledby="item-bathroom-blinds">
-          <a class="gallery-link portfolio-photo portfolio-photo--portrait" href="images/portfolio/khao-yai-blinds-bathroom.webp" data-gallery="portfolio" data-alt="Bathroom with wooden blinds behind a freestanding bathtub" aria-label="Open bathroom blinds photo in lightbox">
-            <img src="images/portfolio/khao-yai-blinds-bathroom.webp" alt="Bathroom with wooden blinds behind a freestanding bathtub" width="1086" height="1448" loading="lazy">
+      <div class="portfolio-feed">
+        <article class="portfolio-item portfolio-item--featured" data-categories="curtains" aria-labelledby="project-khao-yai-house">
+          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-house/house-project-livingroom.webp" data-gallery="portfolio" data-alt="Khao Yai House living room with layered curtains" aria-label="Open Khao Yai House living room photo in lightbox">
+            <img src="images/portfolio/projects/khao-yai-house/house-project-livingroom-thumb.webp" alt="Khao Yai House living room with layered curtains" width="1157" height="868">
           </a>
+          <div class="portfolio-supporting">
+            <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-house/house-project-livingroom2.webp" data-gallery="portfolio" data-alt="Another view of the Khao Yai House living room" aria-label="Open another Khao Yai House living room photo in lightbox">
+              <img src="images/portfolio/projects/khao-yai-house/house-project-livingroom2-thumb.webp" alt="Another view of the Khao Yai House living room" width="1086" height="1086" loading="lazy">
+            </a>
+            <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-house/house-project-outside.webp" data-gallery="portfolio" data-alt="Exterior view of Khao Yai House" aria-label="Open Khao Yai House exterior photo in lightbox">
+              <img src="images/portfolio/projects/khao-yai-house/house-project-outside-thumb.webp" alt="Exterior view of Khao Yai House" width="900" height="900" loading="lazy">
+            </a>
+          </div>
           <div class="portfolio-caption">
             <div>
-              <p class="portfolio-category">Sample installation · Blinds</p>
-              <h2 id="item-bathroom-blinds">[Bathroom installation]</h2>
+              <p class="portfolio-category">Project · Curtains</p>
+              <h2 id="project-khao-yai-house">Khao Yai House</h2>
+            </div>
+            <div class="portfolio-summary">
+              <p>[Add a short description of the installation and materials.]</p>
+              <a class="portfolio-project-link" href="project-pages/khao-yai-house.html">View full project <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </article>
 
-        <article class="portfolio-item" data-categories="curtains blinds" aria-labelledby="item-blinds">
-          <a class="gallery-link portfolio-photo" href="images/portfolio/sample-roman-blinds.jpg" data-gallery="portfolio" data-alt="Sample dining room with warm white Roman blinds" aria-label="Open sample Roman blinds photo in lightbox">
-            <img src="images/portfolio/sample-roman-blinds.jpg" alt="Sample dining room with warm white Roman blinds" width="1536" height="1024" loading="lazy">
+        <div class="portfolio-pair">
+          <article class="portfolio-item" data-categories="blinds" aria-labelledby="item-bathroom-blinds">
+            <a class="gallery-link portfolio-photo portfolio-photo--portrait" href="images/portfolio/khao-yai-blinds-bathroom.webp" data-gallery="portfolio" data-alt="Bathroom with wooden blinds behind a freestanding bathtub" aria-label="Open bathroom blinds photo in lightbox">
+              <img src="images/portfolio/khao-yai-blinds-bathroom.webp" alt="Bathroom with wooden blinds behind a freestanding bathtub" width="1086" height="1448" loading="lazy">
+            </a>
+            <div class="portfolio-caption">
+              <div>
+                <p class="portfolio-category">Sample installation · Blinds</p>
+                <h2 id="item-bathroom-blinds">[Bathroom installation]</h2>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-item" data-categories="curtains blinds" aria-labelledby="item-blinds">
+            <a class="gallery-link portfolio-photo" href="images/portfolio/sample-roman-blinds.jpg" data-gallery="portfolio" data-alt="Sample dining room with warm white Roman blinds" aria-label="Open sample Roman blinds photo in lightbox">
+              <img src="images/portfolio/sample-roman-blinds.jpg" alt="Sample dining room with warm white Roman blinds" width="1536" height="1024" loading="lazy">
+            </a>
+            <div class="portfolio-caption">
+              <div>
+                <p class="portfolio-category">Sample installation · Curtains &amp; Blinds</p>
+                <h2 id="item-blinds">[Dining room blinds]</h2>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <article class="portfolio-item" data-categories="curtains" aria-labelledby="item-bedroom-curtains">
+          <a class="gallery-link portfolio-photo" href="images/portfolio/curtains-bedroom-pleated.webp" data-gallery="portfolio" data-alt="Bedroom with pleated curtains framing full-height sheer curtains" aria-label="Open bedroom pleated curtains photo in lightbox">
+            <img src="images/portfolio/curtains-bedroom-pleated.webp" alt="Bedroom with pleated curtains framing full-height sheer curtains" width="1448" height="1086" loading="lazy">
           </a>
           <div class="portfolio-caption">
             <div>
-              <p class="portfolio-category">Sample installation · Curtains &amp; Blinds</p>
-              <h2 id="item-blinds">[Dining room blinds]</h2>
+              <p class="portfolio-category">Curtains</p>
+              <h2 id="item-bedroom-curtains">[Bedroom curtain installation]</h2>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-item portfolio-item--standard" data-categories="curtains" aria-labelledby="project-plum-drapery">
+          <a class="gallery-link portfolio-photo portfolio-photo--portrait" href="images/portfolio/sample-plum-drapery.jpg" data-gallery="portfolio" data-alt="Sample sitting room with plum drapery and sheer curtains" aria-label="Open sample sitting room photo in lightbox">
+            <img src="images/portfolio/sample-plum-drapery.jpg" alt="Sample sitting room with plum drapery and sheer curtains" width="1024" height="1536" loading="lazy">
+          </a>
+          <div class="portfolio-caption">
+            <div>
+              <p class="portfolio-category">Sample project · Curtains</p>
+              <h2 id="project-plum-drapery">[Sitting room project title]</h2>
+            </div>
+            <div class="portfolio-summary">
+              <p>[Add a brief note about this project.]</p>
+              <!-- Add href="projects/sitting-room.html" when the project page is published. -->
+              <a class="portfolio-project-link" aria-disabled="true">View full project <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-item" data-categories="curtains" aria-labelledby="item-khaoyai-curtains">
+          <a class="gallery-link portfolio-photo portfolio-photo--portrait" href="images/portfolio/curtains-khaoyai-view.webp" data-gallery="portfolio" data-alt="Pleated curtains and sheer panels framing an arched window above a desk" aria-label="Open arched window curtains photo in lightbox">
+            <img src="images/portfolio/curtains-khaoyai-view.webp" alt="Pleated curtains and sheer panels framing an arched window above a desk" width="1086" height="1448" loading="lazy">
+          </a>
+          <div class="portfolio-caption">
+            <div>
+              <p class="portfolio-category">Curtains</p>
+              <h2 id="item-khaoyai-curtains">[Curtain installation]</h2>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-item portfolio-item--featured" data-categories="film" aria-labelledby="project-living-room">
+          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-film/khao-yai-film-outside3.webp" data-gallery="portfolio" data-alt="Khao Yai Film house and swimming pool" aria-label="Open Khao Yai Film house exterior photo in lightbox">
+            <img src="images/portfolio/projects/khao-yai-film/khao-yai-film-outside3-thumb.webp" alt="Khao Yai Film house and swimming pool" width="1100" height="825" loading="lazy">
+          </a>
+          <div class="portfolio-supporting">
+            <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-film/khao-yai-film-inside3.webp" data-gallery="portfolio" data-alt="Interior view of the Khao Yai Film project" aria-label="Open Khao Yai Film interior photo in lightbox">
+              <img src="images/portfolio/projects/khao-yai-film/khao-yai-film-inside3-thumb.webp" alt="Interior view of the Khao Yai Film project" width="1086" height="1086" loading="lazy">
+            </a>
+            <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-film/khao-yai-film-outside4.webp" data-gallery="portfolio" data-alt="Exterior view of the Khao Yai Film project" aria-label="Open another Khao Yai Film exterior photo in lightbox">
+              <img src="images/portfolio/projects/khao-yai-film/khao-yai-film-outside4-thumb.webp" alt="Exterior view of the Khao Yai Film project" width="1086" height="1086" loading="lazy">
+            </a>
+          </div>
+          <div class="portfolio-caption">
+            <div>
+              <p class="portfolio-category">Sample project · Film</p>
+              <h2 id="project-living-room">[Living room project title]</h2>
+            </div>
+            <div class="portfolio-summary">
+              <p>[Add a short description of the installation and materials.]</p>
+              <a class="portfolio-project-link" href="project-pages/khao-yai-film.html">View full project <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-item portfolio-item--featured" data-categories="curtains blinds" aria-labelledby="project-khao-yai-poolvilla">
+          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-livingroom5.webp" data-gallery="portfolio" data-alt="Khao Yai Pool Villa living room with curtains and wooden blinds" aria-label="Open Khao Yai Pool Villa living room photo in lightbox">
+            <img src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-livingroom5-thumb.webp" alt="Khao Yai Pool Villa living room with curtains and wooden blinds" width="1100" height="825" loading="lazy">
+          </a>
+          <div class="portfolio-supporting">
+            <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-kitchen2.webp" data-gallery="portfolio" data-alt="Khao Yai Pool Villa dining area with layered curtains" aria-label="Open Khao Yai Pool Villa dining area photo in lightbox">
+              <img src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-kitchen2-thumb.webp" alt="Khao Yai Pool Villa dining area with layered curtains" width="1086" height="1086" loading="lazy">
+            </a>
+            <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-bedroom2.webp" data-gallery="portfolio" data-alt="Khao Yai Pool Villa bedroom with layered curtains" aria-label="Open Khao Yai Pool Villa bedroom photo in lightbox">
+              <img src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-bedroom2-thumb.webp" alt="Khao Yai Pool Villa bedroom with layered curtains" width="1086" height="1086" loading="lazy">
+            </a>
+          </div>
+          <div class="portfolio-caption">
+            <div>
+              <p class="portfolio-category">Project · Curtains &amp; Blinds</p>
+              <h2 id="project-khao-yai-poolvilla">Khao Yai Pool Villa</h2>
+            </div>
+            <div class="portfolio-summary">
+              <p>[Add a short description of the curtain and blind installation and materials.]</p>
+              <a class="portfolio-project-link" href="project-pages/khao-yai-poolvilla.html">View full project <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-item portfolio-item--featured" data-categories="curtains" aria-labelledby="project-bangkok-townhouse">
+          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/bangkok-townhouse/bangkok-townhouse-bedroom3.webp" data-gallery="portfolio" data-alt="Bangkok Townhouse bedroom with floor-to-ceiling curtains and sheers" aria-label="Open Bangkok Townhouse bedroom photo in lightbox">
+            <img src="images/portfolio/projects/bangkok-townhouse/bangkok-townhouse-bedroom3-thumb.webp" alt="Bangkok Townhouse bedroom with floor-to-ceiling curtains and sheers" width="1255" height="941" loading="lazy">
+          </a>
+          <div class="portfolio-supporting">
+            <a class="gallery-link portfolio-photo" href="images/portfolio/projects/bangkok-townhouse/bangkok-townhouse-bedroom.webp" data-gallery="portfolio" data-alt="Another view of the Bangkok Townhouse bedroom" aria-label="Open another Bangkok Townhouse bedroom photo in lightbox">
+              <img src="images/portfolio/projects/bangkok-townhouse/bangkok-townhouse-bedroom-thumb.webp" alt="Another view of the Bangkok Townhouse bedroom" width="941" height="941" loading="lazy">
+            </a>
+            <a class="gallery-link portfolio-photo" href="images/portfolio/projects/bangkok-townhouse/bangkok-townhouse-bedroom2.webp" data-gallery="portfolio" data-alt="Bangkok Townhouse bedroom with grey pleated curtains" aria-label="Open Bangkok Townhouse bedroom curtains photo in lightbox">
+              <img src="images/portfolio/projects/bangkok-townhouse/bangkok-townhouse-bedroom2-thumb.webp" alt="Bangkok Townhouse bedroom with grey pleated curtains" width="941" height="941" loading="lazy">
+            </a>
+          </div>
+          <div class="portfolio-caption">
+            <div>
+              <p class="portfolio-category">Project · Curtains</p>
+              <h2 id="project-bangkok-townhouse">Bangkok Townhouse</h2>
+            </div>
+            <div class="portfolio-summary">
+              <p>[Add a short description of the curtain installation and materials.]</p>
+              <a class="portfolio-project-link" href="project-pages/bangkok-townhouse.html">View full project <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </article>
       </div>
-
-      <article class="portfolio-item" data-categories="curtains" aria-labelledby="item-bedroom-curtains">
-        <a class="gallery-link portfolio-photo" href="images/portfolio/curtains-bedroom-pleated.webp" data-gallery="portfolio" data-alt="Bedroom with pleated curtains framing full-height sheer curtains" aria-label="Open bedroom pleated curtains photo in lightbox">
-          <img src="images/portfolio/curtains-bedroom-pleated.webp" alt="Bedroom with pleated curtains framing full-height sheer curtains" width="1448" height="1086" loading="lazy">
-        </a>
-        <div class="portfolio-caption">
-          <div>
-            <p class="portfolio-category">Curtains</p>
-            <h2 id="item-bedroom-curtains">[Bedroom curtain installation]</h2>
-          </div>
-        </div>
-      </article>
-
-      <article class="portfolio-item portfolio-item--standard" data-categories="curtains" aria-labelledby="project-plum-drapery">
-        <a class="gallery-link portfolio-photo portfolio-photo--portrait" href="images/portfolio/sample-plum-drapery.jpg" data-gallery="portfolio" data-alt="Sample sitting room with plum drapery and sheer curtains" aria-label="Open sample sitting room photo in lightbox">
-          <img src="images/portfolio/sample-plum-drapery.jpg" alt="Sample sitting room with plum drapery and sheer curtains" width="1024" height="1536" loading="lazy">
-        </a>
-        <div class="portfolio-caption">
-          <div>
-            <p class="portfolio-category">Sample project · Curtains</p>
-            <h2 id="project-plum-drapery">[Sitting room project title]</h2>
-          </div>
-          <div class="portfolio-summary">
-            <p>[Add a brief note about this project.]</p>
-            <!-- Add href="projects/sitting-room.html" when the project page is published. -->
-            <a class="portfolio-project-link" aria-disabled="true">View full project <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </article>
-
-      <article class="portfolio-item" data-categories="curtains" aria-labelledby="item-khaoyai-curtains">
-        <a class="gallery-link portfolio-photo portfolio-photo--portrait" href="images/portfolio/curtains-khaoyai-view.webp" data-gallery="portfolio" data-alt="Pleated curtains and sheer panels framing an arched window above a desk" aria-label="Open arched window curtains photo in lightbox">
-          <img src="images/portfolio/curtains-khaoyai-view.webp" alt="Pleated curtains and sheer panels framing an arched window above a desk" width="1086" height="1448" loading="lazy">
-        </a>
-        <div class="portfolio-caption">
-          <div>
-            <p class="portfolio-category">Curtains</p>
-            <h2 id="item-khaoyai-curtains">[Curtain installation]</h2>
-          </div>
-        </div>
-      </article>
-
-      <article class="portfolio-item portfolio-item--featured" data-categories="film" aria-labelledby="project-living-room">
-        <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-film/khao-yai-film-outside3.webp" data-gallery="portfolio" data-alt="Khao Yai Film house and swimming pool" aria-label="Open Khao Yai Film house exterior photo in lightbox">
-          <img src="images/portfolio/projects/khao-yai-film/khao-yai-film-outside3-thumb.webp" alt="Khao Yai Film house and swimming pool" width="1100" height="825" loading="lazy">
-        </a>
-        <div class="portfolio-supporting">
-          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-film/khao-yai-film-inside3.webp" data-gallery="portfolio" data-alt="Interior view of the Khao Yai Film project" aria-label="Open Khao Yai Film interior photo in lightbox">
-            <img src="images/portfolio/projects/khao-yai-film/khao-yai-film-inside3-thumb.webp" alt="Interior view of the Khao Yai Film project" width="1086" height="1086" loading="lazy">
-          </a>
-          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-film/khao-yai-film-outside4.webp" data-gallery="portfolio" data-alt="Exterior view of the Khao Yai Film project" aria-label="Open another Khao Yai Film exterior photo in lightbox">
-            <img src="images/portfolio/projects/khao-yai-film/khao-yai-film-outside4-thumb.webp" alt="Exterior view of the Khao Yai Film project" width="1086" height="1086" loading="lazy">
-          </a>
-        </div>
-        <div class="portfolio-caption">
-          <div>
-            <p class="portfolio-category">Sample project · Film</p>
-            <h2 id="project-living-room">[Living room project title]</h2>
-          </div>
-          <div class="portfolio-summary">
-            <p>[Add a short description of the installation and materials.]</p>
-            <a class="portfolio-project-link" href="project-pages/khao-yai-film.html">View full project <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </article>
-
-      <article class="portfolio-item portfolio-item--featured" data-categories="curtains blinds" aria-labelledby="project-khao-yai-poolvilla">
-        <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-livingroom5.webp" data-gallery="portfolio" data-alt="Khao Yai Pool Villa living room with curtains and wooden blinds" aria-label="Open Khao Yai Pool Villa living room photo in lightbox">
-          <img src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-livingroom5-thumb.webp" alt="Khao Yai Pool Villa living room with curtains and wooden blinds" width="1100" height="825" loading="lazy">
-        </a>
-        <div class="portfolio-supporting">
-          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-kitchen2.webp" data-gallery="portfolio" data-alt="Khao Yai Pool Villa dining area with layered curtains" aria-label="Open Khao Yai Pool Villa dining area photo in lightbox">
-            <img src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-kitchen2-thumb.webp" alt="Khao Yai Pool Villa dining area with layered curtains" width="1086" height="1086" loading="lazy">
-          </a>
-          <a class="gallery-link portfolio-photo" href="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-bedroom2.webp" data-gallery="portfolio" data-alt="Khao Yai Pool Villa bedroom with layered curtains" aria-label="Open Khao Yai Pool Villa bedroom photo in lightbox">
-            <img src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-bedroom2-thumb.webp" alt="Khao Yai Pool Villa bedroom with layered curtains" width="1086" height="1086" loading="lazy">
-          </a>
-        </div>
-        <div class="portfolio-caption">
-          <div>
-            <p class="portfolio-category">Project · Curtains &amp; Blinds</p>
-            <h2 id="project-khao-yai-poolvilla">Khao Yai Pool Villa</h2>
-          </div>
-          <div class="portfolio-summary">
-            <p>[Add a short description of the curtain and blind installation and materials.]</p>
-            <a class="portfolio-project-link" href="project-pages/khao-yai-poolvilla.html">View full project <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </article>
     </div>
   </main>
 
@@ -206,10 +237,10 @@
         <div class="footer-connect">
           <h2>CONNECT WITH US</h2>
           <ul>
-            <li><a href="#"><svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="M14.7 7.3h-1.5c-1.2 0-1.8.7-1.8 1.9V21M9 12.4h5.2"/></svg>Facebook</a></li>
-            <li><a href="#"><svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3C6.5 3 2 6.6 2 11.1c0 3.9 3.2 7.1 7.5 7.9l-.6 2.2 3.4-2.1c5.4-.1 9.7-3.6 9.7-8C22 6.6 17.5 3 12 3Z"/><path d="M6.5 11.1h2m2.5 0h2m2.5 0h2"/></svg>LINE</a></li>
+            <li><a href="#"><img class="footer-icon" src="images/misc/facebook-app.png" alt="" width="20" height="20">Facebook</a></li>
+            <li><a href="#"><img class="footer-icon" src="images/misc/line-app.png" alt="" width="20" height="20">LINE</a></li>
           </ul>
-          <a class="footer-line-button" href="#">Add Friend on LINE</a>
+          <a class="footer-line-button" href="#">แชทกับเราทาง LINE</a>
         </div>
       </div>
       <div class="footer-bottom">
