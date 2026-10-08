@@ -694,7 +694,9 @@ main > .feature-section:first-child {
   text-transform: uppercase;
 }
 
-.feature-section h2 {
+.feature-section h2,
+.contact-area h2,
+.contact-location h2 {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 400;
   line-height: 1.2;
