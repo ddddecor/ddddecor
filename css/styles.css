@@ -736,6 +736,7 @@ main > .feature-section:first-child {
 
 .mini-gallery .gallery-link img {
   aspect-ratio: var(--mini-gallery-ratio);
+  object-fit: cover;
   transition: transform 0.4s ease;
 }
 
