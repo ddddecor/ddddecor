@@ -96,19 +96,26 @@ if (portfolioFilters) {
   const filterButtons = [...portfolioFilters.querySelectorAll('.portfolio-filter')];
   const portfolioItems = [...document.querySelectorAll('.portfolio-feed .portfolio-item')];
 
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const category = button.dataset.category;
-
-      filterButtons.forEach((filterButton) => {
-        filterButton.setAttribute('aria-pressed', String(filterButton === button));
-      });
-
-      portfolioItems.forEach((item) => {
-        item.hidden = category !== 'all' && !item.dataset.categories.split(/\s+/).includes(category);
-      });
+  function applyFilter(category) {
+    filterButtons.forEach((filterButton) => {
+      filterButton.setAttribute('aria-pressed', String(filterButton.dataset.category === category));
     });
+
+    portfolioItems.forEach((item) => {
+      item.hidden = category !== 'all' && !item.dataset.categories.split(/\s+/).includes(category);
+    });
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => applyFilter(button.dataset.category));
   });
+
+  // Preselect a filter from a link such as portfolio.html?category=curtains.
+  const requestedCategory = new URLSearchParams(window.location.search).get('category');
+
+  if (filterButtons.some((button) => button.dataset.category === requestedCategory)) {
+    applyFilter(requestedCategory);
+  }
 
   portfolioFilters.hidden = false;
 }
