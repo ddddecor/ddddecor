@@ -2349,3 +2349,290 @@ img.footer-icon {
 .split-hero + .trust-strip {
   border-top: 1px solid var(--color-border);
 }
+
+/* Home product category grid: each item is a link card to a product page.
+   Single column on mobile, editorial mosaic from 44rem.
+   Images are cropped to fixed proportions with object-fit so the grid stays aligned. */
+.category-grid {
+  margin-top: var(--space-5);
+}
+
+.category-grid ul {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.category-grid-item {
+  position: relative;
+}
+
+.category-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* Curtains is the main category: taller on mobile. */
+.category-grid-item--main .category-card img {
+  aspect-ratio: 1 / 1;
+}
+
+/* Two-line label over the bottom of the image, on a dark gradient for legibility. */
+.category-card-text {
+  position: absolute;
+  inset: auto 0 0;
+  display: block;
+  padding: var(--space-5) var(--space-3) var(--space-3);
+  background: linear-gradient(to top, rgb(0 0 0 / 0.65), rgb(0 0 0 / 0));
+}
+
+.category-card-eyebrow,
+.category-card-name {
+  display: block;
+}
+
+.category-card-eyebrow {
+  margin-bottom: 0.15rem;
+  color: var(--color-gold-on-dark);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.category-card-name {
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.category-grid-item--main .category-card-name {
+  font-size: 1.35rem;
+}
+
+.category-card-arrow {
+  display: inline-block;
+  margin-left: 0.25em;
+  transition: transform 0.3s ease;
+}
+
+/* Hover and keyboard focus lift the whole card slightly, with a soft shadow beneath it. */
+.category-card:focus-visible {
+  box-shadow: 0 16px 32px rgb(0 0 0 / 0.24);
+  transform: translateY(-8px);
+}
+
+.category-card:focus-visible .category-card-arrow {
+  transform: translateX(0.25rem);
+}
+
+@media (hover: hover) {
+  .category-card:hover {
+    box-shadow: 0 16px 32px rgb(0 0 0 / 0.24);
+    transform: translateY(-8px);
+  }
+
+  .category-card:hover .category-card-arrow {
+    transform: translateX(0.25rem);
+  }
+}
+
+/* Reduced motion: keep the shadow as the cue, but don't move anything. */
+@media (prefers-reduced-motion: reduce) {
+  .category-card,
+  .category-card-arrow {
+    transition: none;
+  }
+
+  .category-card:hover,
+  .category-card:focus-visible,
+  .category-card:hover .category-card-arrow,
+  .category-card:focus-visible .category-card-arrow {
+    transform: none;
+  }
+}
+
+@media (min-width: 44rem) {
+  /* Curtains takes the left 5/8 of the top rows, Blinds and Window Film stack in the right 3/8,
+     and Wallpaper and Custom Furniture split the bottom row. The list's aspect ratio sets the
+     cell shapes (Curtains about 5:4, side images 3:2, bottom images about 2:1).
+     Compact preview, capped a little smaller than the curtains page mini gallery. */
+  .category-grid ul {
+    max-width: 740px;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 25fr)) minmax(0, 24fr);
+    aspect-ratio: 100 / 74;
+  }
+
+  .category-grid-item {
+    grid-column: span 3;
+  }
+
+  .category-grid-item--main {
+    grid-column: span 5;
+    grid-row: span 2;
+  }
+
+  .category-grid-item--wide {
+    grid-column: span 4;
+  }
+
+  /* Fill the cell without contributing the image's intrinsic size, so the grid decides the shapes. */
+  .category-card {
+    position: absolute;
+    inset: 0;
+  }
+
+  .category-card img,
+  .category-grid-item--main .category-card img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+/* Home "Why choose us" section: full-width light purple band below the category grid. */
+.why-us-section {
+  padding-block: var(--space-6);
+  background: var(--color-background-alt);
+}
+
+/* Numbered reasons: no cards or icons, just thin divider lines between items.
+   Single column with horizontal dividers on mobile, 2 × 2 grid from 44rem. */
+.why-us-list {
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.why-us-item {
+  padding-block: var(--space-4);
+}
+
+.why-us-item:first-child {
+  padding-top: 0;
+}
+
+.why-us-item:last-child {
+  padding-bottom: 0;
+}
+
+.why-us-item + .why-us-item {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Number circle sits on the same row as the heading, styled like .service-number. */
+.why-us-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.why-us-number {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-purple-secondary);
+  color: var(--color-surface);
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-emphasis);
+  line-height: 1;
+}
+
+.why-us-item h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-emphasis);
+  letter-spacing: 0;
+}
+
+/* Indent the description to line up with the heading text (circle width + gap). */
+.why-us-item p {
+  max-width: 32rem;
+  margin: 0;
+  padding-left: calc(2rem + var(--space-2));
+  color: var(--color-muted);
+}
+
+@media (min-width: 44rem) {
+  .why-us-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: var(--space-5);
+  }
+
+  /* Reset the mobile dividers and padding, then draw a vertical line between the columns
+     and a horizontal line between the rows. */
+  .why-us-item,
+  .why-us-item:first-child,
+  .why-us-item:last-child {
+    padding: var(--space-5) var(--space-5) var(--space-5) 0;
+  }
+
+  .why-us-item + .why-us-item {
+    border-top: 0;
+  }
+
+  .why-us-item:nth-child(even) {
+    padding-right: 0;
+    padding-left: var(--space-5);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .why-us-item:nth-child(-n + 2) {
+    padding-top: 0;
+  }
+
+  .why-us-item:nth-child(n + 3) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .why-us-item:nth-last-child(-n + 2) {
+    padding-bottom: 0;
+  }
+}
+
+/* Home "Start here" section: white band after the light purple "Why DDD" section. */
+.start-section {
+  padding-block: var(--space-6);
+}
+
+/* Keep the bottom spacing equal to the top: no paragraph margin after the last item. */
+.start-section .container > :last-child {
+  margin-bottom: 0;
+}
+
+/* Left-aligned CTA buttons (shared .cta-button styles): stacked on mobile, side by side from 44rem. */
+.start-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 44rem) {
+  .start-actions {
+    flex-direction: row;
+  }
+}
