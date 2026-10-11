@@ -174,6 +174,11 @@ a:focus-visible {
   color: var(--color-purple-dark);
 }
 
+.site-nav a[aria-current="page"],
+.site-nav a[aria-current="location"] {
+  border-bottom-color: var(--color-purple-secondary);
+}
+
 .has-submenu {
   position: relative;
 }
@@ -203,58 +208,16 @@ a:focus-visible {
   transform: translateX(-50%);
 }
 
-html:not(.has-js) .has-submenu:hover > .submenu,
-html:not(.has-js) .has-submenu:focus-within > .submenu,
-.has-js .has-submenu.is-open > .submenu {
+.has-submenu:hover > .submenu,
+.has-submenu:focus-within > .submenu {
   display: block;
-}
-
-.has-js .has-submenu {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.has-js .has-submenu > a::after {
-  display: none;
-}
-
-.submenu-toggle {
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--color-purple-secondary);
-  cursor: pointer;
-}
-
-.submenu-toggle:hover {
-  color: var(--color-purple-dark);
-}
-
-.submenu-toggle:focus-visible {
-  outline: 2px solid var(--color-gold);
-  outline-offset: 2px;
-}
-
-.submenu-toggle svg {
-  width: 1rem;
-  height: 1rem;
-  transition: transform 0.2s ease;
-}
-
-.submenu-toggle[aria-expanded="true"] svg {
-  transform: rotate(180deg);
 }
 
 .submenu a {
   display: block;
   padding: var(--space-1) var(--space-3);
   font-size: 0.9rem;
-  font-weight: 400;
+  font-weight: var(--font-weight-emphasis);
   white-space: nowrap;
 }
 
@@ -289,6 +252,12 @@ main.container {
   color: #ffffff;
   font-size: clamp(1.75rem, 5.5vw, 2.25rem);
   line-height: 1.2;
+}
+
+/* Home page: smaller company name that stays on one line down to narrow phones */
+.page-title-banner--home h1 {
+  font-size: clamp(1rem, 6.5vw, 2rem);
+  white-space: nowrap;
 }
 
 .page-body {
@@ -704,6 +673,7 @@ main > .feature-section:first-child {
 }
 
 .mini-gallery h2,
+.intro-split h2,
 .service-section h2,
 .faq-section h2 {
   margin-bottom: var(--space-4);
@@ -828,6 +798,39 @@ main > .feature-section:first-child {
   font-weight: var(--font-weight-emphasis);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* Intro split: text 2/3 and square image 1/3 on desktop; image stacks below text on mobile */
+.intro-split {
+  padding-block: var(--space-6);
+}
+
+.intro-split-layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.intro-split-text {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.intro-split-media img {
+  display: block;
+  width: 100%;
+  max-width: 32rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+@media (min-width: 64rem) {
+  .intro-split-layout {
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    column-gap: var(--space-6);
+  }
 }
 
 /* Process section */
@@ -995,6 +998,7 @@ main > .feature-section:first-child {
   justify-content: space-between;
   gap: var(--space-3);
   padding-block: var(--space-3);
+  padding-inline-end: var(--space-3);
   color: var(--color-purple-dark);
   font-size: 1.0625rem;
   font-weight: var(--font-weight-emphasis);
@@ -1006,18 +1010,26 @@ main > .feature-section:first-child {
   display: none;
 }
 
-/* Plus sign that turns into a minus when open */
+/* Purple circle with a white plus sign that turns into a minus when open.
+   The bars are drawn with gradients so they stay centered regardless of font. */
 .faq-item summary::after {
-  content: "+";
+  content: "";
   flex: none;
-  color: var(--color-purple-secondary);
-  font-size: 1.5rem;
-  font-weight: var(--font-weight-normal);
-  line-height: 1;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--color-surface), var(--color-surface)) center / 0.75rem 2px no-repeat,
+    linear-gradient(var(--color-surface), var(--color-surface)) center / 2px 0.75rem no-repeat,
+    var(--color-purple-secondary);
+}
+
+.faq-item summary:hover::after {
+  background-color: var(--color-purple-dark);
 }
 
 .faq-item[open] summary::after {
-  content: "\2212";
+  background-size: 0.75rem 2px, 2px 0;
 }
 
 .faq-item summary:focus-visible {
@@ -1457,17 +1469,44 @@ main .contact-card {
   display: none;
 }
 
+/* Single scrollable row that bleeds into the page gutter, like .mini-gallery-list.
+   Vertical padding keeps the focus outline from being clipped by overflow. */
 .portfolio-filters ul {
+  --filter-fade: 1.5rem;
+  --fade-start: 0px;
+  --fade-end: 0px;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
-  margin: var(--space-4) 0 0;
-  padding: 0;
+  gap: var(--filter-gap, var(--space-4));
+  margin: calc(var(--space-4) - 0.375rem) calc(var(--page-gutter) * -1) 0;
+  padding: 0.375rem var(--page-gutter);
   list-style: none;
+  overflow-x: auto;
+  scroll-padding-inline: var(--page-gutter);
+  scrollbar-width: none;
+  /* Subtle edge fades, toggled by JS while there is more to scroll in that direction. */
+  -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 0.25), #000 var(--fade-start), #000 calc(100% - var(--fade-end)), rgb(0 0 0 / 0.25));
+  mask-image: linear-gradient(to right, rgb(0 0 0 / 0.25), #000 var(--fade-start), #000 calc(100% - var(--fade-end)), rgb(0 0 0 / 0.25));
+}
+
+.portfolio-filters ul.has-fade-start {
+  --fade-start: var(--filter-fade);
+}
+
+.portfolio-filters ul.has-fade-end {
+  --fade-end: var(--filter-fade);
+}
+
+.portfolio-filters ul::-webkit-scrollbar {
+  display: none;
+}
+
+.portfolio-filters li {
+  flex: 0 0 auto;
 }
 
 .portfolio-filter {
   padding: 0.25rem 0 0.35rem;
+  white-space: nowrap;
   border: 0;
   border-bottom: 2px solid transparent;
   background: none;
@@ -1653,16 +1692,24 @@ main .contact-card {
   padding-bottom: var(--space-6);
 }
 
+/* Mirrors the header brand lockup (.site-brand-mark / .site-brand-name) in gold */
 .footer-details .footer-brand {
   color: var(--color-gold-on-dark);
   font-size: 2rem;
-  font-weight: 300;
-  letter-spacing: -0.04em;
-  line-height: 1.2;
+  font-weight: var(--font-weight-emphasis);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
 }
 
 .footer-details .footer-name {
   margin-bottom: var(--space-5);
+  color: var(--color-gold-on-dark);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .footer-details p + p:not(.footer-name) {
@@ -1846,15 +1893,15 @@ img.footer-icon {
     width: 2.75rem;
     height: 2.75rem;
     padding: 0;
-    border: 1px solid var(--color-border);
+    border: 0;
     border-radius: 4px;
-    background: var(--color-surface);
+    background: transparent;
     color: var(--color-purple-secondary);
     cursor: pointer;
   }
 
   .menu-toggle:hover {
-    border-color: var(--color-gold);
+    color: var(--color-gold);
   }
 
   .menu-toggle:focus-visible {
@@ -1869,7 +1916,8 @@ img.footer-icon {
 
   .menu-icon span {
     width: 1.25rem;
-    height: 2px;
+    height: 3px;
+    border-radius: 1px;
     background: currentColor;
   }
 
@@ -1908,46 +1956,32 @@ img.footer-icon {
     border-left-color: var(--color-gold);
   }
 
+  .site-nav a[aria-current="page"],
+  .site-nav a[aria-current="location"] {
+    border-left-color: var(--color-purple-secondary);
+  }
+
   .has-submenu > a::after {
     display: none;
   }
 
-  .has-submenu > a {
-    flex: 1;
-  }
-
-  .submenu-toggle {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-
+  /* Subpages are as important as top-level pages: same row style, grouped only by the indent. */
   .site-nav .submenu {
     display: block;
     position: static;
-    flex-basis: 100%;
     min-width: 0;
-    margin: 0;
-    padding: 0 0 var(--space-1);
+    margin: 0 0 0 var(--space-2);
+    padding: 0;
     border: 0;
+    border-top: 1px solid var(--color-border);
     background: none;
     transform: none;
   }
 
-  .has-js .site-nav .submenu {
-    display: none;
-  }
-
-  .has-js .site-nav .has-submenu.is-open > .submenu {
-    display: block;
-  }
-
-  .site-nav .submenu li + li {
-    border-top: 0;
-  }
-
   .submenu a {
-    padding: var(--space-1) var(--space-2) var(--space-1) var(--space-5);
-    font-size: 0.9rem;
+    padding: var(--space-2);
+    font-size: 0.95rem;
+    white-space: normal;
   }
 
   .footer-main {

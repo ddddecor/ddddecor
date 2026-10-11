@@ -20,48 +20,6 @@ if (menuButton && navigation) {
       menuButton.focus();
     }
   });
-
-  const submenuItems = [...navigation.querySelectorAll('.has-submenu')];
-
-  function setSubmenuOpen(item, isOpen) {
-    item.classList.toggle('is-open', isOpen);
-    item.querySelector('.submenu-toggle').setAttribute('aria-expanded', String(isOpen));
-  }
-
-  submenuItems.forEach((item, index) => {
-    const link = item.querySelector(':scope > a');
-    const submenu = item.querySelector('.submenu');
-    const toggle = document.createElement('button');
-
-    submenu.id = submenu.id || `submenu-${index + 1}`;
-    toggle.className = 'submenu-toggle';
-    toggle.type = 'button';
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-controls', submenu.id);
-    toggle.setAttribute('aria-label', `${link.textContent.trim()} submenu`);
-    toggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>';
-    link.after(toggle);
-
-    toggle.addEventListener('click', () => {
-      setSubmenuOpen(item, toggle.getAttribute('aria-expanded') !== 'true');
-    });
-  });
-
-  document.addEventListener('click', (event) => {
-    submenuItems.forEach((item) => {
-      if (!item.contains(event.target)) setSubmenuOpen(item, false);
-    });
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
-    submenuItems.forEach((item) => {
-      if (item.classList.contains('is-open')) {
-        setSubmenuOpen(item, false);
-        item.querySelector('.submenu-toggle').focus();
-      }
-    });
-  });
 }
 
 if (document.querySelector('.gallery-link, .project-gallery-link') && typeof GLightbox === 'function') {
@@ -95,10 +53,38 @@ const portfolioFilters = document.querySelector('.portfolio-filters');
 if (portfolioFilters) {
   const filterButtons = [...portfolioFilters.querySelectorAll('.portfolio-filter')];
   const portfolioItems = [...document.querySelectorAll('.portfolio-feed .portfolio-item')];
+  const filterRow = portfolioFilters.querySelector('ul');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  function applyFilter(category) {
+  // Scroll the filter row horizontally (not the page) so the button is fully visible.
+  function revealFilterButton(button, behavior) {
+    const gutter = parseFloat(getComputedStyle(filterRow).paddingLeft);
+    const rowStart = filterRow.scrollLeft;
+    const rowEnd = rowStart + filterRow.clientWidth;
+    const buttonRect = button.getBoundingClientRect();
+    const buttonStart = buttonRect.left - filterRow.getBoundingClientRect().left + rowStart;
+    const buttonEnd = buttonStart + buttonRect.width;
+    let target = null;
+
+    if (buttonStart - gutter < rowStart) {
+      target = buttonStart - gutter;
+    } else if (buttonEnd + gutter > rowEnd) {
+      target = buttonEnd + gutter - filterRow.clientWidth;
+    }
+
+    if (target !== null) {
+      filterRow.scrollTo({ left: target, behavior: reducedMotion.matches ? 'auto' : behavior });
+    }
+  }
+
+  function applyFilter(category, behavior = 'smooth') {
     filterButtons.forEach((filterButton) => {
-      filterButton.setAttribute('aria-pressed', String(filterButton.dataset.category === category));
+      const isActive = filterButton.dataset.category === category;
+      filterButton.setAttribute('aria-pressed', String(isActive));
+
+      if (isActive) {
+        revealFilterButton(filterButton, behavior);
+      }
     });
 
     portfolioItems.forEach((item) => {
@@ -110,14 +96,62 @@ if (portfolioFilters) {
     button.addEventListener('click', () => applyFilter(button.dataset.category));
   });
 
+  // When the row overflows, widen the gap slightly if needed so the category at the
+  // right edge is clearly cut off, hinting that the row scrolls.
+  function adjustFilterGap() {
+    filterRow.style.removeProperty('--filter-gap');
+
+    if (filterRow.scrollWidth <= filterRow.clientWidth) {
+      return;
+    }
+
+    const minPeek = 24;
+    const rowStyle = getComputedStyle(filterRow);
+    const baseGap = parseFloat(rowStyle.columnGap);
+    const gutter = parseFloat(rowStyle.paddingLeft);
+    const itemWidths = [...filterRow.children].map((item) => item.getBoundingClientRect().width);
+
+    for (let gap = baseGap; gap <= baseGap + 16; gap += 2) {
+      let itemStart = gutter;
+      const edgeItemPeeks = itemWidths.some((width) => {
+        const visible = filterRow.clientWidth - itemStart;
+        const crossesEdge = itemStart + width > filterRow.clientWidth;
+        itemStart += width + gap;
+        return crossesEdge && visible >= minPeek && width - visible >= minPeek;
+      });
+
+      if (edgeItemPeeks) {
+        filterRow.style.setProperty('--filter-gap', `${gap}px`);
+        return;
+      }
+    }
+  }
+
+  function updateFilterFades() {
+    const maxScroll = filterRow.scrollWidth - filterRow.clientWidth;
+    filterRow.classList.toggle('has-fade-start', filterRow.scrollLeft > 1);
+    filterRow.classList.toggle('has-fade-end', filterRow.scrollLeft < maxScroll - 1);
+  }
+
+  function layoutFilterRow() {
+    adjustFilterGap();
+    updateFilterFades();
+  }
+
+  filterRow.addEventListener('scroll', updateFilterFades, { passive: true });
+  window.addEventListener('resize', layoutFilterRow);
+  document.fonts?.ready.then(layoutFilterRow);
+
+  // Show the row before measuring so the preselected button can be scrolled into view.
+  portfolioFilters.hidden = false;
+  layoutFilterRow();
+
   // Preselect a filter from a link such as portfolio.html?category=curtains.
   const requestedCategory = new URLSearchParams(window.location.search).get('category');
 
   if (filterButtons.some((button) => button.dataset.category === requestedCategory)) {
-    applyFilter(requestedCategory);
+    applyFilter(requestedCategory, 'auto');
   }
-
-  portfolioFilters.hidden = false;
 }
 
 const contactFab = document.querySelector('.contact-fab');
