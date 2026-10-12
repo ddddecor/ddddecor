@@ -308,7 +308,7 @@ if (heroCarousel) {
 const revealSections = document.querySelectorAll('.feature-section--split');
 
 if (revealSections.length && 'IntersectionObserver' in window) {
-  const revealQuery = window.matchMedia('(min-width: 64rem) and (prefers-reduced-motion: no-preference)');
+  const revealQuery = window.matchMedia('(prefers-reduced-motion: no-preference)');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
