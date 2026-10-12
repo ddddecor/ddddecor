@@ -531,6 +531,11 @@ main > .feature-section:first-child {
   text-transform: uppercase;
 }
 
+/* Keep the eyebrow items paired so it wraps evenly (two items per row) on narrow screens. */
+.hero-eyebrow-group {
+  white-space: nowrap;
+}
+
 .hero-content h1 {
   max-width: 36rem;
   font-size: clamp(1.5rem, 5.5vw, 2rem);
@@ -1061,6 +1066,7 @@ main > .feature-section:first-child {
   color: var(--color-muted);
 }
 
+.category-grid h2,
 .feature-section h2,
 .contact-follow h2,
 .contact-area h2,
@@ -1284,6 +1290,10 @@ main > .feature-section:first-child {
 
 .feature-photo--portrait {
   aspect-ratio: 3 / 4;
+}
+
+.feature-photo--square {
+  aspect-ratio: 1 / 1;
 }
 
 @media (min-width: 44rem) {
