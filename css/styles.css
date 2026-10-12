@@ -580,14 +580,30 @@ main > .feature-section:first-child {
   background: var(--color-trust-background);
 }
 
+/* Mobile: scrollable row that bleeds into the page gutter, with edge fades like .portfolio-filters ul. */
 .trust-list {
+  --trust-fade: 5rem;
+  --fade-start: 0px;
+  --fade-end: 0px;
   display: flex;
-  margin: 0;
-  padding: 0;
+  margin: 0 calc(var(--page-gutter) * -1);
+  padding: 0 var(--page-gutter);
   list-style: none;
   overflow-x: auto;
   scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--page-gutter);
   scrollbar-width: none;
+  /* Subtle edge fades, toggled by JS while there is more to scroll in that direction. */
+  -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 0.05), #000 var(--fade-start), #000 calc(100% - var(--fade-end)), rgb(0 0 0 / 0.05));
+  mask-image: linear-gradient(to right, rgb(0 0 0 / 0.05), #000 var(--fade-start), #000 calc(100% - var(--fade-end)), rgb(0 0 0 / 0.05));
+}
+
+.trust-list.has-fade-start {
+  --fade-start: var(--trust-fade);
+}
+
+.trust-list.has-fade-end {
+  --fade-end: var(--trust-fade);
 }
 
 .trust-list::-webkit-scrollbar {
@@ -636,6 +652,8 @@ main > .feature-section:first-child {
 
 @media (min-width: 64rem) {
   .trust-list {
+    margin: 0;
+    padding: 0;
     overflow: visible;
   }
 
@@ -1898,10 +1916,6 @@ img.footer-icon {
     background: transparent;
     color: var(--color-purple-secondary);
     cursor: pointer;
-  }
-
-  .menu-toggle:hover {
-    color: var(--color-gold);
   }
 
   .menu-toggle:focus-visible {

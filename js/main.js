@@ -154,6 +154,22 @@ if (portfolioFilters) {
   }
 }
 
+const trustList = document.querySelector('.trust-list');
+
+if (trustList) {
+  // Show edge fades while the strip has more to scroll in that direction (mobile only).
+  function updateTrustFades() {
+    const maxScroll = trustList.scrollWidth - trustList.clientWidth;
+    trustList.classList.toggle('has-fade-start', trustList.scrollLeft > 1);
+    trustList.classList.toggle('has-fade-end', trustList.scrollLeft < maxScroll - 1);
+  }
+
+  trustList.addEventListener('scroll', updateTrustFades, { passive: true });
+  window.addEventListener('resize', updateTrustFades);
+  document.fonts?.ready.then(updateTrustFades);
+  updateTrustFades();
+}
+
 const contactFab = document.querySelector('.contact-fab');
 const contactFabToggle = document.querySelector('.contact-fab-toggle');
 
