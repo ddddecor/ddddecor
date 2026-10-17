@@ -764,6 +764,34 @@ main > .feature-section:first-child {
   }
 }
 
+/* Window film mini gallery captions: under the image on mobile, over the image on desktop (see the desktop block). */
+/* Mobile: the image sizes the link, so the caption stays inside the scroll row instead of being pushed out of view. */
+.mini-gallery--window-film .gallery-link,
+.mini-gallery--window-film .gallery-link img {
+  height: auto;
+}
+
+.mini-gallery--window-film .mini-gallery-caption {
+  display: block;
+  padding-top: var(--space-1);
+}
+
+.mini-gallery--window-film .mini-gallery-caption-title,
+.mini-gallery--window-film .mini-gallery-caption-text {
+  display: block;
+  line-height: 1.4;
+}
+
+.mini-gallery--window-film .mini-gallery-caption-title {
+  color: var(--color-purple-dark);
+  font-size: 0.9375rem;
+}
+
+.mini-gallery--window-film .mini-gallery-caption-text {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+
 @media (min-width: 64rem) {
   /* Generic desktop fallback: equal columns, any number of images. */
   .mini-gallery-list {
@@ -844,14 +872,48 @@ main > .feature-section:first-child {
 
   .mini-gallery--window-film .gallery-link {
     position: relative;
+    height: 100%;
   }
 
   .mini-gallery--window-film .gallery-link img {
     position: absolute;
     inset: 0;
+    height: 100%;
     aspect-ratio: auto;
     object-fit: cover;
   }
+
+  /* Captions overlay the bottom of each image. */
+  .mini-gallery--window-film .mini-gallery-item {
+    position: relative;
+    min-height: 0;
+  }
+
+  .mini-gallery--window-film .mini-gallery-caption {
+    position: absolute;
+    inset: auto 0 0;
+    padding: var(--space-5) var(--space-3) var(--space-2) var(--space-2);
+    background: linear-gradient(to top, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0));
+    pointer-events: none;
+  }
+
+  .mini-gallery--window-film .mini-gallery-caption-title {
+    color: #ffffff;
+  }
+
+  .mini-gallery--window-film .mini-gallery-caption-text {
+    color: rgb(255 255 255 / 0.85);
+  }
+}
+
+/* Window film image 2 (film-pooside): crop toward the right side. */
+.mini-gallery--window-film .mini-gallery-item:nth-child(2) .gallery-link img {
+  object-position: right center;
+}
+
+/* Window film image 3 (white-film-stairs2): crop from the bottom. */
+.mini-gallery--window-film .mini-gallery-item:nth-child(3) .gallery-link img {
+  object-position: center bottom;
 }
 
 /* Feature section */
@@ -2322,6 +2384,8 @@ img.footer-icon {
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
+  /* The hidden list still occupies layout space; don't let it block taps on content beneath. */
+  pointer-events: none;
 }
 
 .contact-fab-list {
@@ -2368,6 +2432,7 @@ img.footer-icon {
   border-radius: 50%;
   color: #fff;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+  pointer-events: auto;
 }
 
 .contact-fab-toggle {
