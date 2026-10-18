@@ -261,7 +261,7 @@ main.container {
 }
 
 .page-body {
-  padding-block: var(--space-6);
+  padding-block: var(--space-4) var(--space-6);
 }
 
 .page-body > :first-child {
@@ -693,6 +693,10 @@ main > .feature-section:first-child {
   --mini-gallery-ratio: 4 / 3;
   padding-block: var(--space-6);
   background: var(--color-surface);
+}
+
+.trust-strip + .mini-gallery {
+  padding-top: var(--space-5);
 }
 
 .mini-gallery h2,
@@ -2726,7 +2730,7 @@ img.footer-icon {
 /* Hover and keyboard focus lift the whole card slightly, with a soft shadow beneath it. */
 .category-card:focus-visible {
   box-shadow: 0 16px 32px rgb(0 0 0 / 0.24);
-  transform: translateY(-8px);
+  transform: translateY(-4px);
 }
 
 .category-card:focus-visible .category-card-arrow {
@@ -2736,7 +2740,7 @@ img.footer-icon {
 @media (hover: hover) {
   .category-card:hover {
     box-shadow: 0 16px 32px rgb(0 0 0 / 0.24);
-    transform: translateY(-8px);
+    transform: translateY(-4px);
   }
 
   .category-card:hover .category-card-arrow {
