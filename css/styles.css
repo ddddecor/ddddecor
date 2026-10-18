@@ -225,6 +225,11 @@ main.container {
   padding-block: var(--space-6);
 }
 
+/* Match the tighter gap other pages use under the trust strip (see .trust-strip + .mini-gallery) */
+.trust-strip + main.container {
+  padding-top: var(--space-5);
+}
+
 /* Page-title banner: reusable band for internal pages without a photographic hero.
    Place it first inside main.page-main, followed by .container.page-body. */
 .page-main {
@@ -264,6 +269,11 @@ main.container {
   padding-block: var(--space-4) var(--space-6);
 }
 
+/* Home: the grid is followed by a full-width band, so less space below it. */
+.page-body--home {
+  padding-bottom: var(--space-4);
+}
+
 .page-body > :first-child {
   margin-top: 0;
 }
@@ -300,6 +310,14 @@ main.container {
   font-weight: var(--font-weight-emphasis);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* Eyebrow + heading styled like the feature sections (e.g. on curtains.html) */
+.project-intro--feature h1 {
+  margin-bottom: var(--space-4);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .project-intro > p:last-child {
@@ -886,7 +904,6 @@ main > .feature-section:first-child {
     aspect-ratio: auto;
     object-fit: cover;
   }
-
   /* Window film: page-specific desktop grid, starts as a copy of the curtains layout (4 images).
      Adjust columns, rows, ratio and item placement here without affecting other pages. */
   .mini-gallery--window-film .mini-gallery-list {
@@ -1356,7 +1373,7 @@ main > .feature-section:first-child {
 }
 
 .feature-link + .gallery-label {
-  margin-top: var(--space-6);
+  margin-top: var(--space-4);
 }
 
 .gallery-label + .feature-media,
@@ -1367,7 +1384,7 @@ main > .feature-section:first-child {
 
 /* Wrapper that keeps the label and its images together in split sections */
 .feature-gallery {
-  margin-top: var(--space-6);
+  margin-top: var(--space-4);
 }
 
 .feature-gallery .gallery-label {
@@ -2662,6 +2679,14 @@ img.footer-icon {
   list-style: none;
 }
 
+.category-grid .gallery-label {
+  margin-top: var(--space-2);
+}
+
+.category-grid .gallery-label + ul {
+  margin-top: var(--space-1);
+}
+
 .category-grid-item {
   position: relative;
 }
@@ -2706,6 +2731,7 @@ img.footer-icon {
   margin-bottom: 0.15rem;
   color: var(--color-gold-on-dark);
   font-size: 0.7rem;
+  font-weight: 500;
   letter-spacing: 0.16em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -2805,8 +2831,14 @@ img.footer-icon {
 
 /* Home "Why choose us" section: full-width light purple band below the category grid. */
 .why-us-section {
-  padding-block: var(--space-6);
+  margin-top: 0; /* overrides the generic main section margin, which added a white gap above the band */
+  padding-block: var(--space-5) var(--space-6);
   background: var(--color-background-alt);
+}
+
+/* No default paragraph margin above the eyebrow, so the top padding is the whole gap. */
+.why-us-section .container > :first-child {
+  margin-top: 0;
 }
 
 /* Numbered reasons: no cards or icons, just thin divider lines between items.
@@ -2911,7 +2943,8 @@ img.footer-icon {
 
 /* Home "Start here" section: white band after the light purple "Why DDD" section. */
 .start-section {
-  padding-block: var(--space-6);
+  margin-top: 0; /* overrides the generic main section margin, which doubled the gap under the band above */
+  padding-block: var(--space-5) var(--space-6);
 }
 
 /* Keep the bottom spacing equal to the top: no paragraph margin after the last item. */
