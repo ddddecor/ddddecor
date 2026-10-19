@@ -720,6 +720,7 @@ main > .feature-section:first-child {
 .mini-gallery h2,
 .intro-split h2,
 .service-section h2,
+.testimonials-section h2,
 .faq-section h2 {
   margin-bottom: var(--space-4);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -1177,6 +1178,10 @@ main > .feature-section:first-child {
 .service-section {
   padding-block: var(--space-6);
   background: var(--color-background-alt);
+}
+
+.testimonials-section {
+  padding-block: var(--space-6);
 }
 
 .service-actions {
@@ -2503,6 +2508,53 @@ img.footer-icon {
   align-items: center;
   gap: var(--space-3);
   margin-top: var(--space-5);
+}
+
+.cta-note {
+  max-width: 36rem;
+  margin: var(--space-4) auto 0;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+.cta-product-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: fit-content;
+  margin: var(--space-3) auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 44rem) {
+  .cta-product-links {
+    width: auto;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: var(--space-2) var(--space-4);
+  }
+}
+
+.cta-product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-purple);
+  font-weight: var(--font-weight-emphasis);
+  text-decoration: none;
+}
+
+.cta-product-link:hover,
+.cta-product-link:focus-visible {
+  text-decoration: underline;
+}
+
+.cta-product-link svg {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
 }
 
 /* Panel variant: the CTA content sits in a light purple box, like the testimonial card */
