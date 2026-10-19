@@ -202,7 +202,7 @@ const heroCarousel = document.querySelector('[data-hero-carousel]');
 
 if (heroCarousel) {
   const slides = [...heroCarousel.querySelectorAll('.hero-slide')];
-  const slideInterval = 7000;
+  const slideInterval = 5000;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let current = 0;
   let timer = null;
