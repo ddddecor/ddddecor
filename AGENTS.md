@@ -10,3 +10,4 @@
 - Project photos live in `images/portfolio/projects/<project-name>/`.
 - A filename ending in `-thumb` before the extension is a thumbnail of the file with the same name without `-thumb`. Display the thumbnail, but link it to the full-size image.
 - If no matching thumbnail exists, use the full-size image for both display and the link. Do not add thumbnail files as separate gallery images.
+- This is a Thai-language website. Pages use `<html lang="th">`, and visible text and titles are in Thai. Write new copy and placeholders in Thai. Some small elements (eyebrows, placeholders) are still in English; mark any English text inside Thai pages with `lang="en"` where practical.
