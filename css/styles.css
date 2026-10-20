@@ -278,6 +278,11 @@ main.container {
   margin-top: 0;
 }
 
+/* Project pages: tighter gap between the header and the breadcrumb */
+main.project-detail:has(> .project-breadcrumb) {
+  padding-top: var(--space-3);
+}
+
 .project-breadcrumb ol {
   display: flex;
   flex-wrap: wrap;
@@ -1181,7 +1186,7 @@ main > .feature-section:first-child {
 
 /* Process section */
 .service-section {
-  padding-block: var(--space-6);
+  padding-block: var(--space-4) var(--space-6);
   background: var(--color-background-alt);
 }
 
