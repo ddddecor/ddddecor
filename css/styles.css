@@ -713,6 +713,11 @@ main > .feature-section:first-child {
   background: var(--color-surface);
 }
 
+/* Blinds: portrait 3:4 on mobile only; the desktop grid ignores the ratio. */
+.mini-gallery--blinds {
+  --mini-gallery-ratio: 3 / 4;
+}
+
 .trust-strip + .mini-gallery {
   padding-top: var(--space-5);
 }
