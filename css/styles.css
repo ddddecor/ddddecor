@@ -1164,6 +1164,15 @@ main > .feature-section:first-child {
     object-fit: cover;
   }
 
+  .intro-split--original-ratio .intro-split-media img {
+    aspect-ratio: auto;
+    max-width: none;
+  }
+
+  .intro-split--original-ratio .intro-split-layout {
+    grid-template-columns: 4fr 3fr;
+  }
+
   .intro-split-content {
     display: block;
     order: 0;
@@ -1192,6 +1201,45 @@ main > .feature-section:first-child {
 
 .testimonials-section {
   padding-block: var(--space-6);
+  background: var(--color-surface);
+}
+
+/* Both sections share the same background, so their paddings add up; trim the CTA's top padding after testimonials */
+.testimonials-section + .cta {
+  padding-top: var(--space-3);
+}
+
+/* Mobile: photo above the quote card; desktop: photo left, card right at equal height */
+.testimonials-layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.testimonials-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.testimonials-layout .testimonial-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+}
+
+@media (min-width: 64rem) {
+  .testimonials-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    gap: var(--space-6);
+  }
+
+  .testimonials-layout .testimonial-card {
+    padding-inline: var(--space-5);
+  }
 }
 
 .service-actions {
@@ -1273,13 +1321,20 @@ main > .feature-section:first-child {
   position: absolute;
   top: 0;
   left: 50%;
-  width: 3rem;
-  height: 2rem;
+  width: 2.25rem;
+  height: 1.5rem;
   padding-inline: var(--space-1);
   background: var(--color-surface);
   color: var(--color-purple-secondary);
   transform: translate(-50%, -50%);
   box-sizing: content-box;
+}
+
+/* Closing mark: same symbol rotated, straddling the bottom edge */
+.testimonial-mark--end {
+  top: auto;
+  bottom: 0;
+  transform: translate(-50%, 50%) rotate(180deg);
 }
 
 .testimonial-quote {
@@ -1291,7 +1346,7 @@ main > .feature-section:first-child {
   margin: 0;
   color: var(--color-purple-dark);
   font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: var(--font-weight-normal);
+  font-weight: 200;
   line-height: 1.5;
 }
 
@@ -1337,6 +1392,13 @@ main > .feature-section:first-child {
   height: auto;
   max-height: none;
   aspect-ratio: 3 / 2;
+}
+
+/* Blinds page: image keeps its original ratio on mobile and desktop. */
+.faq-media--original-ratio img {
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
 }
 
 @media (min-width: 64rem) {
@@ -1775,6 +1837,49 @@ main > .feature-section:first-child {
   .feature-section--split.reveal-ready.is-revealed .feature-text,
   .feature-section--split.reveal-ready.is-revealed .gallery-label,
   .feature-section--split.reveal-ready.is-revealed .feature-item {
+    transform: none;
+  }
+}
+
+/* Testimonials reveal: same behavior as the split feature sections; photo slides in from the left, card from the right. */
+.testimonials-layout.reveal-ready .testimonials-media,
+.testimonials-layout.reveal-ready .testimonial-card {
+  opacity: 0;
+  transform: translateX(0.75rem);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.testimonials-layout.reveal-ready .testimonials-media {
+  transform: translateX(-0.75rem);
+}
+
+.testimonials-layout.reveal-ready .testimonial-card {
+  transition-delay: 0.1s;
+}
+
+.testimonials-layout.reveal-ready.is-revealed .testimonials-media,
+.testimonials-layout.reveal-ready.is-revealed .testimonial-card {
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 64rem) {
+  .testimonials-layout.reveal-ready .testimonials-media,
+  .testimonials-layout.reveal-ready .testimonial-card {
+    transform: translateX(2.5rem);
+    transition-duration: 0.9s;
+  }
+
+  .testimonials-layout.reveal-ready .testimonials-media {
+    transform: translateX(-2.5rem);
+  }
+
+  .testimonials-layout.reveal-ready .testimonial-card {
+    transition-delay: 0.15s;
+  }
+
+  .testimonials-layout.reveal-ready.is-revealed .testimonials-media,
+  .testimonials-layout.reveal-ready.is-revealed .testimonial-card {
     transform: none;
   }
 }
@@ -2522,7 +2627,7 @@ img.footer-icon {
 
 .cta-note {
   max-width: 36rem;
-  margin: var(--space-4) auto 0;
+  margin: var(--space-6) auto 0;
   color: var(--color-muted);
   font-size: 0.9375rem;
 }

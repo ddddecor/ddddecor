@@ -305,7 +305,7 @@ if (heroCarousel) {
   }
 }
 
-const revealSections = document.querySelectorAll('.feature-section--split');
+const revealSections = document.querySelectorAll('.feature-section--split, .testimonials-layout');
 
 if (revealSections.length && 'IntersectionObserver' in window) {
   const revealQuery = window.matchMedia('(prefers-reduced-motion: no-preference)');
