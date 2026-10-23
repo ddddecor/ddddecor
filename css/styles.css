@@ -723,7 +723,8 @@ main > .feature-section:first-child {
   --mini-gallery-ratio: 3 / 4;
 }
 
-.trust-strip + .mini-gallery {
+.trust-strip + .mini-gallery,
+.trust-strip + .intro-split {
   padding-top: var(--space-5);
 }
 
@@ -738,7 +739,8 @@ main > .feature-section:first-child {
 }
 
 /* Same tighter gap as after the testimonials section (see .testimonials-section + .cta) */
-.faq-section + .cta {
+.faq-section + .cta,
+.testimonial + .cta {
   padding-top: var(--space-3);
 }
 
