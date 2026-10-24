@@ -335,7 +335,7 @@ if (revealSections.length && 'IntersectionObserver' in window) {
 
 // Allowed GTM event names. Add new names here and create a matching
 // Custom Event trigger in GTM. Unlisted names are reported as gtm_unknown_event.
-const GTM_EVENTS = new Set(['line_chat', 'phone_call', 'email_click']);
+const GTM_EVENTS = new Set(['ddd_line_chat', 'ddd_phone_call', 'ddd_email_click']);
 
 document.addEventListener('click', (event) => {
   const tracked = event.target.closest('[data-gtm-event]');
