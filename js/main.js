@@ -332,3 +332,26 @@ if (revealSections.length && 'IntersectionObserver' in window) {
   revealQuery.addEventListener('change', updateReveal);
   updateReveal();
 }
+
+// Allowed GTM event names. Add new names here and create a matching
+// Custom Event trigger in GTM. Unlisted names are reported as gtm_unknown_event.
+const GTM_EVENTS = new Set(['line_chat', 'phone_call', 'email_click']);
+
+document.addEventListener('click', (event) => {
+  const tracked = event.target.closest('[data-gtm-event]');
+  if (!tracked) return;
+
+  const eventName = tracked.dataset.gtmEvent;
+  const isKnown = GTM_EVENTS.has(eventName);
+
+  if (!isKnown) {
+    console.warn(`Unknown data-gtm-event "${eventName}"`, tracked);
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: isKnown ? eventName : 'gtm_unknown_event',
+    attempted_event: isKnown ? undefined : eventName,
+    link_url: tracked.href || undefined,
+  });
+});
