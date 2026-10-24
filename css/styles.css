@@ -2906,7 +2906,7 @@ img.footer-icon {
 
 .split-hero-text {
   padding: var(--space-5) var(--page-gutter);
-  background: var(--color-purple);
+  background: var(--color-purple-dark);
   color: #ffffff;
 }
 
@@ -2973,8 +2973,153 @@ img.footer-icon {
   }
 }
 
+/* Furniture hero: portrait photo with a minimal title.
+   Mobile: the title is overlaid at the bottom of the photo. Desktop: text left, photo right. */
+.furniture-hero {
+  position: relative;
+}
+
+.furniture-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  max-height: 80vh;
+  object-fit: cover;
+}
+
+.furniture-hero-text {
+  position: absolute;
+  inset: auto 0 0;
+  /* Keep the overlay above the photo; the animated (transformed) image would otherwise paint over it, as it comes later in the DOM. */
+  z-index: 1;
+  padding: var(--space-6) var(--page-gutter) var(--space-4);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/* Tighter eyebrow-to-title gap on mobile; desktop restores the default below. */
+.furniture-hero-text .split-hero-eyebrow {
+  margin-bottom: 0.25rem;
+}
+
+.furniture-hero-text h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.75rem, 8vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Intro text is desktop only. */
+.furniture-hero-intro {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .furniture-hero {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    /* Match the .container content box so the hero lines up with the rest of the page. */
+    width: calc(100% - 2 * var(--page-gutter));
+    max-width: calc(var(--content-width) - 2 * var(--page-gutter));
+    margin-inline: auto;
+  }
+
+  .furniture-hero-text {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-5);
+    background: var(--color-purple-dark);
+  }
+
+  .furniture-hero-text h1 {
+    color: #ffffff;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 300;
+  }
+
+  .furniture-hero-text .split-hero-eyebrow {
+    margin-bottom: var(--space-2);
+  }
+
+  .furniture-hero-intro {
+    display: block;
+    max-width: 28rem;
+    margin: var(--space-2) 0 0;
+    color: #ffffff;
+    font-size: 0.9375rem;
+  }
+
+  /* The photo fills its column and is cropped to fit, so there is no empty gap beside it. */
+  .furniture-hero-media img {
+    width: 100%;
+    height: 34rem;
+    max-height: none;
+    aspect-ratio: auto;
+    object-position: center 40%;
+  }
+}
+
+/* Furniture hero load animation, mobile only: the photo brightens from dark and slowly zooms in, then the text rises in.
+   `both` keeps the text hidden during its delay. Desktop and reduced-motion users get the static hero. */
+@media (max-width: 47.99rem) and (prefers-reduced-motion: no-preference) {
+  /* Clip the slow zoom so the scaled photo stays inside its box. */
+  .furniture-hero-media {
+    overflow: hidden;
+  }
+
+  .furniture-hero-media img {
+    animation: furniture-hero-reveal 1.8s ease-out both, furniture-hero-zoom 24s linear both;
+    will-change: transform;
+  }
+
+  .furniture-hero-text .split-hero-eyebrow,
+  .furniture-hero-text h1 {
+    animation: furniture-hero-rise 0.9s ease-out 0.4s both;
+  }
+
+  .furniture-hero-text .split-hero-eyebrow {
+    animation-delay: 0.25s;
+  }
+}
+
+@keyframes furniture-hero-reveal {
+  from {
+    filter: brightness(0.35);
+  }
+
+  to {
+    filter: brightness(1);
+  }
+}
+
+@keyframes furniture-hero-zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes furniture-hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Trust strip under the white split hero: add the top rule to match the bottom one. */
-.split-hero + .trust-strip {
+.split-hero + .trust-strip,
+.furniture-hero + .trust-strip {
   border-top: 1px solid var(--color-border);
 }
 
