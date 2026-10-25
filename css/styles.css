@@ -1372,8 +1372,21 @@ main > .feature-section:first-child {
   line-height: 1.5;
 }
 
+.testimonial-stars {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: var(--space-4) 0 0;
+  color: var(--color-gold);
+}
+
+.testimonial-stars svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .testimonial-author {
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
   color: var(--color-muted);
   font-size: 0.875rem;
   font-weight: var(--font-weight-emphasis);
@@ -3169,9 +3182,10 @@ img.footer-icon {
   object-fit: cover;
 }
 
-/* Curtains is the main category: taller on mobile. */
+/* Curtains is the main category: taller on mobile, cropped from the right side of the photo. */
 .category-grid-item--main .category-card img {
   aspect-ratio: 1 / 1;
+  object-position: right center;
 }
 
 /* Two-line label over the bottom of the image, on a dark gradient for legibility. */
@@ -3287,6 +3301,10 @@ img.footer-icon {
     inset: 0;
     height: 100%;
     aspect-ratio: auto;
+  }
+
+  .category-grid-item--main .category-card img {
+    object-position: center;
   }
 }
 
