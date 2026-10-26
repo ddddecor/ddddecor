@@ -293,7 +293,6 @@ main.container {
   grid-area: 1 / 1;
   z-index: 1;
   align-self: start;
-  text-align: right;
   padding: 1.5rem 0.75rem 7rem 1.5rem;
   /* Long, eased fade so the edge doesn't read as a dark strip. */
   background: linear-gradient(
@@ -305,6 +304,13 @@ main.container {
     rgba(0, 0, 0, 0) 100%
   );
   color: #ffffff;
+}
+
+/* Shrink-wrapped and pushed to the right edge, with left-aligned lines so the eyebrow and title start at the same x. */
+.home-hero-titles {
+  width: fit-content;
+  margin-left: auto;
+  text-align: left;
 }
 
 .home-hero-eyebrow {
