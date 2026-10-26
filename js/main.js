@@ -20,6 +20,14 @@ if (menuButton && navigation) {
       menuButton.focus();
     }
   });
+
+  // Back/forward can restore the page from the browser's back/forward cache with
+  // the menu still open, so always start from the closed state.
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      setMenuOpen(false);
+    }
+  });
 }
 
 if (document.querySelector('.gallery-link, .project-gallery-link') && typeof GLightbox === 'function') {
