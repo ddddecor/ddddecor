@@ -293,7 +293,7 @@ main.container {
   grid-area: 1 / 1;
   z-index: 1;
   align-self: end;
-  padding: 7rem 1.5rem 1.5rem;
+  padding: 7rem 1.5rem 2.5rem;
   /* Long, eased fade so the edge doesn't read as a dark strip. */
   background: linear-gradient(
     to top,

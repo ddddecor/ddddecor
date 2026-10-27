@@ -189,7 +189,13 @@ if (contactFab && contactFabToggle) {
   }
 
   contactFabToggle.addEventListener('click', () => {
-    setContactFabOpen(!contactFab.classList.contains('is-open'));
+    const willOpen = !contactFab.classList.contains('is-open');
+    setContactFabOpen(willOpen);
+
+    if (willOpen) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'ddd_contact_menu_open' });
+    }
   });
 
   document.addEventListener('keydown', (event) => {
@@ -350,6 +356,7 @@ const GTM_EVENTS = new Set([
   'ddd_facebook_click',
   'ddd_instagram_click',
   'ddd_tiktok_click',
+  // 'ddd_contact_menu_open' is pushed directly by the contact FAB toggle, not via data-gtm-event.
 ]);
 
 document.addEventListener('click', (event) => {

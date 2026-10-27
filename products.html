@@ -66,16 +66,20 @@
   </header>
 
   <section class="hero" aria-labelledby="hero-title">
-    <!-- Temporary placeholder images (wide 16:9 for desktop, 4:3 for mobile); replace with real hero photos and alt text.
+    <!-- Hero images (wide 16:9 for desktop, 4:3 for mobile); alt text is still a placeholder.
          Slides after the first use data-src/data-srcset so main.js loads them only after the page has loaded. -->
     <div class="hero-media" data-hero-carousel>
       <picture class="hero-slide is-active">
-        <source media="(min-width: 64rem)" srcset="images/misc/khao-yai-film-wide.webp" width="1448" height="814">
-        <img src="images/misc/khao-yai-film.webp" alt="[Hero image 1 placeholder]" width="1448" height="1086" fetchpriority="high">
+        <source media="(min-width: 64rem)" srcset="images/misc/curtains-poolvilla-hero-desktop.webp" width="1672" height="941">
+        <img src="images/misc/curtains-poolvilla-hero-mobile.webp" alt="[Hero image 1 placeholder]" width="1448" height="1086" fetchpriority="high">
       </picture>
       <picture class="hero-slide" aria-hidden="true">
         <source media="(min-width: 64rem)" data-srcset="images/portfolio/projects/khao-yai-house/house-project-livingroom.webp" width="1671" height="941">
         <img data-src="images/portfolio/projects/khao-yai-house/house-project-livingroom3.webp" alt="[Hero image 2 placeholder]" width="1448" height="1086" decoding="async">
+      </picture>
+      <picture class="hero-slide" aria-hidden="true">
+        <source media="(min-width: 64rem)" data-srcset="images/misc/khao-yai-film-wide.webp" width="1448" height="814">
+        <img data-src="images/misc/khao-yai-film.webp" alt="[Hero image 3 placeholder]" width="1448" height="1086" decoding="async">
       </picture>
     </div>
     <div class="container hero-content">
