@@ -2036,6 +2036,33 @@ main > .feature-section:first-child {
   }
 }
 
+/* Example projects reveal (products page only, desktop only): cards slide in from the right, one after another.
+   Mobile keeps the cards static because the horizontal scroll row looked choppy with the animation. */
+@media (min-width: 64rem) {
+  .our-projects-list--reveal.reveal-ready .our-projects-item {
+    opacity: 0;
+    transform: translateX(2.5rem);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  }
+
+  .our-projects-list--reveal.reveal-ready .our-projects-item:nth-child(2) {
+    transition-delay: 0.08s;
+  }
+
+  .our-projects-list--reveal.reveal-ready .our-projects-item:nth-child(3) {
+    transition-delay: 0.16s;
+  }
+
+  .our-projects-list--reveal.reveal-ready .our-projects-item:nth-child(4) {
+    transition-delay: 0.24s;
+  }
+
+  .our-projects-list--reveal.reveal-ready.is-revealed .our-projects-item {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Portfolio feed */
 .portfolio-intro {
   max-width: 42rem;

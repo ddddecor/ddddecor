@@ -319,7 +319,7 @@ if (heroCarousel) {
   }
 }
 
-const revealSections = document.querySelectorAll('.feature-section--split, .testimonials-layout');
+const revealSections = document.querySelectorAll('.feature-section--split, .testimonials-layout, .our-projects-list--reveal');
 
 if (revealSections.length && 'IntersectionObserver' in window) {
   const revealQuery = window.matchMedia('(prefers-reduced-motion: no-preference)');
