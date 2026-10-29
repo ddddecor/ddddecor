@@ -335,7 +335,7 @@ main.container {
    Reduced-motion users get the static hero. */
 @media (prefers-reduced-motion: no-preference) {
   .home-hero img {
-    animation: home-hero-reveal 2.5s ease-out both;
+    animation: home-hero-reveal 3.5s ease-out both;
   }
 }
 
@@ -1706,6 +1706,24 @@ main > .feature-section:first-child {
   opacity: 0.85;
 }
 
+/* Language note with small flags (home page, after the CTA buttons) */
+.start-actions .language-note,
+.service-actions .language-note {
+  margin: 0;
+}
+
+.service-actions .language-note {
+  text-align: center;
+}
+
+.language-note img {
+  width: 1rem;
+  height: auto;
+  vertical-align: -0.1em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.15);
+}
+
 .feature-link + .gallery-label {
   margin-top: var(--space-4);
 }
@@ -2032,6 +2050,19 @@ main > .feature-section:first-child {
   font-style: normal;
 }
 
+.contact-area-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: var(--space-3) 0;
+}
+
+.contact-area strong {
+  color: var(--color-purple);
+  font-size: 1.15em;
+  font-weight: var(--font-weight-emphasis);
+}
+
 .contact-map {
   aspect-ratio: 1 / 1;
   margin-top: var(--space-4);
@@ -2042,6 +2073,7 @@ main > .feature-section:first-child {
 @media (min-width: 44rem) {
   .contact-map {
     aspect-ratio: 16 / 9;
+    max-width: 40rem; /* Same width as .readable-width and the service area image */
     max-height: 28rem;
   }
 }
@@ -2124,7 +2156,7 @@ main .contact-card {
 
 .contact-language img {
   flex: none;
-  width: 1.5rem;
+  width: 1.125rem;
   height: auto;
   border-radius: 2px;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12);
@@ -2409,6 +2441,21 @@ main .contact-card {
   letter-spacing: 0.12em;
 }
 
+.footer-flags {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.9rem;
+  vertical-align: middle;
+}
+
+.footer-flags img {
+  width: 1rem;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.25);
+}
+
 .footer-connect ul {
   margin: 0 0 var(--space-4);
   padding: 0;
@@ -2432,6 +2479,11 @@ main .contact-card {
 }
 
 .footer-details a,
+.footer-connect li {
+  display: flex;
+  align-items: center;
+}
+
 .footer-connect li a,
 .footer-bottom a {
   display: inline-flex;
@@ -3546,10 +3598,99 @@ img.footer-icon {
   }
 }
 
-/* Home "Start here" section: white band after the light purple "Why DDD" section. */
+/* Home "Our projects" section: four purple cards below the "Why DDD" band.
+   Mobile: horizontal scroll-snap row where one card and a peek of the next are visible. Desktop: four-column grid.
+   Self-contained: shares no classes with the carousels on other pages. */
+.our-projects-section {
+  margin-top: 0; /* overrides the generic main section margin */
+  padding-block: var(--space-6) var(--space-3);
+}
+
+.our-projects-section .container > :first-child {
+  margin-top: 0;
+}
+
+.our-projects-list {
+  display: flex;
+  gap: var(--space-3);
+  margin: var(--space-4) calc(var(--page-gutter) * -1) 0;
+  padding: 0 var(--page-gutter);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--page-gutter);
+  scrollbar-width: none;
+}
+
+.our-projects-list::-webkit-scrollbar {
+  display: none;
+}
+
+.our-projects-item {
+  flex: 0 0 80%;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.our-projects-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-purple);
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+.our-projects-card img {
+  display: block;
+  flex: none; /* keep the square ratio instead of shrinking or stretching inside the flex column */
+  width: 100%;
+  height: auto; /* overrides the height attribute, which otherwise beats aspect-ratio */
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.our-projects-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-top: 0.5rem solid rgb(255 255 255 / 0.25);
+}
+
+.our-projects-title {
+  font-size: 1rem;
+  font-weight: var(--font-weight-emphasis);
+  line-height: 1.4;
+}
+
+.our-projects-text {
+  font-size: 0.875rem;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.our-projects-card:hover .our-projects-title,
+.our-projects-card:focus-visible .our-projects-title {
+  text-decoration: underline;
+}
+
+@media (min-width: 64rem) {
+  .our-projects-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+}
+
+/* Home "Start here" section: light purple band, matching the "Why DDD" section. */
 .start-section {
   margin-top: 0; /* overrides the generic main section margin, which doubled the gap under the band above */
   padding-block: var(--space-5) var(--space-6);
+  background: var(--color-background-alt);
 }
 
 /* Keep the bottom spacing equal to the top: no paragraph margin after the last item. */
@@ -3569,6 +3710,8 @@ img.footer-icon {
 @media (min-width: 44rem) {
   .start-actions {
     flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
   }
 }
 
