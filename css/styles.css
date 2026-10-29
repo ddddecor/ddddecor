@@ -3703,6 +3703,23 @@ img.footer-icon {
   text-decoration: underline;
 }
 
+.our-projects-arrow {
+  display: inline-block;
+  margin-left: 0.25em;
+  transition: transform 0.3s ease;
+}
+
+.our-projects-card:hover .our-projects-arrow,
+.our-projects-card:focus-visible .our-projects-arrow {
+  transform: translateX(0.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .our-projects-arrow {
+    transition: none;
+  }
+}
+
 .our-projects-dots {
   display: flex;
   justify-content: center;
