@@ -377,3 +377,41 @@ document.addEventListener('click', (event) => {
     link_url: tracked.href || undefined,
   });
 });
+
+// Position dots under the mobile "Our projects" carousel. Hidden on desktop, where the cards form a grid.
+document.querySelectorAll('.our-projects-list').forEach((list) => {
+  const items = Array.from(list.querySelectorAll('.our-projects-item'));
+  if (items.length < 2) return;
+
+  const dotsList = document.createElement('div');
+  dotsList.className = 'our-projects-dots';
+  dotsList.setAttribute('role', 'group');
+  dotsList.setAttribute('aria-label', 'Projects');
+
+  const dots = items.map((item, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'our-projects-dot';
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Show project ${index + 1} of ${items.length}`);
+    dot.addEventListener('click', () => {
+      list.scrollTo({ left: item.offsetLeft - items[0].offsetLeft, behavior: 'smooth' });
+    });
+    dotsList.append(dot);
+    return dot;
+  });
+
+  list.after(dotsList);
+
+  function updateDots() {
+    const atEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 2;
+    let active = items.length - 1;
+    if (!atEnd) {
+      active = items.findIndex((item) => item.offsetLeft - items[0].offsetLeft >= list.scrollLeft - 2);
+    }
+    dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === active)));
+  }
+
+  list.addEventListener('scroll', updateDots, { passive: true });
+  window.addEventListener('resize', updateDots);
+  updateDots();
+});

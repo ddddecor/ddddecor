@@ -3626,7 +3626,7 @@ img.footer-icon {
 }
 
 /* Home "Our projects" section: four purple cards below the "Why DDD" band.
-   Mobile: horizontal scroll-snap row where one card and a peek of the next are visible. Desktop: four-column grid.
+   Mobile: horizontal scroll-snap row where one card and a smaller peek of the next are visible. Desktop: four-column grid.
    Self-contained: shares no classes with the carousels on other pages. */
 .our-projects-section {
   margin-top: 0; /* overrides the generic main section margin */
@@ -3655,7 +3655,7 @@ img.footer-icon {
 }
 
 .our-projects-item {
-  flex: 0 0 80%;
+  flex: 0 0 86%;
   min-width: 0;
   scroll-snap-align: start;
 }
@@ -3703,6 +3703,49 @@ img.footer-icon {
   text-decoration: underline;
 }
 
+.our-projects-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2);
+}
+
+.our-projects-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.our-projects-dot::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-purple);
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.our-projects-dot[aria-current="true"]::before {
+  opacity: 1;
+}
+
+.our-projects-dot:focus-visible {
+  outline: 2px solid var(--color-purple-secondary);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .our-projects-dot::before {
+    transition: none;
+  }
+}
+
 @media (min-width: 64rem) {
   .our-projects-list {
     display: grid;
@@ -3710,6 +3753,10 @@ img.footer-icon {
     margin-inline: 0;
     padding-inline: 0;
     overflow: visible;
+  }
+
+  .our-projects-dots {
+    display: none;
   }
 }
 
