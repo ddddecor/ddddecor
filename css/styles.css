@@ -259,12 +259,6 @@ main.container {
   line-height: 1.2;
 }
 
-/* Home page: smaller company name that stays on one line down to narrow phones */
-.page-title-banner--home h1 {
-  font-size: clamp(1rem, 6.5vw, 2rem);
-  white-space: nowrap;
-}
-
 /* Home hero: portrait photo with title overlay on mobile; desktop shows the banner instead. */
 .home-hero {
   position: relative;
@@ -350,17 +344,38 @@ main.container {
   }
 }
 
-.page-title-banner--home {
-  display: none;
-}
-
+/* From 64rem up the photo is hidden and the same title block becomes a banner like .page-title-banner. */
 @media (min-width: 64rem) {
-  .home-hero {
+  .home-hero img,
+  .home-hero::after {
     display: none;
   }
 
-  .page-title-banner--home {
-    display: block;
+  .home-hero-text {
+    padding: var(--space-4) 0;
+    background: var(--color-purple-dark);
+  }
+
+  .home-hero-titles {
+    width: 100%;
+    max-width: var(--content-width);
+    padding-inline: var(--page-gutter);
+    text-align: left;
+  }
+
+  .home-hero-eyebrow {
+    margin: 0;
+  }
+
+  .home-hero h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .home-hero h1 br {
+    display: none;
   }
 }
 
@@ -1238,7 +1253,7 @@ main > .feature-section:first-child {
 
 .intro-split-layout {
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-3);
 }
 
 /* Mobile: the image sits between the heading and the text */
@@ -1270,6 +1285,10 @@ main > .feature-section:first-child {
 
 .intro-split-text + .intro-split-text {
   margin-top: var(--space-3);
+}
+
+.intro-split-media .gallery-label {
+  margin-top: 0;
 }
 
 .intro-split-media img {
