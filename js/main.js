@@ -234,26 +234,6 @@ if (heroCarousel) {
   }
 
   if (slides.length > 1) {
-    const dotsList = document.createElement('div');
-    dotsList.className = 'hero-dots';
-    dotsList.setAttribute('role', 'group');
-    dotsList.setAttribute('aria-label', 'Hero images');
-
-    const dots = slides.map((slide, index) => {
-      const dot = document.createElement('button');
-      dot.className = 'hero-dot';
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `Show image ${index + 1} of ${slides.length}`);
-      dot.addEventListener('click', () => {
-        goToSlide(index);
-        restartTimer();
-      });
-      dotsList.append(dot);
-      return dot;
-    });
-
-    heroCarousel.append(dotsList);
-
     function showSlide(index) {
       slides.forEach((slide, i) => {
         slide.classList.remove('is-entering');
@@ -261,7 +241,6 @@ if (heroCarousel) {
         slide.classList.toggle('is-previous', i === current);
         slide.setAttribute('aria-hidden', String(i !== index));
       });
-      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
       // Restart the incoming slide's fade-in and image motion from the beginning.
       const incomingImage = slides[index].querySelector('img');
       incomingImage.style.animation = 'none';
@@ -295,8 +274,6 @@ if (heroCarousel) {
       if (reducedMotion.matches || isPaused || document.hidden) return;
       timer = setInterval(() => goToSlide((current + 1) % slides.length), slideInterval);
     }
-
-    dots[0].setAttribute('aria-current', 'true');
 
     // Fetch the remaining slides only once the first image has loaded, so it keeps priority.
     const firstImage = slides[0].querySelector('img');

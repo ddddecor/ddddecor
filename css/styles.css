@@ -598,59 +598,11 @@ main > .feature-section:first-child {
   object-position: 50% 62%;
 }
 
-.hero-dots {
-  position: absolute;
-  right: 0;
-  bottom: var(--space-1);
-  left: 0;
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-}
-
-.hero-dot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 1.5rem;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-
-.hero-dot::before {
-  content: "";
-  width: 1.25rem;
-  height: 2px;
-  background: rgb(255 255 255 / 0.55);
-  box-shadow: 0 0 4px rgb(0 0 0 / 0.35);
-  transition: background-color 0.3s ease;
-}
-
-.hero-dot:hover::before {
-  background: rgb(255 255 255 / 0.9);
-}
-
-.hero-dot[aria-current="true"]::before {
-  background: var(--color-gold-on-dark);
-}
-
-.hero-dot:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: -2px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-slide.is-entering,
   .hero-slide.is-active img,
   .hero-slide.is-previous img {
     animation: none;
-  }
-
-  .hero-dot::before {
-    transition: none;
   }
 }
 
