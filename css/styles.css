@@ -380,7 +380,7 @@ main.container {
 }
 
 .page-body {
-  padding-block: var(--space-4) var(--space-6);
+  padding-block: var(--space-4) 0;
 }
 
 /* Home: the grid is followed by a full-width band, so less space below it. */
@@ -784,8 +784,9 @@ main > .feature-section:first-child {
   background: var(--color-surface);
 }
 
-/* Blinds: portrait 3:4 on mobile only; the desktop grid ignores the ratio. */
-.mini-gallery--blinds {
+/* Blinds: portrait 3:4 on mobile only; the desktop grid ignores the ratio. Furniture: portrait 3:4 everywhere (generic desktop grid). */
+.mini-gallery--blinds,
+.mini-gallery--furniture {
   --mini-gallery-ratio: 3 / 4;
 }
 
@@ -794,8 +795,9 @@ main > .feature-section:first-child {
   padding-top: var(--space-5);
 }
 
-/* Both sections have block padding; keep a single section gap between the gallery and the intro. */
-.mini-gallery + .intro-split {
+/* Both sections have block padding; keep a single section gap between the gallery and the intro (either order). */
+.mini-gallery + .intro-split,
+.intro-split + .mini-gallery {
   padding-top: 0;
 }
 
@@ -850,6 +852,17 @@ main > .feature-section:first-child {
   flex: 0 0 85%;
   min-width: 0;
   scroll-snap-align: start;
+}
+
+/* Furniture: no swipe carousel below desktop; two images per row. */
+@media (max-width: 63.99rem) {
+  .mini-gallery--furniture .mini-gallery-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
 }
 
 .mini-gallery .gallery-link,
@@ -1225,6 +1238,22 @@ main > .feature-section:first-child {
   order: 2;
 }
 
+/* Heading on its own row above the split layout; the desktop gap comes from the h2 margin */
+@media (max-width: 63.99rem) {
+  /* Text before the image on mobile */
+  .intro-split--text-first .intro-split-body {
+    order: 2;
+  }
+
+  .intro-split--text-first .intro-split-media {
+    order: 3;
+  }
+
+  .intro-split--original-ratio > .container > .intro-split-head {
+    margin-bottom: var(--space-3);
+  }
+}
+
 .intro-split-body {
   order: 3;
 }
@@ -1283,11 +1312,24 @@ main > .feature-section:first-child {
     align-items: start;
     column-gap: var(--space-6);
   }
+
+  /* Image left, text right (mirrors the 4fr 3fr original-ratio columns) */
+  .intro-split--media-left .intro-split-layout {
+    grid-template-columns: 3fr 4fr;
+  }
+
+  .intro-split--media-left .intro-split-media {
+    order: 1;
+  }
+
+  .intro-split--media-left .intro-split-content {
+    order: 2;
+  }
 }
 
 /* Process section */
 .service-section {
-  padding-block: var(--space-4) var(--space-6);
+  padding-block: var(--space-4) 0;
   background: var(--color-background-alt);
 }
 
@@ -1853,6 +1895,11 @@ main > .feature-section:first-child {
   }
 }
 
+/* Split feature section used outside main.container (furniture page): the gallery above provides most of the top gap and the CTA below provides the bottom gap. */
+.feature-area {
+  padding-block: var(--space-4) 0;
+}
+
 /* Reversed split feature section: text first in the markup (top on mobile), image left and text right on larger screens */
 .feature-photo--wide {
   aspect-ratio: 16 / 9;
@@ -1888,6 +1935,19 @@ main > .feature-section:first-child {
   .feature-section--reverse .feature-photo--wide img {
     height: auto;
     aspect-ratio: auto;
+  }
+}
+
+/* Furniture service area: image a little narrower than on the products page (89% on desktop). */
+@media (min-width: 44rem) {
+  .feature-area .feature-gallery {
+    width: 85%;
+  }
+}
+
+@media (min-width: 64rem) {
+  .feature-area .feature-gallery {
+    width: 78%;
   }
 }
 
@@ -1960,6 +2020,71 @@ main > .feature-section:first-child {
   .feature-section--split.reveal-ready.is-revealed .feature-text,
   .feature-section--split.reveal-ready.is-revealed .gallery-label,
   .feature-section--split.reveal-ready.is-revealed .feature-item {
+    transform: none;
+  }
+}
+
+/* Furniture page reveal: same slide-in as the reversed split feature sections (see above).
+   Intro split: text slides in from the right, image from the left. Gallery: images slide in from the right, one after another. */
+.intro-split--reveal.reveal-ready .intro-split-head,
+.intro-split--reveal.reveal-ready .intro-split-body,
+.intro-split--reveal.reveal-ready .intro-split-media,
+.mini-gallery--reveal.reveal-ready .mini-gallery-item {
+  opacity: 0;
+  transform: translateX(0.5rem);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.intro-split--reveal.reveal-ready .intro-split-media {
+  transform: translateX(-0.75rem);
+}
+
+.mini-gallery--reveal.reveal-ready .mini-gallery-item {
+  transform: translateX(0.75rem);
+}
+
+.intro-split--reveal.reveal-ready .intro-split-media,
+.mini-gallery--reveal.reveal-ready .mini-gallery-item:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.mini-gallery--reveal.reveal-ready .mini-gallery-item:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.mini-gallery--reveal.reveal-ready .mini-gallery-item:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.intro-split--reveal.reveal-ready.is-revealed .intro-split-head,
+.intro-split--reveal.reveal-ready.is-revealed .intro-split-body,
+.intro-split--reveal.reveal-ready.is-revealed .intro-split-media,
+.mini-gallery--reveal.reveal-ready.is-revealed .mini-gallery-item {
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 64rem) {
+  .intro-split--reveal.reveal-ready .intro-split-head,
+  .intro-split--reveal.reveal-ready .intro-split-body,
+  .intro-split--reveal.reveal-ready .intro-split-media,
+  .mini-gallery--reveal.reveal-ready .mini-gallery-item {
+    transform: translateX(1.25rem);
+    transition-duration: 0.9s;
+  }
+
+  .intro-split--reveal.reveal-ready .intro-split-media {
+    transform: translateX(-2.5rem);
+  }
+
+  .mini-gallery--reveal.reveal-ready .mini-gallery-item {
+    transform: translateX(2.5rem);
+  }
+
+  .intro-split--reveal.reveal-ready.is-revealed .intro-split-head,
+  .intro-split--reveal.reveal-ready.is-revealed .intro-split-body,
+  .intro-split--reveal.reveal-ready.is-revealed .intro-split-media,
+  .mini-gallery--reveal.reveal-ready.is-revealed .mini-gallery-item {
     transform: none;
   }
 }
@@ -2055,7 +2180,9 @@ main > .feature-section:first-child {
   margin: var(--space-3) 0;
 }
 
-.contact-area strong {
+.contact-area strong,
+.mini-gallery-intro strong,
+.feature-intro strong {
   color: var(--color-purple);
   font-size: 1.15em;
   font-weight: var(--font-weight-emphasis);
