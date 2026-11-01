@@ -380,7 +380,7 @@ main.container {
 }
 
 .page-body {
-  padding-block: var(--space-4) 0;
+  padding-block: var(--space-4) var(--space-6);
 }
 
 /* Home: the grid is followed by a full-width band, so less space below it. */

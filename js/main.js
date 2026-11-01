@@ -34,10 +34,43 @@ if (document.querySelector('.gallery-link, .project-gallery-link') && typeof GLi
   const lightbox = GLightbox({ selector: '.gallery-link, .project-gallery-link' });
   let lightboxOpen = false;
 
+  // GTM event per gallery, matched against the clicked anchor. Galleries not listed here are not tracked.
+  // Add new galleries here and to GTM_EVENTS below.
+  const GALLERY_GTM_EVENTS = [
+    ['[data-gallery="portfolio"]', 'ddd_image_portfolio'],
+    ['.project-gallery-link', 'ddd_image_project'],
+    ['[data-gallery="curtains-blinds"]', 'ddd_image_products'],
+    ['[data-gallery="curtains-blinds-mini"]', 'ddd_image_curtains'],
+    ['[data-gallery="blinds-mini"]', 'ddd_image_blinds'],
+    ['[data-gallery="wallpaper-mini"]', 'ddd_image_wallpaper'],
+    ['[data-gallery="window-film-mini"]', 'ddd_image_film'],
+    ['[data-gallery^="furniture-"]', 'ddd_image_furniture'],
+  ];
+
+  // Count every image view: the first image on open, then each swipe/arrow/next/prev.
+  function trackImageView(anchor, interaction) {
+    const match = anchor && GALLERY_GTM_EVENTS.find(([selector]) => anchor.matches(selector));
+    if (!match) return;
+    const eventName = match[1];
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: eventName,
+      link_url: anchor.href || undefined,
+      interaction,
+    });
+  }
+
   // Let the browser Back button close the lightbox instead of leaving the page.
   lightbox.on('open', () => {
     lightboxOpen = true;
     history.pushState({ lightbox: true }, '');
+    trackImageView(lightbox.elements[lightbox.index].node, 'open');
+  });
+
+  // Fires when navigating to another image, not when the lightbox opens.
+  lightbox.on('slide_before_change', ({ current }) => {
+    trackImageView(current.trigger, 'navigate');
   });
 
   lightbox.on('close', () => {
@@ -333,7 +366,22 @@ const GTM_EVENTS = new Set([
   'ddd_facebook_click',
   'ddd_instagram_click',
   'ddd_tiktok_click',
+  'ddd_nav_to_project',
+  'ddd_project_details',
+  'ddd_nav_to_curtains',
+  'ddd_nav_to_blinds',
+  'ddd_nav_to_wallpaper',
+  'ddd_nav_to_film',
+  'ddd_image_portfolio',
+  'ddd_image_project',
+  'ddd_image_products',
+  'ddd_image_curtains',
+  'ddd_image_blinds',
+  'ddd_image_wallpaper',
+  'ddd_image_film',
+  'ddd_image_furniture',
   // 'ddd_contact_menu_open' is pushed directly by the contact FAB toggle, not via data-gtm-event.
+  // 'ddd_image_*' events are pushed by the lightbox (GALLERY_GTM_EVENTS) on open and navigation.
 ]);
 
 document.addEventListener('click', (event) => {
