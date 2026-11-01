@@ -300,11 +300,11 @@ main.container {
   color: #ffffff;
 }
 
-/* Shrink-wrapped and centered, with centered lines. */
+/* Mobile: the block is shrink-wrapped and centered, with its contents left-aligned so the eyebrow, logo and name share one left edge. */
 .home-hero-titles {
   width: fit-content;
   margin-inline: auto;
-  text-align: center;
+  text-align: left;
 }
 
 .home-hero-eyebrow {
@@ -319,10 +319,12 @@ main.container {
 /* Mobile: the white logo stands in for the large title; the h1 stays as a small company name beneath it. */
 .home-hero .home-hero-logo {
   display: block;
-  width: min(9rem, 50vw);
+  --logo-width: min(9rem, 50vw);
+  width: var(--logo-width);
   height: auto;
   max-height: none;
-  margin: 0.5rem auto 0;
+  /* The SVG has ~3.7% empty space on its left; pull it back so the artwork lines up with the text. */
+  margin: 0.5rem 0 0 calc(var(--logo-width) * -0.037);
   object-fit: contain;
   filter: none;
   animation: none;
@@ -380,6 +382,7 @@ main.container {
   .home-hero-titles {
     width: 100%;
     max-width: var(--content-width);
+    margin-inline: auto;
     padding-inline: var(--page-gutter);
     text-align: left;
   }
