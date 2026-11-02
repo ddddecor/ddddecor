@@ -956,11 +956,11 @@ main > .feature-section:first-child {
     flex: none;
   }
 
-  /* Curtains: main image + tall 3:4 image on the right, two small images under the main one (needs 4 images). */
+  /* Curtains: main image + two stacked images on the right, two small images under the main one (needs 5 images). */
   .mini-gallery--curtains .mini-gallery-list {
-    /* The right column is a little wider than the two left ones so the tall cell comes out at 3:4 (306.3 x 408.8 px at the 800px width). */
     grid-template-columns: 23fr 23fr 30fr;
-    grid-template-rows: minmax(0, 22fr) minmax(0, 12fr);
+    /* Left column: 22 + 12 units. Right column: two 17-unit cells (rows 1 and 2-3), so the stack splits evenly. */
+    grid-template-rows: minmax(0, 17fr) minmax(0, 5fr) minmax(0, 12fr);
     /* Compact preview: aspect ratio matches the former full-width 22rem + 12rem rows, so cell proportions are preserved. */
     max-width: 800px;
     aspect-ratio: 272 / 139;
@@ -968,19 +968,27 @@ main > .feature-section:first-child {
 
   .mini-gallery--curtains .mini-gallery-item:nth-child(1) {
     grid-column: 1 / 3;
+    grid-row: 1 / 3;
   }
 
   .mini-gallery--curtains .mini-gallery-item:nth-child(2) {
     grid-column: 3;
-    grid-row: 1 / 3;
+    grid-row: 1;
   }
 
   .mini-gallery--curtains .mini-gallery-item:nth-child(3) {
     grid-column: 1;
+    grid-row: 3;
   }
 
   .mini-gallery--curtains .mini-gallery-item:nth-child(4) {
     grid-column: 2;
+    grid-row: 3;
+  }
+
+  .mini-gallery--curtains .mini-gallery-item:nth-child(5) {
+    grid-column: 3;
+    grid-row: 2 / 4;
   }
 
   /* The image fills its cell without contributing its intrinsic size, so the grid ratio above decides the cell shapes. */
