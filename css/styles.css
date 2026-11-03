@@ -4059,3 +4059,62 @@ img.footer-icon {
 .policy-updated {
   color: var(--color-muted);
 }
+
+/* Homepage image reveal: on mobile the photo is a viewport-sized layer fixed beneath
+   the page and revealed through a clipped window as the content scrolls away. */
+.image-reveal {
+  margin-top: 0;
+  position: relative;
+  background: var(--color-surface);
+}
+
+.image-reveal-window {
+  height: 100vh;
+  height: 100lvh;
+  clip-path: inset(0);
+}
+
+.image-reveal-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  object-fit: cover;
+  display: block;
+}
+
+/* Sections after the reveal must cover the fixed image. */
+.image-reveal + .our-projects-section {
+  position: relative;
+  background: var(--color-surface);
+}
+
+/* Mobile-only: hide on desktop. */
+@media (min-width: 64rem) {
+  .image-reveal {
+    display: none;
+  }
+}
+
+/* Reduced motion: show as a plain static image instead of the reveal. */
+@media (prefers-reduced-motion: reduce) {
+  .image-reveal {
+    padding-block: var(--space-6);
+  }
+
+  .image-reveal-window {
+    height: auto;
+    clip-path: none;
+  }
+
+  .image-reveal-img {
+    position: static;
+    width: 100%;
+    height: auto;
+    max-width: 24rem;
+    aspect-ratio: 9 / 16;
+    margin-inline: auto;
+  }
+}
