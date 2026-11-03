@@ -1355,7 +1355,7 @@ main > .feature-section:first-child {
 
 /* Process section */
 .service-section {
-  padding-block: var(--space-4) 0;
+  padding-block: var(--space-4) var(--space-3);
   background: var(--color-background-alt);
 }
 
@@ -4086,7 +4086,8 @@ img.footer-icon {
 }
 
 /* Sections after the reveal must cover the fixed image. */
-.image-reveal + .our-projects-section {
+.image-reveal + .our-projects-section,
+.image-reveal + .project-tiles {
   position: relative;
   background: var(--color-surface);
 }
