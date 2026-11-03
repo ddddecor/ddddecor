@@ -4099,6 +4099,67 @@ img.footer-icon {
   }
 }
 
+/* Variant: vivid (products page). Slightly boosted saturation and contrast with a hint of
+   warmth. The filter sits on the image itself, so it also applies in the reduced-motion
+   static layout. */
+.image-reveal--vivid .image-reveal-img {
+  filter: contrast(1.1) saturate(1.12) brightness(1) sepia(0.04);
+}
+
+/* Text overlay for an image reveal (logo, slogan, signature). Fixed like the image so it
+   stays aligned with the photo while the clipped window scrolls; the clip-path crops it. */
+.image-reveal-caption {
+  position: fixed;
+  right: var(--space-4);
+  /* Sits above the floating contact button (bottom 1rem + 3.5rem tall). */
+  bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  justify-items: end;
+  gap: var(--space-1);
+  max-width: 12rem;
+  color: #fff;
+  text-align: right;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.45);
+  pointer-events: none;
+}
+
+.image-reveal-caption-logo {
+  width: 7.5rem;
+  height: auto;
+  filter: drop-shadow(0 1px 6px rgb(0 0 0 / 0.45));
+}
+
+.image-reveal-caption-slogan,
+.image-reveal-caption-name {
+  margin: 0;
+}
+
+.image-reveal-caption-slogan {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.image-reveal-caption-name {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-emphasis);
+  letter-spacing: 0.04em;
+}
+
+/* Caption placement: top left, below the sticky header (header is about 4.5rem tall). */
+.image-reveal-caption--top-left {
+  top: 6rem;
+  right: auto;
+  bottom: auto;
+  left: var(--space-4);
+  justify-items: start;
+  max-width: none;
+  text-align: left;
+}
+
+.image-reveal-caption--top-left .image-reveal-caption-slogan {
+  white-space: nowrap;
+}
+
 /* Reduced motion: show as a plain static image instead of the reveal. */
 @media (prefers-reduced-motion: reduce) {
   .image-reveal {
@@ -4117,5 +4178,23 @@ img.footer-icon {
     max-width: 24rem;
     aspect-ratio: 9 / 16;
     margin-inline: auto;
+  }
+
+  /* The image is static and centred (max 24rem), so anchor the text to the window instead. */
+  .image-reveal-window {
+    position: relative;
+  }
+
+  .image-reveal-caption {
+    position: absolute;
+    right: calc(max(0px, (100% - 24rem) / 2) + var(--space-4));
+    bottom: var(--space-4);
+  }
+
+  .image-reveal-caption--top-left {
+    top: var(--space-4);
+    right: auto;
+    bottom: auto;
+    left: calc(max(0px, (100% - 24rem) / 2) + var(--space-4));
   }
 }
