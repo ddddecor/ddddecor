@@ -4160,6 +4160,20 @@ img.footer-icon {
   white-space: nowrap;
 }
 
+/* Caption placement: bottom left. The contact button is on the right, so it can sit low. */
+.image-reveal-caption--bottom-left {
+  right: auto;
+  bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+  left: var(--space-4);
+  justify-items: start;
+  max-width: none;
+  text-align: left;
+}
+
+.image-reveal-caption--bottom-left .image-reveal-caption-slogan {
+  white-space: nowrap;
+}
+
 /* Reduced motion: show as a plain static image instead of the reveal. */
 @media (prefers-reduced-motion: reduce) {
   .image-reveal {
@@ -4195,6 +4209,11 @@ img.footer-icon {
     top: var(--space-4);
     right: auto;
     bottom: auto;
+    left: calc(max(0px, (100% - 24rem) / 2) + var(--space-4));
+  }
+
+  .image-reveal-caption--bottom-left {
+    right: auto;
     left: calc(max(0px, (100% - 24rem) / 2) + var(--space-4));
   }
 }
