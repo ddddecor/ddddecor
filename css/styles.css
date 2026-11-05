@@ -4163,7 +4163,7 @@ img.footer-icon {
 /* Caption placement: bottom left. The contact button is on the right, so it can sit low. */
 .image-reveal-caption--bottom-left {
   right: auto;
-  bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+  bottom: calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
   left: var(--space-4);
   justify-items: start;
   max-width: none;
@@ -4215,5 +4215,167 @@ img.footer-icon {
   .image-reveal-caption--bottom-left {
     right: auto;
     left: calc(max(0px, (100% - 24rem) / 2) + var(--space-4));
+  }
+}
+
+/* Curtain guide (curtain-guide.html): all rules below are scoped to .guide-section and use guide-only
+   classes, so changes here cannot affect other pages. */
+.guide-section {
+  margin-top: var(--space-6);
+}
+
+.guide-section > :first-child {
+  margin-top: 0;
+}
+
+/* CTA on the guide page: <main> already pads its bottom, so drop the CTA's own top padding to halve the gap */
+.guide-cta {
+  padding-top: 0;
+}
+
+/* Section placed outside <main>, after the CTA: it has its own container and bottom spacing */
+.guide-section--after-cta {
+  margin-top: 0;
+  padding-block: var(--space-3) var(--space-6);
+}
+
+/* Text and 4:3 image side by side; on mobile the text comes first, then the image */
+.guide-split {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.guide-split-image {
+  width: 100%;
+  height: auto; /* overrides the height attribute so aspect-ratio applies */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+@media (min-width: 40rem) {
+  .guide-split {
+    grid-template-columns: minmax(0, 32rem) 28rem; /* text and image sit together, left-aligned */
+    column-gap: var(--space-5);
+    align-items: start;
+  }
+}
+
+.guide-eyebrow {
+  margin: 0 0 var(--space-1);
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-emphasis);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.guide-section h2 {
+  margin: 0 0 var(--space-2);
+}
+
+.guide-text {
+  max-width: 40rem;
+  color: var(--color-muted);
+}
+
+/* One curtain style: 4:3 image with the text beside it (stacked on mobile) */
+.guide-style {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.guide-style img {
+  width: 100%;
+  height: auto; /* overrides the height attribute so aspect-ratio applies */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.guide-subsection {
+  margin-top: var(--space-5);
+}
+
+/* Image inside a subsection: keeps its own ratio (no cropping) */
+.guide-subsection-image {
+  display: block;
+  width: 100%;
+  max-width: 40rem;
+  height: auto;
+  margin-bottom: var(--space-3);
+}
+
+.guide-subsection-image--small {
+  max-width: 24rem;
+}
+
+/* Image on the left and text on the right on desktop; on mobile the text comes first, then the image */
+@media (min-width: 40rem) {
+  .guide-subsection--split {
+    display: grid;
+    grid-template-columns: 24rem minmax(0, 34rem); /* image and text sit together, left-aligned */
+    column-gap: var(--space-5);
+    align-items: start;
+  }
+
+  .guide-subsection--split .guide-subsection-image {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: none;
+  }
+
+  .guide-subsection--split .guide-subsection-text {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+.guide-style h3,
+.guide-subsection h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-emphasis);
+}
+
+/* Curtain style titles: on mobile the grid gap alone separates the title from the image */
+.guide-style h3 {
+  margin-bottom: 0;
+}
+
+/* Mobile order: eyebrow + title, image, text. Desktop: image on the left, head and text on the right. */
+.guide-style-head > :first-child {
+  margin-top: 0;
+}
+
+.guide-style .guide-text {
+  margin-bottom: 0;
+}
+
+@media (min-width: 40rem) {
+  .guide-style {
+    grid-template-columns: 22rem 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "image head"
+      "image text";
+    column-gap: var(--space-4);
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .guide-style img {
+    grid-area: image;
+  }
+
+  .guide-style .guide-style-head {
+    grid-area: head;
+  }
+
+  .guide-style h3 {
+    margin-bottom: var(--space-2); /* row-gap is 0 here, so the title needs its own space above the text */
+  }
+
+  .guide-style .guide-text {
+    grid-area: text;
   }
 }
