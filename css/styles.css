@@ -3844,6 +3844,35 @@ img.footer-icon {
   }
 }
 
+/* Products page variant: the image is cropped from the bottom (the square img stays top-aligned inside a shorter box)
+   so the card height stays close to the original. Scoped to --overlay so cards on other pages are unchanged. */
+.our-projects-list--overlay .our-projects-media {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 20 / 19;
+}
+
+.our-projects-list--overlay .our-projects-body {
+  border-top: 0;
+  padding-top: var(--space-1);
+  gap: 0.25rem;
+}
+
+/* Products page variant, mobile: cards are stacked vertically instead of a swipeable row. */
+@media (max-width: 63.99rem) {
+  .our-projects-list--overlay {
+    flex-direction: column;
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .our-projects-list--overlay .our-projects-item {
+    flex: none;
+  }
+}
+
 .our-projects-dots {
   display: flex;
   justify-content: center;

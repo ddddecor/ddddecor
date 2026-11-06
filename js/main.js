@@ -406,7 +406,7 @@ document.addEventListener('click', (event) => {
 // Position dots under the mobile "Our projects" carousel. Hidden on desktop, where the cards form a grid.
 document.querySelectorAll('.our-projects-list').forEach((list) => {
   const items = Array.from(list.querySelectorAll('.our-projects-item'));
-  if (items.length < 2) return;
+  if (items.length < 2 || list.classList.contains('our-projects-list--overlay')) return; // stacked layout needs no dots
 
   const dotsList = document.createElement('div');
   dotsList.className = 'our-projects-dots';
