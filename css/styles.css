@@ -2584,6 +2584,26 @@ main .contact-card {
   margin-top: var(--space-1);
 }
 
+.footer-address {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  font-style: normal;
+}
+
+.footer-address .footer-icon {
+  margin-top: 0.125rem;
+}
+
+.footer-details .footer-map {
+  margin-top: var(--space-1);
+}
+
+.footer-details .footer-map a {
+  text-decoration: underline;
+}
+
 .footer-connect h2 {
   margin: 0 0 var(--space-3);
   color: var(--color-gold-on-dark);
