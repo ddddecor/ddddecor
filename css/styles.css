@@ -883,6 +883,21 @@ main > .feature-section:first-child {
   }
 }
 
+/* Curtains: no swipe carousel below desktop; images are stacked in one column. */
+@media (max-width: 63.99rem) {
+  .mini-gallery--curtains .mini-gallery-list {
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .mini-gallery--curtains .mini-gallery-item {
+    flex: none;
+  }
+}
+
 .mini-gallery .gallery-link,
 .mini-gallery .gallery-link img {
   height: 100%;
@@ -3481,9 +3496,151 @@ img.footer-icon {
   }
 }
 
+/* Overlay hero: photo with the title laid over it, shared between pages.
+   Mobile: the title sits over the bottom of the photo, no purple area. Desktop: purple text panel left, photo right. */
+.overlay-hero {
+  position: relative;
+}
+
+.overlay-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  max-height: 80vh;
+  object-fit: cover;
+}
+
+/* Mobile: the text layer covers the whole photo, with the logo and name top left and the title at the bottom. */
+.overlay-hero-text {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-3) var(--page-gutter) var(--space-4);
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0) 40%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 28%);
+}
+
+.overlay-hero-logo {
+  display: block;
+  width: 6rem;
+  height: auto;
+  margin-bottom: 0.375rem;
+  filter: drop-shadow(0 1px 6px rgb(0 0 0 / 0.45));
+}
+
+.overlay-hero-brand {
+  margin: 0 0 var(--space-2);
+  color: #ffffff;
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 0.45);
+}
+
+.overlay-hero-text h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.75rem, 8vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media (min-width: 48rem) {
+  .overlay-hero {
+    display: grid;
+    grid-template-columns: minmax(45%, 1fr) auto;
+    /* Match the .container content box so the hero lines up with the rest of the page. */
+    width: calc(100% - 2 * var(--page-gutter));
+    max-width: calc(var(--content-width) - 2 * var(--page-gutter));
+    margin-inline: auto;
+  }
+
+  .overlay-hero-text {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--space-5);
+    background: var(--color-purple-dark);
+  }
+
+  .overlay-hero-logo {
+    width: 7.5rem;
+    filter: none;
+  }
+
+  .overlay-hero-text h1 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 300;
+  }
+
+  .overlay-hero-media {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* 25.2rem tall (5% taller than the split hero photo); cropped slightly if the column is narrower than the photo. */
+  .overlay-hero-media img {
+    width: auto;
+    height: 25.2rem;
+    max-width: 100%;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+}
+
+/* Short intro text under a hero and trust strip. Shared between pages; the following section supplies the bottom spacing. */
+.page-intro {
+  padding-top: var(--space-4);
+  background: var(--color-surface);
+}
+
+/* Lead paragraph: larger than body text, generous line height, limited measure for comfortable reading. */
+.page-intro-text {
+  max-width: 42rem;
+  margin: 0;
+  font-size: clamp(1.1875rem, 1rem + 0.9vw, 1.5rem);
+  line-height: 1.75;
+}
+
+/* Heavier opening phrase; the rest stays at the regular weight. */
+.page-intro-text strong {
+  font-weight: var(--font-weight-emphasis);
+}
+
+@media (min-width: 64rem) {
+  .page-intro {
+    padding-top: var(--space-5);
+  }
+}
+
+/* Overlay hero load animation, mobile only: the photo slowly brightens from dark (same effect as the home hero).
+   Desktop and reduced-motion users get the static hero. */
+@media (max-width: 47.99rem) and (prefers-reduced-motion: no-preference) {
+  .overlay-hero-media img {
+    animation: overlay-hero-reveal 3.5s ease-out both;
+  }
+}
+
+@keyframes overlay-hero-reveal {
+  from {
+    filter: brightness(0.35);
+  }
+
+  to {
+    filter: brightness(1);
+  }
+}
+
 /* Trust strip under the white split hero: add the top rule to match the bottom one. */
 .split-hero + .trust-strip,
-.furniture-hero + .trust-strip {
+.furniture-hero + .trust-strip,
+.overlay-hero + .trust-strip {
   border-top: 1px solid var(--color-border);
 }
 

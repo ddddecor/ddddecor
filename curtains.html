@@ -34,6 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Prompt:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/misc/hero-curtains.webp" type="image/webp" media="(max-width: 47.99rem)">
   <link rel="preload" as="image" href="images/misc/scrolling-livingroom-vivid.webp" type="image/webp" media="(max-width: 63.99rem)">
   <link rel="stylesheet" href="vendor/glightbox/glightbox.min.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -71,14 +72,19 @@
     </div>
   </header>
 
-  <section class="split-hero" aria-labelledby="curtains-hero-title">
-    <div class="split-hero-text">
-      <p class="split-hero-eyebrow" lang="en">CUSTOM CURTAINS</p>
-      <h1 id="curtains-hero-title">ผ้าม่านสั่งตัด<br>ความลงตัวที่ออกแบบเพื่อคุณ</h1>
-      <p class="split-hero-intro">ออกแบบให้พอดีกับหน้าต่าง เข้ากับสไตล์การตกแต่งและการใช้งานของคุณ พร้อมบริการครบทุกขั้นตอน ตั้งแต่การเลือกผ้าม่านไปจนถึงการติดตั้ง</p>
+  <section class="overlay-hero" aria-labelledby="curtains-hero-title">
+    <div class="overlay-hero-text">
+      <div class="overlay-hero-brandmark">
+        <img class="overlay-hero-logo" src="images/logo/ddd-logo-white.svg" alt="Design Delight Decorative" lang="en" width="1764" height="750">
+        <p class="overlay-hero-brand" lang="en">Design Delight Decorative</p>
+      </div>
+      <h1 id="curtains-hero-title">ผ้าม่านสั่งตัด<br>เพื่อพื้นที่ของคุณ</h1>
     </div>
-    <div class="split-hero-media">
-      <img src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-bedroom.webp" alt="ห้องนอนในพูลวิลล่า ตกแต่งด้วยผ้าม่านสีน้ำตาลอ่อนและม่านโปร่ง หัวเตียงสีเขียวทรงโค้ง" width="1448" height="1086">
+    <div class="overlay-hero-media">
+      <picture>
+        <source media="(min-width: 48rem)" srcset="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-bedroom.webp" width="1448" height="1086">
+        <img src="images/misc/hero-curtains.webp" alt="ผ้าม่านสีเทาอมน้ำตาลและม่านโปร่งสีขาวที่หน้าต่างบานสูง พร้อมโคมไฟทองเหลืองแขวน" width="1087" height="1447">
+      </picture>
     </div>
   </section>
 
@@ -106,6 +112,12 @@
           <p class="trust-text">พร้อมให้บริการหลังติดตั้ง</p>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <section class="page-intro" aria-label="เกี่ยวกับบริการผ้าม่าน">
+    <div class="container">
+      <p class="page-intro-text"><strong>บริการผ้าม่านสั่งตัดพร้อมติดตั้งในกรุงเทพฯ และจังหวัดใกล้เคียง</strong> เราดูแลครบทุกขั้นตอน ตั้งแต่ให้คำปรึกษา เลือกผ้าและรูปแบบ วัดพื้นที่ ไปจนถึงตัดเย็บและติดตั้ง</p>
     </div>
   </section>
 
@@ -159,7 +171,7 @@
             <img src="images/misc/cozy-livingroom-bangkok-thumb.webp" alt="ห้องนั่งเล่นสว่างโปร่งติดผ้าม่านสีครีมและม่านโปร่งสีขาวที่ประตูกระจกบานเลื่อน" width="800" height="450" loading="lazy">
           </a>
           <figcaption class="mini-gallery-caption">
-            <span class="mini-gallery-caption-text">โปร่งสบาย</span>
+            <span class="mini-gallery-caption-text">แสงนุ่มสบายตา</span>
           </figcaption>
         </li>
       </ul>
