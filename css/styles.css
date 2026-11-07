@@ -1237,6 +1237,11 @@ main > .feature-section:first-child {
     gap: var(--space-3);
   }
 
+  /* Lists with exactly five tiles fit on a single row. */
+  .project-tiles-list:has(> li:nth-child(5):last-child) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
   .project-tile-caption {
     padding: var(--space-5) var(--space-3) var(--space-3);
   }
