@@ -820,7 +820,8 @@ main > .feature-section:first-child {
 }
 
 .project-tiles + .testimonial,
-.testimonial + .faq-section {
+.testimonial + .about-section,
+.about-section + .faq-section {
   padding-top: 0;
 }
 
@@ -835,6 +836,7 @@ main > .feature-section:first-child {
 .service-section h2,
 .testimonial h2,
 .testimonials-section h2,
+.about-section h2,
 .faq-section h2 {
   margin-bottom: var(--space-4);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -3819,6 +3821,16 @@ img.footer-icon {
   }
 }
 
+/* Home "Get to know us" section: plain white block between the category grid and the "Why DDD" band. Content to follow. */
+.about-section {
+  margin-top: 0; /* overrides the generic main section margin */
+  padding-block: var(--space-5);
+}
+
+.about-section .container > :first-child {
+  margin-top: 0;
+}
+
 /* Home "Why choose us" section: full-width light purple band below the category grid. */
 .why-us-section {
   margin-top: 0; /* overrides the generic main section margin, which added a white gap above the band */
@@ -4588,5 +4600,85 @@ img.footer-icon {
 
   .guide-style .guide-text {
     grid-area: text;
+  }
+}
+
+/* About ("Get to know us"): small square portrait with caption; story text sits to the right on desktop */
+.about-section {
+  padding-block: var(--space-6);
+}
+
+/* Mobile order: title, story, then photo. Desktop re-arranges the same areas (see the 64rem query). */
+.about-layout {
+  display: grid;
+  grid-template-areas:
+    "head"
+    "story"
+    "photo";
+  gap: var(--space-4);
+}
+
+.about-head {
+  grid-area: head;
+}
+
+.about-figure {
+  grid-area: photo;
+}
+
+.about-story {
+  grid-area: story;
+}
+
+.about-head h2 {
+  margin: 0; /* spacing comes from the layout gap */
+}
+
+/* Polaroid: reusable photo style. White frame (thin on top and sides, deeper below for the caption)
+   plus a soft shadow to lift the photo off the page. Use on a <figure> with an <img> and a <figcaption>. */
+.polaroid {
+  --polaroid-border: 0.375rem;
+  margin: 0;
+  padding: var(--polaroid-border) var(--polaroid-border) 0;
+  background: var(--color-surface);
+  box-shadow: 0 2px 4px rgb(48 43 51 / 0.06), 0 12px 28px rgb(48 43 51 / 0.14);
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  padding: var(--space-2) var(--space-2);
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  text-align: left;
+}
+
+.about-story p {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.about-story p + p {
+  margin-top: var(--space-3);
+}
+
+@media (min-width: 64rem) {
+  /* Photo spans both rows on the left; title and story stack in the right column. */
+  .about-layout {
+    grid-template-columns: 18rem 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "photo head"
+      "photo story";
+    column-gap: var(--space-6);
+    align-items: start;
   }
 }
