@@ -692,34 +692,13 @@ main > .feature-section:first-child {
   background: var(--color-trust-background);
 }
 
-/* Mobile: scrollable row that bleeds into the page gutter, with edge fades like .portfolio-filters ul. */
+/* Mobile: compact 2x2 grid so all four items are visible without swiping; desktop switches to a single row. */
 .trust-list {
-  --trust-fade: 5rem;
-  --fade-start: 0px;
-  --fade-end: 0px;
-  display: flex;
-  margin: 0 calc(var(--page-gutter) * -1);
-  padding: 0 var(--page-gutter);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
   list-style: none;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  scroll-padding-inline: var(--page-gutter);
-  scrollbar-width: none;
-  /* Subtle edge fades, toggled by JS while there is more to scroll in that direction. */
-  -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 0.05), #000 var(--fade-start), #000 calc(100% - var(--fade-end)), rgb(0 0 0 / 0.05));
-  mask-image: linear-gradient(to right, rgb(0 0 0 / 0.05), #000 var(--fade-start), #000 calc(100% - var(--fade-end)), rgb(0 0 0 / 0.05));
-}
-
-.trust-list.has-fade-start {
-  --fade-start: var(--trust-fade);
-}
-
-.trust-list.has-fade-end {
-  --fade-end: var(--trust-fade);
-}
-
-.trust-list::-webkit-scrollbar {
-  display: none;
 }
 
 .trust-item {
@@ -727,20 +706,22 @@ main > .feature-section:first-child {
   grid-template-columns: auto 1fr;
   column-gap: var(--space-1);
   align-items: center;
-  flex: 0 0 60%;
-  max-width: 20rem;
-  padding: var(--space-3) var(--space-2);
-  scroll-snap-align: start;
+  padding: var(--space-2) var(--space-1);
 }
 
-.trust-item + .trust-item {
+.trust-item:nth-child(even) {
   border-left: 1px solid var(--color-border);
+  padding-left: var(--space-2);
+}
+
+.trust-item:nth-child(n + 3) {
+  border-top: 1px solid var(--color-border);
 }
 
 .trust-icon {
   grid-row: 1 / 3;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
   color: var(--color-purple);
 }
 
@@ -751,29 +732,48 @@ main > .feature-section:first-child {
 
 .trust-title {
   color: var(--color-purple-dark);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: var(--font-weight-emphasis);
   line-height: 1.3;
 }
 
 .trust-text {
   color: var(--color-muted);
-  font-size: 0.8125rem;
-  line-height: 1.4;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+/* Mobile: pull the title and text closer together (Thai line boxes are tall). */
+@media (max-width: 63.99rem) {
+  .trust-title {
+    align-self: end;
+    line-height: 1.1;
+  }
+
+  .trust-text {
+    align-self: start;
+    line-height: 1.2;
+  }
 }
 
 @media (min-width: 64rem) {
   .trust-list {
-    margin: 0;
-    padding: 0;
-    overflow: visible;
+    display: flex;
   }
 
-  .trust-item {
+  .trust-item,
+  .trust-item:nth-child(even) {
     flex: 1 1 0;
-    max-width: none;
     column-gap: var(--space-2);
     padding: var(--space-4) var(--space-3);
+  }
+
+  .trust-item + .trust-item {
+    border-left: 1px solid var(--color-border);
+  }
+
+  .trust-item:nth-child(n + 3) {
+    border-top: 0;
   }
 
   .trust-icon {
@@ -1246,6 +1246,25 @@ main > .feature-section:first-child {
 
   .project-tile-caption {
     padding: var(--space-5) var(--space-3) var(--space-3);
+  }
+}
+
+/* Strip variant: the caption sits in a narrow purple strip under the image instead of overlaying it. */
+.project-tiles--strip .project-tile {
+  background: var(--color-purple);
+}
+
+.project-tiles--strip .project-tile-caption {
+  position: static;
+  display: block;
+  padding: var(--space-1) var(--space-2);
+  background: none;
+  font-weight: var(--font-weight-normal);
+}
+
+@media (min-width: 64rem) {
+  .project-tiles--strip .project-tile-caption {
+    padding: var(--space-2) var(--space-3);
   }
 }
 
@@ -4614,8 +4633,23 @@ img.footer-icon {
   grid-template-areas:
     "head"
     "story"
-    "photo";
+    "photo"
+    "why";
   gap: var(--space-4);
+}
+
+/* Same light purple band as the "How we work" section */
+.about-section--tinted {
+  background: var(--color-background-alt);
+}
+
+/* A tinted band needs its own top/bottom padding; the default rules remove it between white sections */
+.testimonial + .about-section--tinted {
+  padding-top: var(--space-6);
+}
+
+.about-section--tinted + .faq-section {
+  padding-top: var(--space-6);
 }
 
 .about-head {
@@ -4628,6 +4662,10 @@ img.footer-icon {
 
 .about-story {
   grid-area: story;
+}
+
+.why-box {
+  grid-area: why;
 }
 
 .about-head h2 {
@@ -4673,12 +4711,133 @@ img.footer-icon {
 @media (min-width: 64rem) {
   /* Photo spans both rows on the left; title and story stack in the right column. */
   .about-layout {
-    grid-template-columns: 18rem 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 20rem 1fr;
+    grid-template-rows: auto auto 1fr;
     grid-template-areas:
       "photo head"
-      "photo story";
+      "photo story"
+      "photo why";
     column-gap: var(--space-6);
     align-items: start;
+  }
+}
+
+/* "Why choose us" box: small title and a short list with check marks; its own grid area in .about-layout */
+.why-box {
+  max-width: 40rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-purple);
+  color: var(--color-surface);
+}
+
+.why-box-title {
+  margin: 0 0 var(--space-2);
+  font-size: 1rem;
+  font-weight: var(--font-weight-emphasis);
+  color: var(--color-surface);
+}
+
+.why-box-list {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.why-box-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: var(--color-surface);
+}
+
+/* Check mark drawn with borders, in the gold accent */
+.why-box-list li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.4em;
+  width: 0.4rem;
+  height: 0.7rem;
+  border: solid var(--color-gold-on-dark);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Home "Get to know us" cards: four plain image + text blocks.
+   Mobile: stacked, text above image. Desktop (64rem+): two per row, square image on the left, title and text on the right. */
+.about-cards {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-card {
+  display: grid;
+  align-content: start;
+  background: var(--color-purple);
+  color: #fff;
+}
+
+.about-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* The image sits flush against the border, so the text block carries the padding. */
+.about-card-body {
+  padding: var(--space-3);
+  border-bottom: 0.5rem solid rgb(255 255 255 / 0.25); /* lighter strip between text (above) and image (below) on mobile */
+}
+
+.about-card h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-emphasis);
+  letter-spacing: 0;
+  color: #fff;
+}
+
+.about-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgb(255 255 255 / 0.8);
+}
+
+/* 64rem+: image left, text right. One card per row until there is room for two, so the text never gets much taller than the square image. */
+@media (min-width: 64rem) {
+  .about-card {
+    grid-template-columns: 14rem 1fr;
+    align-items: stretch;
+  }
+
+  /* Text comes first in the markup (mobile order); place the image in the left column on desktop. */
+  .about-card img {
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%; /* fills the card height so no gap shows below the image if the text is taller than a square */
+    aspect-ratio: auto;
+    min-height: 14rem;
+  }
+
+  .about-card-body {
+    grid-column: 2;
+    grid-row: 1;
+    border-bottom: 0;
+    border-left: 0.5rem solid rgb(255 255 255 / 0.25); /* strip moves between the image (left) and text (right) */
+  }
+}
+
+/* 72rem+ (full content width): two cards per row. */
+@media (min-width: 72rem) {
+  .about-cards {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-6);
+    row-gap: var(--space-6);
   }
 }
