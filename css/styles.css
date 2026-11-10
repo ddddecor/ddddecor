@@ -885,18 +885,24 @@ main > .feature-section:first-child {
   }
 }
 
-/* Curtains: no swipe carousel below desktop; images are stacked in one column. */
+/* Curtains: no swipe carousel below desktop. The first three images are full width, stacked;
+   the last two share one row. */
 @media (max-width: 63.99rem) {
   .mini-gallery--curtains .mini-gallery-list {
-    flex-direction: column;
-    gap: var(--space-4);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4) var(--space-2);
     margin: 0;
     padding: 0;
     overflow: visible;
   }
 
   .mini-gallery--curtains .mini-gallery-item {
-    flex: none;
+    grid-column: 1 / -1;
+  }
+
+  .mini-gallery--curtains .mini-gallery-item:nth-child(n + 4) {
+    grid-column: auto;
   }
 }
 
@@ -3537,25 +3543,33 @@ img.footer-icon {
   object-fit: cover;
 }
 
-/* Mobile: the text layer covers the whole photo, with the logo and name top left and the title at the bottom. */
+/* Mobile: the text layer covers the whole photo; the logo, name and title are stacked and centered at the bottom,
+   over a long eased fade (same feel as the home hero). */
 .overlay-hero-text {
   position: absolute;
   inset: 0;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
   padding: var(--space-3) var(--page-gutter) var(--space-4);
-  background:
-    linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0) 40%),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 28%);
+  text-align: center;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.55) 18%,
+    rgba(0, 0, 0, 0.3) 35%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0) 62%
+  );
 }
 
 .overlay-hero-logo {
   display: block;
   width: 6rem;
   height: auto;
-  margin-bottom: 0.375rem;
+  margin: 0 auto 0.125rem;
   filter: drop-shadow(0 1px 6px rgb(0 0 0 / 0.45));
 }
 
@@ -3591,12 +3605,15 @@ img.footer-icon {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: stretch;
     padding: var(--space-5);
+    text-align: left;
     background: var(--color-purple-dark);
   }
 
   .overlay-hero-logo {
     width: 7.5rem;
+    margin: 0 0 0.375rem;
     filter: none;
   }
 
@@ -3620,28 +3637,55 @@ img.footer-icon {
   }
 }
 
-/* Short intro text under a hero and trust strip. Shared between pages; the following section supplies the bottom spacing. */
+/* Short intro text under a hero and trust strip. No top padding, so the box sits directly against the trust strip;
+   the following section supplies the bottom spacing. */
 .page-intro {
-  padding-top: var(--space-4);
   background: var(--color-surface);
 }
 
-/* Lead paragraph: larger than body text, generous line height, limited measure for comfortable reading. */
+/* Intro paragraph: regular body text size, limited measure for comfortable reading. */
 .page-intro-text {
   max-width: 42rem;
   margin: 0;
-  font-size: clamp(1.1875rem, 1rem + 0.9vw, 1.5rem);
-  line-height: 1.75;
 }
 
-/* Heavier opening phrase; the rest stays at the regular weight. */
+/* Heavier opening phrase on its own line; the rest stays at the regular weight on the line below. */
 .page-intro-text strong {
+  display: block;
+  margin-bottom: var(--space-1);
   font-weight: var(--font-weight-emphasis);
 }
 
+/* Optional purple panel around the intro text: white text on brand purple.
+   Shrinks to the text width (the paragraph's max-width) and is centred in the container. */
+.page-intro-box {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  padding: var(--space-5) var(--space-4);
+  background: var(--color-purple);
+  color: var(--color-surface);
+}
+
+/* Mobile: full-bleed box, edge to edge across the viewport (cancels the container gutter). */
+@media (max-width: 47.99rem) {
+  .page-intro-box {
+    width: auto;
+    max-width: none;
+    margin-inline: calc(-1 * var(--page-gutter));
+  }
+}
+
+@media (min-width: 48rem) {
+  .page-intro-box {
+    padding: var(--space-6) var(--space-5);
+  }
+}
+
 @media (min-width: 64rem) {
-  .page-intro {
-    padding-top: var(--space-5);
+  /* Desktop: box fills the full content area width. */
+  .page-intro-box {
+    width: auto;
   }
 }
 
@@ -4140,6 +4184,131 @@ img.footer-icon {
 
   .our-projects-dots {
     display: none;
+  }
+}
+
+/* Home "How to work with us" section: four numbered process steps linked by a thin connector line.
+   Mobile: vertical timeline (number | small square image | text). 44rem: 2 × 2 grid without the line.
+   64rem: horizontal row of four steps with the line running through the numbers. */
+.process-section {
+  margin-top: 0; /* overrides the generic main section margin */
+  padding-block: var(--space-5) var(--space-6);
+}
+
+.process-section .container > :first-child {
+  margin-top: 0;
+}
+
+.process-list {
+  --process-number-size: 2rem;
+  --process-line: color-mix(in srgb, var(--color-gold) 35%, var(--color-border));
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.process-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--process-number-size) 5.5rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+}
+
+.process-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Vertical connector from this step's number down to the next one. */
+.process-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: var(--process-number-size);
+  bottom: 0;
+  left: calc(var(--process-number-size) / 2 - 0.5px);
+  width: 1px;
+  background: var(--process-line);
+}
+
+/* Same look as .why-us-number. */
+.process-number {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--process-number-size);
+  height: var(--process-number-size);
+  border-radius: 50%;
+  background: var(--color-purple-secondary);
+  color: var(--color-surface);
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-emphasis);
+  line-height: 1;
+}
+
+.process-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.process-body h3 {
+  margin: 0 0 var(--space-1);
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-emphasis);
+  letter-spacing: 0;
+}
+
+.process-body p {
+  max-width: 32rem;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+@media (min-width: 44rem) {
+  .process-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-5);
+  }
+
+  /* Steps stack: number, image, text. */
+  .process-step,
+  .process-step:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-bottom: 0;
+  }
+
+  .process-step:not(:last-child)::before {
+    display: none;
+  }
+
+  .process-image {
+    max-width: 10rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .process-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Horizontal connector from this step's number across the gap to the next number. */
+  .process-step:not(:last-child)::before {
+    display: block;
+    top: calc(var(--process-number-size) / 2 - 0.5px);
+    bottom: auto;
+    left: calc(var(--process-number-size) + var(--space-2));
+    right: calc(var(--space-2) - var(--space-5));
+    width: auto;
+    height: 1px;
   }
 }
 
