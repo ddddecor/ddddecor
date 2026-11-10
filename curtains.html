@@ -37,8 +37,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Prompt:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/misc/hero-curtains.webp" type="image/webp" media="(max-width: 47.99rem)">
-  <link rel="preload" as="image" href="images/misc/scrolling-livingroom-vivid.webp" type="image/webp" media="(max-width: 63.99rem)">
-  <link rel="stylesheet" href="vendor/glightbox/glightbox.min.css">
+  <link rel="stylesheet" href="vendor/glightbox/glightbox.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/styles.css">
   <script src="vendor/glightbox/glightbox.min.js" defer></script>
   <script src="js/main.js" defer></script>
@@ -85,7 +84,7 @@
     <div class="overlay-hero-media">
       <picture>
         <source media="(min-width: 48rem)" srcset="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-bedroom.webp" width="1448" height="1086">
-        <img src="images/misc/hero-curtains.webp" alt="ผ้าม่านสีเทาอมน้ำตาลและม่านโปร่งสีขาวที่หน้าต่างบานสูง พร้อมโคมไฟทองเหลืองแขวน" width="1087" height="1447">
+        <img src="images/misc/hero-curtains.webp" alt="ผ้าม่านสีเทาอมน้ำตาลและม่านโปร่งสีขาวที่หน้าต่างบานสูง พร้อมโคมไฟทองเหลืองแขวน" width="1087" height="1447" fetchpriority="high">
       </picture>
     </div>
   </section>
