@@ -897,25 +897,36 @@ main > .feature-section:first-child {
   }
 }
 
-/* Curtains: no swipe carousel below desktop. The first three images are full width, stacked;
-   the last two share one row. */
+/* Curtains: no swipe carousel below desktop. Images 1 (5:4) and 2 are full width;
+   images 3-6 sit in pairs. All but the first are 3:2. */
 @media (max-width: 63.99rem) {
   .mini-gallery--curtains .mini-gallery-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-4) var(--space-2);
+    gap: var(--space-1);
     margin: 0;
     padding: 0;
     overflow: visible;
   }
 
   .mini-gallery--curtains .mini-gallery-item {
+    --mini-gallery-ratio: 3 / 2;
+  }
+
+  .mini-gallery--curtains .mini-gallery-item:nth-child(1) {
+    --mini-gallery-ratio: 5 / 4;
     grid-column: 1 / -1;
   }
 
-  .mini-gallery--curtains .mini-gallery-item:nth-child(n + 4) {
-    grid-column: auto;
+  .mini-gallery--curtains .mini-gallery-item:nth-child(2) {
+    grid-column: 1 / -1;
   }
+}
+
+/* Optional figure wrapper around the link and its figcaption: fills the item so the link's 100% height still works. */
+.mini-gallery-figure {
+  height: 100%;
+  margin: 0;
 }
 
 .mini-gallery .gallery-link,
@@ -991,14 +1002,27 @@ main > .feature-section:first-child {
     flex: none;
   }
 
-  /* Curtains: main image + two stacked images on the right, two small images under the main one (needs 5 images). */
+  /* Curtains: large image with two stacked images on its right, three smaller images below (needs 6 images).
+     Left pair : right column = 5 : 3; rows 6 : 6 : 5 give a ~5:4 main cell and ~3:2 small cells. */
   .mini-gallery--curtains .mini-gallery-list {
-    grid-template-columns: 23fr 23fr 30fr;
-    /* Left column: 22 + 12 units. Right column: two 17-unit cells (rows 1 and 2-3), so the stack splits evenly. */
-    grid-template-rows: minmax(0, 17fr) minmax(0, 5fr) minmax(0, 12fr);
-    /* Compact preview: aspect ratio matches the former full-width 22rem + 12rem rows, so cell proportions are preserved. */
-    max-width: 800px;
-    aspect-ratio: 272 / 139;
+    grid-template-columns: 5fr 5fr 6fr;
+    grid-template-rows: minmax(0, 6fr) minmax(0, 6fr) minmax(0, 5fr);
+    max-width: 56rem;
+    aspect-ratio: 24 / 17;
+  }
+
+  /* Bottom-row images are small: a lower, lighter caption overlay so it covers less of the photo. */
+  .mini-gallery--curtains .mini-gallery-item:nth-child(n + 4) .mini-gallery-caption {
+    padding: var(--space-4) var(--space-2) var(--space-1) var(--space-1);
+    background: linear-gradient(to top, rgb(0 0 0 / 0.55), rgb(0 0 0 / 0));
+  }
+
+  .mini-gallery--curtains .mini-gallery-item:nth-child(n + 4) .mini-gallery-caption-title {
+    font-size: 0.875rem;
+  }
+
+  .mini-gallery--curtains .mini-gallery-item:nth-child(n + 4) .mini-gallery-caption-text {
+    font-size: 0.75rem;
   }
 
   .mini-gallery--curtains .mini-gallery-item:nth-child(1) {
@@ -1012,18 +1036,23 @@ main > .feature-section:first-child {
   }
 
   .mini-gallery--curtains .mini-gallery-item:nth-child(3) {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .mini-gallery--curtains .mini-gallery-item:nth-child(4) {
     grid-column: 1;
     grid-row: 3;
   }
 
-  .mini-gallery--curtains .mini-gallery-item:nth-child(4) {
+  .mini-gallery--curtains .mini-gallery-item:nth-child(5) {
     grid-column: 2;
     grid-row: 3;
   }
 
-  .mini-gallery--curtains .mini-gallery-item:nth-child(5) {
+  .mini-gallery--curtains .mini-gallery-item:nth-child(6) {
     grid-column: 3;
-    grid-row: 2 / 4;
+    grid-row: 3;
   }
 
   /* The image fills its cell without contributing its intrinsic size, so the grid ratio above decides the cell shapes. */
@@ -3715,7 +3744,7 @@ img.footer-icon {
    Desktop and reduced-motion users get the static hero. */
 @media (max-width: 47.99rem) and (prefers-reduced-motion: no-preference) {
   .overlay-hero-media img {
-    animation: overlay-hero-reveal 3.5s ease-out both;
+    animation: overlay-hero-reveal 1.5s ease-out both;
   }
 }
 
