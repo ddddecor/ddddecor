@@ -313,7 +313,7 @@ if (heroCarousel) {
   }
 }
 
-const revealSections = document.querySelectorAll('.feature-section--split, .testimonials-layout, .our-projects-list--reveal, .intro-split--reveal, .mini-gallery--reveal');
+const revealSections = document.querySelectorAll('.feature-section--split:not(.feature-section--no-reveal), .testimonials-layout, .our-projects-list--reveal, .intro-split--reveal, .mini-gallery--reveal');
 
 if (revealSections.length && 'IntersectionObserver' in window) {
   const revealQuery = window.matchMedia('(prefers-reduced-motion: no-preference)');

@@ -2014,6 +2014,27 @@ main > .feature-section:first-child {
   padding-block: var(--space-4) 0;
 }
 
+/* Split feature section used outside main.container (curtains page blinds section): same spacing as inside main.container. */
+.feature-standalone {
+  padding-block: var(--space-6) 0;
+}
+
+/* No label above these images, so remove the margin that would otherwise sit below it */
+.feature-standalone .feature-portraits {
+  margin-top: 0;
+}
+
+/* Curtains page blinds section: smaller images than on the products page by narrowing the gallery column itself, so no extra gap opens between text and images. */
+@media (min-width: 44rem) {
+  .feature-standalone .feature-section--split {
+    grid-template-columns: 55fr 45fr;
+  }
+
+  .feature-standalone .feature-gallery {
+    width: 100%;
+  }
+}
+
 /* Reversed split feature section: text first in the markup (top on mobile), image left and text right on larger screens */
 .feature-photo--wide {
   aspect-ratio: 16 / 9;
@@ -4549,7 +4570,9 @@ img.footer-icon {
 
 /* Sections after the reveal must cover the fixed image. */
 .image-reveal + .our-projects-section,
-.image-reveal + .project-tiles {
+.image-reveal + .project-tiles,
+.image-reveal + .feature-standalone,
+.image-reveal + .feature-standalone + .project-tiles {
   position: relative;
   background: var(--color-surface);
 }
