@@ -830,6 +830,13 @@ main > .feature-section:first-child {
   padding-top: 0;
 }
 
+/* Home page: the projects section already ends with a small bottom padding; drop the generic
+   main section margin and trim the padding so the gap above the reviews isn't doubled. */
+.our-projects-section + .testimonial {
+  margin-top: 0;
+  padding-top: var(--space-5);
+}
+
 /* Same tighter gap as after the testimonials section (see .testimonials-section + .cta) */
 .faq-section + .cta,
 .testimonial + .cta {
@@ -1623,6 +1630,75 @@ main > .feature-section:first-child {
 @media (min-width: 64rem) {
   .testimonial-card {
     padding: var(--space-6) var(--space-6) var(--space-5);
+  }
+}
+
+/* Review list variant (home page): several short reviews in one card, normal-size text.
+   Mobile: stacked with hairline dividers; from 48rem: two per row. */
+.review-list {
+  display: grid;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.review-item {
+  padding-block: var(--space-5);
+}
+
+.review-item:first-child {
+  padding-top: 0;
+}
+
+.review-item:last-child {
+  padding-bottom: 0;
+}
+
+.review-item + .review-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.review-quote {
+  margin: 0;
+}
+
+.review-quote p {
+  margin: 0;
+  color: var(--color-purple-dark);
+  line-height: 1.7;
+}
+
+.review-stars {
+  margin-top: var(--space-2);
+}
+
+.review-stars svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .review-list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-6);
+  }
+
+  .review-item:nth-child(-n + 2) {
+    padding-top: 0;
+  }
+
+  .review-item:nth-last-child(-n + 2):nth-child(odd),
+  .review-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .review-item + .review-item {
+    border-top: 0;
+  }
+
+  .review-item:nth-child(n + 3) {
+    border-top: 1px solid var(--color-border);
   }
 }
 
