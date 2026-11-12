@@ -34,6 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Prompt:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/misc/hero-wooden-blinds.webp" type="image/webp" media="(max-width: 47.99rem)" fetchpriority="high">
   <link rel="stylesheet" href="vendor/glightbox/glightbox.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/styles.css">
   <script src="vendor/glightbox/glightbox.min.js" defer></script>
@@ -70,15 +71,21 @@
     </div>
   </header>
 
-  <section class="split-hero" aria-labelledby="blinds-hero-title">
-    <div class="split-hero-text">
-      <p class="split-hero-eyebrow">Blinds</p>
-      <h1 id="blinds-hero-title">มู่ลี่และม่านปรับแสง<br>ดีไซน์ที่ลงตัวกับทุกพื้นที่</h1>
-      <p class="split-hero-intro">เลือกแบบ วัสดุ และระดับการกรองแสงให้เหมาะกับพื้นที่ของคุณ พร้อมบริการครบทุกขั้นตอน ตั้งแต่การวัดพื้นที่ไปจนถึงการติดตั้ง</p>
+  <section class="overlay-hero" aria-labelledby="blinds-hero-title">
+    <div class="overlay-hero-text">
+      <div class="overlay-hero-brandmark">
+        <img class="overlay-hero-logo" src="images/logo/ddd-logo-white.svg" alt="Design Delight Decorative" lang="en" width="1764" height="750">
+        <p class="overlay-hero-brand" lang="en">Design Delight Decorative</p>
+      </div>
+      <p class="feature-eyebrow overlay-hero-eyebrow" lang="en">Design Delight Decorative</p>
+      <h1 id="blinds-hero-title">มู่ลี่และม่านปรับแสง<br>เพื่อพื้นที่ของคุณ</h1>
+      <p class="overlay-hero-subtitle">วัดพื้นที่ฟรี ติดตั้งโดยทีมช่างมืออาชีพ</p>
     </div>
-    <div class="split-hero-media">
-      <!-- Placeholder image and alt text; replace with real content. -->
-      <img src="images/misc/wooden-blinds-sofa.webp" alt="[Describe hero image]" width="1448" height="1086" fetchpriority="high">
+    <div class="overlay-hero-media">
+      <picture>
+        <source media="(min-width: 48rem)" srcset="images/misc/wooden-blinds-sofa.webp" width="1448" height="1086">
+        <img src="images/misc/hero-wooden-blinds.webp" alt="มู่ลี่ไม้สีน้ำตาลเข้มระยะใกล้ แสงธรรมชาติลอดผ่านช่องระหว่างใบมู่ลี่" width="1536" height="2048" fetchpriority="high">
+      </picture>
     </div>
   </section>
 
@@ -106,6 +113,12 @@
           <p class="trust-text">ติดตั้งอย่างใส่ใจ</p>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <section class="page-intro" aria-label="เกี่ยวกับบริการมู่ลี่และม่าน">
+    <div class="container">
+      <p class="page-intro-text">เลือกแบบ วัสดุ และระดับการกรองแสงให้เหมาะกับพื้นที่ของคุณ พร้อมบริการครบทุกขั้นตอน ตั้งแต่การวัดพื้นที่ไปจนถึงการติดตั้ง</p>
     </div>
   </section>
 
@@ -276,6 +289,34 @@
           </a>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <section class="about-section about-section--tinted" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-head">
+          <p class="feature-eyebrow" lang="en">GET TO KNOW US</p>
+          <h2 id="about-title">รู้จักเรา</h2>
+        </div>
+        <figure class="about-figure polaroid">
+          <img src="images/misc/owner-in-green-square.webp" alt="คุณเจย์ เจ้าของ DDD ในเสื้อเชิ้ตสีเขียว สวมหมวกแก๊ปและแว่นตา นั่งถือแคตตาล็อกผ้าในห้องนั่งเล่นที่ตกแต่งด้วยผ้าม่าน" width="1086" height="1086" loading="lazy">
+          <figcaption class="polaroid-caption">คุณเจย์ | เจ้าของ</figcaption>
+        </figure>
+        <div class="about-story">
+          <p>เราคือ <span lang="en">Design Delight Decorative (DDD)</span> ก่อตั้งในปี พ.ศ. 2555 เชี่ยวชาญด้านงานตกแต่งภายใน ทั้งผ้าม่าน มู่ลี่ ฟิล์มติดกระจก และวอลเปเปอร์ พร้อมดูแลตั้งแต่ให้คำปรึกษาจนถึงติดตั้ง</p>
+          <p><a href="index.html#about">รู้จักเราเพิ่มเติม →</a></p>
+        </div>
+        <!-- Placeholder copy: replace with the final Thai title and reasons. -->
+        <div class="why-box">
+          <h3 class="why-box-title">ทำไมต้องเลือกเรา</h3>
+          <ul class="why-box-list">
+            <li>ประสบการณ์กว่า 20 ปี ช่วยให้เราเข้าใจและแนะนำสิ่งที่เหมาะกับความต้องการของคุณ</li>
+            <li>เราพร้อมวัดพื้นที่ฟรี พร้อมให้คำแนะนำที่เหมาะกับพื้นที่และความต้องการของคุณ</li>
+            <li>เราดูแลครบทุกขั้นตอน ตั้งแต่วัดพื้นที่จนถึงติดตั้ง</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
