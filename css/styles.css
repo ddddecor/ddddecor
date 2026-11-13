@@ -3844,6 +3844,55 @@ img.footer-icon {
     max-height: none;
     aspect-ratio: auto;
   }
+
+  /* Wide variant (blinds page): full viewport width like the products hero, purple panel left and a large
+     photo filling the right column. Mobile is unchanged. */
+  .overlay-hero--wide {
+    grid-template-columns: minmax(20rem, 35fr) 65fr;
+    width: 100%;
+    max-width: none;
+    min-height: 520px;
+  }
+
+  .overlay-hero--wide .overlay-hero-text {
+    /* Same as the products hero: align with the .container content edge, but never leave less than 20rem for text
+       in the 35% panel (the text moves past the content edge into the margin instead). */
+    padding-inline: max(var(--page-gutter), min(calc((100vw - var(--content-width)) / 2 + var(--page-gutter)), calc(35vw - 23rem))) var(--space-6);
+  }
+
+  /* Logo and company name sit at the top of the panel (larger), the title and subtitle stay at the bottom. */
+  .overlay-hero--wide .overlay-hero-brandmark {
+    margin-bottom: auto;
+    padding-bottom: var(--space-5);
+  }
+
+  .overlay-hero--wide .overlay-hero-logo {
+    width: 12rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .overlay-hero--wide .overlay-hero-brand {
+    margin-bottom: 0;
+    font-size: 0.8125rem;
+  }
+
+  .overlay-hero--wide .overlay-hero-media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+
+  .overlay-hero--wide .overlay-hero-media picture {
+    position: absolute;
+    inset: 0;
+  }
+
+  .overlay-hero--wide .overlay-hero-media img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
 }
 
 /* Short intro text under a hero and trust strip, styled as regular body text.
