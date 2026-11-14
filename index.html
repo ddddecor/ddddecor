@@ -82,9 +82,13 @@
   </header>
 
   <main class="page-main">
-    <!-- Home hero (alt text is a placeholder). One h1 serves both layouts: on mobile it overlays the photo; from 64rem up the photo is hidden and the text becomes the purple title banner. -->
+    <!-- Home hero (alt text is a placeholder). One h1 serves both layouts: on mobile it overlays the portrait photo at the bottom; from 64rem up a landscape photo is used and the logo and name sit on its left side (concept test). -->
     <div class="home-hero">
-      <img src="images/misc/hero-curtains-khaoyai-view.webp" alt="โต๊ะทำงานสีขาวหน้าหน้าต่างโค้งตกแต่งด้วยผ้าม่านทึบและผ้าม่านโปร่ง (ข้อความตัวอย่าง)" width="1086" height="1448" fetchpriority="high">
+      <!-- Concept test: landscape photo for desktop (from 64rem up). -->
+      <picture>
+        <source media="(min-width: 64rem)" srcset="images/misc/arched-window.webp" width="2880" height="1237">
+        <img src="images/misc/hero-curtains-khaoyai-view.webp" alt="โต๊ะทำงานสีขาวหน้าหน้าต่างโค้งตกแต่งด้วยผ้าม่านทึบและผ้าม่านโปร่ง (ข้อความตัวอย่าง)" width="1086" height="1448" fetchpriority="high">
+      </picture>
       <div class="home-hero-text">
         <div class="home-hero-titles">
           <p class="home-hero-eyebrow" lang="en">Welcome to</p>
