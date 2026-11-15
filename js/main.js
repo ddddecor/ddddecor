@@ -42,6 +42,7 @@ if (document.querySelector('.gallery-link, .project-gallery-link') && typeof GLi
     ['[data-gallery="curtains-blinds"]', 'ddd_image_products'],
     ['[data-gallery="curtains-blinds-mini"]', 'ddd_image_curtains'],
     ['[data-gallery="blinds-mini"]', 'ddd_image_blinds'],
+    ['[data-gallery="blinds-uses"]', 'ddd_image_blinds'],
     ['[data-gallery="wallpaper-mini"]', 'ddd_image_wallpaper'],
     ['[data-gallery="window-film-mini"]', 'ddd_image_film'],
     ['[data-gallery^="furniture-"]', 'ddd_image_furniture'],

@@ -849,6 +849,7 @@ main > .feature-section:first-child {
   padding-top: var(--space-4);
 }
 
+.uses-section + .project-tiles,
 .project-tiles + .testimonial,
 .testimonial + .about-section,
 .about-section + .faq-section {
@@ -1240,6 +1241,107 @@ main > .feature-section:first-child {
 }
 
 /* Example projects: four square image links with an overlaid caption; 2x2 on mobile, one row on desktop. */
+/* Uses section (blinds page): small, low-key strip of four images with captions below.
+   Mobile: image 1 full width, images 2-3 in a pair, image 4 full width.
+   Desktop: one row; each item's flex-grow equals its image ratio, so all images share one height. */
+.uses-section {
+  padding-block: var(--space-6);
+  background: var(--color-surface);
+}
+
+.uses-section h2 {
+  margin-bottom: var(--space-4);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.uses-section h2:has(+ .uses-intro) {
+  margin-bottom: var(--space-2);
+}
+
+.uses-intro {
+  max-width: 40rem;
+  margin: 0 0 var(--space-4);
+}
+
+.uses-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.uses-item:nth-child(1),
+.uses-item:nth-child(4) {
+  grid-column: 1 / -1;
+}
+
+.uses-figure {
+  margin: 0;
+}
+
+.uses-figure .gallery-link {
+  border-radius: 0;
+}
+
+/* Natural ratio: override the generic 4:3 crop of .gallery-link img. */
+.uses-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  transition: transform 0.4s ease;
+}
+
+@media (hover: hover) {
+  .uses-figure .gallery-link:hover img {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uses-figure img {
+    transition: none;
+  }
+
+  .uses-figure .gallery-link:hover img {
+    transform: none;
+  }
+}
+
+.uses-caption {
+  padding-top: var(--space-1);
+}
+
+.uses-caption-text {
+  display: block;
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 64rem) {
+  .uses-list {
+    display: flex;
+  }
+
+  /* flex-grow = width / height of each image (4:3, 3:4, 3:4, ~16:9) */
+  .uses-item {
+    flex: 1.333 1 0;
+    min-width: 0;
+  }
+
+  .uses-item:nth-child(2),
+  .uses-item:nth-child(3) {
+    flex-grow: 0.75;
+  }
+
+  .uses-item:nth-child(4) {
+    flex-grow: 1.778;
+  }
+}
+
 .project-tiles {
   padding-block: var(--space-6);
   background: var(--color-surface);
@@ -4754,6 +4856,7 @@ img.footer-icon {
 /* Sections after the reveal must cover the fixed image. */
 .image-reveal + .our-projects-section,
 .image-reveal + .project-tiles,
+.image-reveal + .uses-section,
 .image-reveal + .feature-standalone,
 .image-reveal + .feature-standalone + .project-tiles {
   position: relative;
