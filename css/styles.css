@@ -1473,6 +1473,75 @@ main > .feature-section:first-child {
   }
 }
 
+/* Below variant: plain title and short text under the image; the image itself carries the hover lift. */
+.project-tiles--below .project-tile {
+  overflow: visible;
+  color: var(--color-text);
+  transition: none;
+}
+
+.project-tiles--below .project-tile img {
+  border-radius: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-tiles--below .project-tile-caption {
+  position: static;
+  display: block;
+  padding: var(--space-2) 0 0;
+  background: none;
+}
+
+.project-tiles--below .project-tile-title {
+  display: block;
+  color: var(--color-purple);
+  font-size: 1rem;
+  font-weight: var(--font-weight-emphasis);
+}
+
+.project-tiles--below .project-tile-text {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-normal);
+}
+
+.project-tiles--below .project-tile:focus-visible {
+  box-shadow: none;
+  transform: none;
+  outline: 2px solid var(--color-purple);
+  outline-offset: 4px;
+}
+
+.project-tiles--below .project-tile:focus-visible img {
+  box-shadow: 0 16px 32px rgb(0 0 0 / 0.24);
+  transform: translateY(-4px);
+}
+
+@media (hover: hover) {
+  .project-tiles--below .project-tile:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .project-tiles--below .project-tile:hover img {
+    box-shadow: 0 16px 32px rgb(0 0 0 / 0.24);
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-tiles--below .project-tile img {
+    transition: none;
+  }
+
+  .project-tiles--below .project-tile:hover img,
+  .project-tiles--below .project-tile:focus-visible img {
+    transform: none;
+  }
+}
+
 /* Feature section */
 .feature-eyebrow {
   margin-bottom: var(--space-1);
