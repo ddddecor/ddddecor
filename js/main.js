@@ -425,3 +425,40 @@ document.querySelectorAll('.our-projects-list').forEach((list) => {
   window.addEventListener('resize', updateDots);
   updateDots();
 });
+
+// Images near the top of the page that would otherwise compete with the hero photo for bandwidth (they are lazy,
+// but close enough to the viewport that the browser fetches them immediately). Their src is in data-defer-src and is
+// set only once the hero has been painted, so the hero gets the connection to itself. They keep loading="lazy".
+const deferredImages = document.querySelectorAll('img[data-defer-src]');
+
+if (deferredImages.length) {
+  let deferredLoaded = false;
+  const loadDeferredImages = () => {
+    if (deferredLoaded) return;
+    deferredLoaded = true;
+    deferredImages.forEach((image) => {
+      image.src = image.dataset.deferSrc;
+      image.removeAttribute('data-defer-src');
+    });
+  };
+
+  const hero = document.querySelector('.overlay-hero-media img');
+  const canObservePaint = 'PerformanceObserver' in window
+    && (PerformanceObserver.supportedEntryTypes || []).includes('largest-contentful-paint');
+
+  if (!hero) {
+    loadDeferredImages();
+  } else if (canObservePaint) {
+    // The browser reports the hero as the largest paint once it is on screen.
+    new PerformanceObserver((list, observer) => {
+      if (list.getEntries().some((entry) => entry.element === hero)) {
+        observer.disconnect();
+        loadDeferredImages();
+      }
+    }).observe({ type: 'largest-contentful-paint', buffered: true });
+    // Safety net, e.g. when the hero is not the largest element on this screen size.
+    window.addEventListener('load', loadDeferredImages, { once: true });
+  } else {
+    window.addEventListener('load', loadDeferredImages, { once: true });
+  }
+}

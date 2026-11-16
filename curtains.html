@@ -126,7 +126,8 @@
   </section>
 
   <section class="mini-gallery mini-gallery--curtains mini-gallery--captions" aria-labelledby="mini-gallery-title">
-    <!-- Link to the full-size image; display the -thumb file when one exists. -->
+    <!-- Link to the full-size image; display the -thumb file when one exists.
+         data-defer-src: main.js sets the src after the hero has been painted (keeps the hero fast). -->
     <div class="container">
       <h2 class="mini-gallery-label" id="mini-gallery-title">ส่องผลงานของเรา</h2>
       <!-- Desktop: large image + two stacked on the right, three smaller images below. -->
@@ -134,7 +135,7 @@
         <li class="mini-gallery-item">
           <figure class="mini-gallery-figure">
             <a class="gallery-link" href="images/misc/curtain-poolvilla.webp" data-gallery="curtains-blinds-mini" data-alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนั่งเล่นพูลวิลล่า มองเห็นสระว่ายน้ำนอกบานเลื่อนกระจก" aria-label="Open image 1 in lightbox">
-              <img src="images/misc/curtain-poolvilla.webp" alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนั่งเล่นพูลวิลล่า มองเห็นสระว่ายน้ำนอกบานเลื่อนกระจก" width="1402" height="1122" loading="lazy">
+              <img data-defer-src="images/misc/curtain-poolvilla-thumb.webp" alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนั่งเล่นพูลวิลล่า มองเห็นสระว่ายน้ำนอกบานเลื่อนกระจก" width="1402" height="1122" loading="lazy">
             </a>
             <figcaption class="mini-gallery-caption">
               <strong class="mini-gallery-caption-title">พูลวิลล่า</strong>
@@ -145,7 +146,7 @@
         <li class="mini-gallery-item">
           <figure class="mini-gallery-figure">
             <a class="gallery-link" href="images/misc/pleated-bedroom.webp" data-gallery="curtains-blinds-mini" data-alt="ผ้าม่านจีบสีเทาและม่านโปร่งสีขาวในห้องโล่ง ผนังสีฟ้าอ่อน" aria-label="Open image 2 in lightbox">
-              <img src="images/misc/pleated-bedroom-thumb.webp" alt="ผ้าม่านจีบสีเทาและม่านโปร่งสีขาวในห้องโล่ง ผนังสีฟ้าอ่อน" width="800" height="534" loading="lazy">
+              <img data-defer-src="images/misc/pleated-bedroom-thumb.webp" alt="ผ้าม่านจีบสีเทาและม่านโปร่งสีขาวในห้องโล่ง ผนังสีฟ้าอ่อน" width="800" height="534" loading="lazy">
             </a>
             <figcaption class="mini-gallery-caption">
               <strong class="mini-gallery-caption-title">ทาวน์โฮม</strong>
@@ -156,7 +157,7 @@
         <li class="mini-gallery-item">
           <figure class="mini-gallery-figure">
             <a class="gallery-link" href="images/misc/condo-curtain.webp" data-gallery="curtains-blinds-mini" data-alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนอนคอนโด มองเห็นวิวเมือง" aria-label="Open image 3 in lightbox">
-              <img src="images/misc/condo-curtain-thumb.webp" alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนอนคอนโด มองเห็นวิวเมือง" width="900" height="600" loading="lazy">
+              <img data-defer-src="images/misc/condo-curtain-thumb.webp" alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนอนคอนโด มองเห็นวิวเมือง" width="900" height="600" loading="lazy">
             </a>
             <figcaption class="mini-gallery-caption">
               <strong class="mini-gallery-caption-title">คอนโด</strong>
@@ -167,7 +168,7 @@
         <li class="mini-gallery-item">
           <figure class="mini-gallery-figure">
             <a class="gallery-link" href="images/misc/cozy-livingroom-bangkok.webp" data-gallery="curtains-blinds-mini" data-alt="ห้องนั่งเล่นสว่างโปร่งติดผ้าม่านสีครีมและม่านโปร่งสีขาวที่ประตูกระจกบานเลื่อน" aria-label="Open image 4 in lightbox">
-              <img src="images/misc/cozy-livingroom-bangkok-thumb.webp" alt="ห้องนั่งเล่นสว่างโปร่งติดผ้าม่านสีครีมและม่านโปร่งสีขาวที่ประตูกระจกบานเลื่อน" width="800" height="450" loading="lazy">
+              <img data-defer-src="images/misc/cozy-livingroom-bangkok-thumb.webp" alt="ห้องนั่งเล่นสว่างโปร่งติดผ้าม่านสีครีมและม่านโปร่งสีขาวที่ประตูกระจกบานเลื่อน" width="800" height="450" loading="lazy">
             </a>
             <figcaption class="mini-gallery-caption">
               <strong class="mini-gallery-caption-title">บ้านเดี่ยว</strong>
@@ -178,7 +179,7 @@
         <li class="mini-gallery-item">
           <figure class="mini-gallery-figure">
             <a class="gallery-link" href="images/misc/louis.webp" data-gallery="curtains-blinds-mini" data-alt="ผ้าม่านหลุยส์สีทองพร้อมระบายด้านบนประดับพู่ และม่านโปร่งสีขาวที่หน้าต่างบานสูง" aria-label="Open image 5 in lightbox">
-              <img src="images/misc/louis-thumb.webp" alt="ผ้าม่านหลุยส์สีทองพร้อมระบายด้านบนประดับพู่ และม่านโปร่งสีขาวที่หน้าต่างบานสูง" width="800" height="640" loading="lazy">
+              <img data-defer-src="images/misc/louis-thumb.webp" alt="ผ้าม่านหลุยส์สีทองพร้อมระบายด้านบนประดับพู่ และม่านโปร่งสีขาวที่หน้าต่างบานสูง" width="800" height="640" loading="lazy">
             </a>
             <figcaption class="mini-gallery-caption">
               <strong class="mini-gallery-caption-title">ทาวน์โฮม</strong>
@@ -189,7 +190,7 @@
         <li class="mini-gallery-item">
           <figure class="mini-gallery-figure">
             <a class="gallery-link" href="images/misc/curtains-with-lamp.webp" data-gallery="curtains-blinds-mini" data-alt="ห้องเพดานสูงติดผ้าม่านจีบสีน้ำตาลทองและม่านโปร่งที่หน้าต่างหลายบาน พร้อมโคมไฟแขวนสีดำ" aria-label="Open image 6 in lightbox">
-              <img src="images/misc/curtains-with-lamp-thumb.webp" alt="ห้องเพดานสูงติดผ้าม่านจีบสีน้ำตาลทองและม่านโปร่งที่หน้าต่างหลายบาน พร้อมโคมไฟแขวนสีดำ" width="900" height="675" loading="lazy">
+              <img data-defer-src="images/misc/curtains-with-lamp-thumb.webp" alt="ห้องเพดานสูงติดผ้าม่านจีบสีน้ำตาลทองและม่านโปร่งที่หน้าต่างหลายบาน พร้อมโคมไฟแขวนสีดำ" width="900" height="675" loading="lazy">
             </a>
             <figcaption class="mini-gallery-caption">
               <strong class="mini-gallery-caption-title">วิลล่า</strong>
@@ -216,7 +217,7 @@
       </div>
       <div class="intro-split-media">
         <p class="gallery-label">เก็บรายละเอียดหลังติดตั้งอย่างใส่ใจ</p>
-        <img src="images/misc/curtain-ironing-5-4.webp" alt="ช่างกำลังรีดผ้าม่านสีครีมที่ติดตั้งแล้วในห้องนั่งเล่น" width="1254" height="997" loading="lazy">
+        <img data-defer-src="images/misc/curtain-ironing-5-4.webp" alt="ช่างกำลังรีดผ้าม่านสีครีมที่ติดตั้งแล้วในห้องนั่งเล่น" width="1254" height="997" loading="lazy">
       </div>
     </div>
   </section>
