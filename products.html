@@ -2,11 +2,14 @@
 <html lang="th">
 <head>
   <meta charset="utf-8">
-  <!-- Google Tag Manager -->
+  <!-- Google Tag Manager (started late on this page). dataLayer exists from the start, so nothing pushed before
+       GTM loads is lost. gtm.js is downloaded by window.dddLoadGtm, which js/main.js calls once the hero image has
+       been painted, so it doesn't compete with the hero. The page's load event is a fallback in case main.js fails to load. -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  new Date().getTime(),event:'gtm.js'});var started=false;w.dddLoadGtm=function(){if(started)return;started=true;
+  var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);};
+  w.addEventListener('load',function(){if(!w.dddGtmManaged)w.dddLoadGtm();});
   })(window,document,'script','dataLayer','GTM-KP8ZMVJ2');</script>
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1">

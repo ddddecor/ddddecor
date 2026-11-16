@@ -256,12 +256,25 @@ function whenHeroPainted(callback) {
       }
     }).observe({ type: 'largest-contentful-paint', buffered: true });
   }
-  // Safety net, e.g. when the hero is not the largest element on this screen size.
+  // Safety net, e.g. when the hero is not the largest element on this screen size. On a fast connection the load
+  // event can fire before anything has been painted, so wait until the next frame has been drawn (two animation
+  // frames). Hidden tabs draw no frames, so there it runs at load directly.
+  const runAfterLoad = () => {
+    if (document.hidden) run();
+    else requestAnimationFrame(() => requestAnimationFrame(run));
+  };
   if (document.readyState === 'complete') {
-    run();
+    runAfterLoad();
   } else {
-    window.addEventListener('load', run, { once: true });
+    window.addEventListener('load', runAfterLoad, { once: true });
   }
+}
+
+// Pages that start Google Tag Manager late (curtains, blinds, products) define window.dddLoadGtm in their <head>.
+// Their own load-event fallback is only for when this file fails to load, so main.js takes over here.
+if (typeof window.dddLoadGtm === 'function') {
+  window.dddGtmManaged = true;
+  whenHeroPainted(window.dddLoadGtm);
 }
 
 const heroCarousel = document.querySelector('[data-hero-carousel]');
