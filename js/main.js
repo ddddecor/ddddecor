@@ -455,12 +455,20 @@ document.querySelectorAll('.our-projects-list').forEach((list) => {
 
 // Images near the top of the page that would otherwise compete with the hero photo for bandwidth (they are lazy,
 // but close enough to the viewport that the browser fetches them immediately). Their src is in data-defer-src and is
-// set only once the hero has been painted, so the hero gets the connection to itself. They keep loading="lazy".
+// set only once the hero has been painted, so the hero gets the connection to itself. Most keep loading="lazy".
+// The mobile image reveal (.image-reveal-img) must not be lazy: it is position: fixed inside a clipped window, so the
+// browser treats it as out of view until the window reaches the screen, and it would still be loading when it appears.
 const deferredImages = document.querySelectorAll('img[data-defer-src]');
 
 if (deferredImages.length) {
   whenHeroPainted(() => {
     deferredImages.forEach((image) => {
+      // Not rendered right now (e.g. the mobile-only image reveal on desktop): fetch it only if it is ever shown.
+      if (!image.getClientRects().length) image.loading = 'lazy';
+      if (image.dataset.deferSrcset) {
+        image.srcset = image.dataset.deferSrcset;
+        image.removeAttribute('data-defer-srcset');
+      }
       image.src = image.dataset.deferSrc;
       image.removeAttribute('data-defer-src');
     });
