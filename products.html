@@ -206,11 +206,12 @@
         <p class="feature-intro">ฟิล์มติดกระจกช่วยลดความร้อน แสงจ้า และรังสียูวี พร้อมเพิ่มความเป็นส่วนตัว โดยยังคงให้แสงธรรมชาติเข้ามาได้ เรามีบริการให้คำแนะนำและติดตั้งโดยทีมงานมืออาชีพ</p>
         <a data-gtm-event="ddd_nav_to_film" class="feature-link" href="window-film.html">ดูฟิล์มติดกระจก <span aria-hidden="true">→</span></a>
       </div>
+      <!-- data-defer-src: main.js sets the src after the hero has been painted (keeps the hero fast). -->
       <div class="feature-gallery">
         <p class="gallery-label">ตัวอย่างผลงานติดตั้งจริงของเรา</p>
         <figure class="feature-item feature-wide">
           <a class="gallery-link feature-photo feature-photo--wide" href="images/misc/khao-yai-film-wide.webp" data-gallery="curtains-blinds" data-alt="ฟิล์มติดกระจกบานใหญ่ของบ้านพักพร้อมสระว่ายน้ำ กระจกสะท้อนต้นไม้และท้องฟ้า" aria-label="Open window film image in lightbox">
-            <img src="images/misc/khao-yai-film-wide.webp" alt="ฟิล์มติดกระจกบานใหญ่ของบ้านพักพร้อมสระว่ายน้ำ กระจกสะท้อนต้นไม้และท้องฟ้า" loading="lazy">
+            <img data-defer-src="images/misc/khao-yai-film-wide.webp" alt="ฟิล์มติดกระจกบานใหญ่ของบ้านพักพร้อมสระว่ายน้ำ กระจกสะท้อนต้นไม้และท้องฟ้า" loading="lazy">
           </a>
           <figcaption class="feature-caption">
             <strong class="feature-caption-title">เรียบหรู เป็นส่วนตัว</strong>
@@ -227,12 +228,13 @@
         <p class="feature-intro">วอลล์เปเปอร์ช่วยเติมสีสัน พื้นผิว และเอกลักษณ์ให้กับพื้นที่ พร้อมดีไซน์หลากหลายที่เข้ากับสไตล์และการตกแต่งที่แตกต่างกัน</p>
         <a data-gtm-event="ddd_nav_to_wallpaper" class="feature-link" href="wallpaper.html">ดูรายละเอียดวอลล์เปเปอร์ <span aria-hidden="true">→</span></a>
       </div>
-      <!-- Link to the full-size image; use a -thumb file for the img when one exists. -->
+      <!-- Link to the full-size image; use a -thumb file for the img when one exists.
+           data-defer-src: main.js sets the src after the hero has been painted (keeps the hero fast). -->
       <div class="feature-gallery">
         <div class="feature-portraits">
           <figure class="feature-item">
             <a class="gallery-link feature-photo feature-photo--square" href="images/misc/wallpaper-sample1.webp" data-gallery="curtains-blinds" data-alt="ตัวอย่างวอลล์เปเปอร์โทนเขียวหลากลวดลายและพื้นผิว" aria-label="Open wallpaper image 1 in lightbox">
-              <img src="images/misc/wallpaper-sample1.webp" alt="ตัวอย่างวอลล์เปเปอร์โทนเขียวหลากลวดลายและพื้นผิว" loading="lazy">
+              <img data-defer-src="images/misc/wallpaper-sample1.webp" alt="ตัวอย่างวอลล์เปเปอร์โทนเขียวหลากลวดลายและพื้นผิว" loading="lazy">
             </a>
             <figcaption class="feature-caption">
               <strong class="feature-caption-title">เลือกสไตล์ที่ใช่</strong>
@@ -241,7 +243,7 @@
           </figure>
           <figure class="feature-item">
             <a class="gallery-link feature-photo feature-photo--square" href="images/misc/wallpaper-sample2.webp" data-gallery="curtains-blinds" data-alt="ม้วนวอลล์เปเปอร์สีครีมพื้นผิวนูน" aria-label="Open wallpaper image 2 in lightbox">
-              <img src="images/misc/wallpaper-sample2.webp" alt="ม้วนวอลล์เปเปอร์สีครีมพื้นผิวนูน" loading="lazy">
+              <img data-defer-src="images/misc/wallpaper-sample2.webp" alt="ม้วนวอลล์เปเปอร์สีครีมพื้นผิวนูน" loading="lazy">
             </a>
             <figcaption class="feature-caption">
               <strong class="feature-caption-title">สัมผัสที่แตกต่าง</strong>

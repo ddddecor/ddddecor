@@ -230,6 +230,40 @@ if (contactFab && contactFabToggle) {
   });
 }
 
+// Runs callback once the hero image has been painted (or at window load as a fallback), so that images which are
+// not needed for the first view never compete with the hero for bandwidth.
+function whenHeroPainted(callback) {
+  let done = false;
+  const run = () => {
+    if (done) return;
+    done = true;
+    callback();
+  };
+  const hero = document.querySelector('.overlay-hero-media img, [data-hero-carousel] .hero-slide img');
+  const canObservePaint = 'PerformanceObserver' in window
+    && (PerformanceObserver.supportedEntryTypes || []).includes('largest-contentful-paint');
+
+  if (!hero) {
+    run();
+    return;
+  }
+  if (canObservePaint) {
+    // The browser reports the hero as the largest paint once it is on screen.
+    new PerformanceObserver((list, observer) => {
+      if (list.getEntries().some((entry) => entry.element === hero)) {
+        observer.disconnect();
+        run();
+      }
+    }).observe({ type: 'largest-contentful-paint', buffered: true });
+  }
+  // Safety net, e.g. when the hero is not the largest element on this screen size.
+  if (document.readyState === 'complete') {
+    run();
+  } else {
+    window.addEventListener('load', run, { once: true });
+  }
+}
+
 const heroCarousel = document.querySelector('[data-hero-carousel]');
 
 if (heroCarousel) {
@@ -293,15 +327,8 @@ if (heroCarousel) {
       timer = setInterval(() => goToSlide((current + 1) % slides.length), slideInterval);
     }
 
-    // Fetch the remaining slides only once the first image has loaded, so it keeps priority.
-    const firstImage = slides[0].querySelector('img');
-    const preloadSlides = () => slides.slice(1).forEach(loadSlide);
-
-    if (firstImage.complete) {
-      preloadSlides();
-    } else {
-      firstImage.addEventListener('load', preloadSlides, { once: true });
-    }
+    // Fetch the remaining slides only once the first one is on screen, so it keeps priority.
+    whenHeroPainted(() => slides.slice(1).forEach(loadSlide));
 
     heroCarousel.addEventListener('mouseenter', () => { isPaused = true; stopTimer(); });
     heroCarousel.addEventListener('mouseleave', () => { isPaused = false; restartTimer(); });
@@ -432,33 +459,10 @@ document.querySelectorAll('.our-projects-list').forEach((list) => {
 const deferredImages = document.querySelectorAll('img[data-defer-src]');
 
 if (deferredImages.length) {
-  let deferredLoaded = false;
-  const loadDeferredImages = () => {
-    if (deferredLoaded) return;
-    deferredLoaded = true;
+  whenHeroPainted(() => {
     deferredImages.forEach((image) => {
       image.src = image.dataset.deferSrc;
       image.removeAttribute('data-defer-src');
     });
-  };
-
-  const hero = document.querySelector('.overlay-hero-media img, [data-hero-carousel] .hero-slide img');
-  const canObservePaint = 'PerformanceObserver' in window
-    && (PerformanceObserver.supportedEntryTypes || []).includes('largest-contentful-paint');
-
-  if (!hero) {
-    loadDeferredImages();
-  } else if (canObservePaint) {
-    // The browser reports the hero as the largest paint once it is on screen.
-    new PerformanceObserver((list, observer) => {
-      if (list.getEntries().some((entry) => entry.element === hero)) {
-        observer.disconnect();
-        loadDeferredImages();
-      }
-    }).observe({ type: 'largest-contentful-paint', buffered: true });
-    // Safety net, e.g. when the hero is not the largest element on this screen size.
-    window.addEventListener('load', loadDeferredImages, { once: true });
-  } else {
-    window.addEventListener('load', loadDeferredImages, { once: true });
-  }
+  });
 }
