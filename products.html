@@ -37,6 +37,7 @@
   <link rel="preload" as="font" type="font/woff2" href="fonts/prompt-thai-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/prompt-thai-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/jost-latin.woff2" crossorigin>
+  <link rel="preload" as="image" href="images/misc/curtains-poolvilla-hero-mobile.webp" imagesrcset="images/misc/curtains-poolvilla-hero-mobile-800.webp 800w, images/misc/curtains-poolvilla-hero-mobile.webp 1448w" imagesizes="100vw" type="image/webp" media="(max-width: 63.99rem)" fetchpriority="high">
   <link rel="stylesheet" href="vendor/glightbox/glightbox.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/styles.css">
   <script src="vendor/glightbox/glightbox.min.js" defer></script>
@@ -79,7 +80,7 @@
     <div class="hero-media" data-hero-carousel>
       <picture class="hero-slide is-active">
         <source media="(min-width: 64rem)" srcset="images/misc/curtains-poolvilla-hero-desktop.webp" width="1672" height="941">
-        <img src="images/misc/curtains-poolvilla-hero-mobile.webp" alt="ห้องนั่งเล่นเพดานสูงในพูลวิลล่า ตกแต่งด้วยผ้าม่านสีน้ำตาลอ่อนและม่านโปร่ง" width="1448" height="1086" fetchpriority="high">
+        <img src="images/misc/curtains-poolvilla-hero-mobile.webp" srcset="images/misc/curtains-poolvilla-hero-mobile-800.webp 800w, images/misc/curtains-poolvilla-hero-mobile.webp 1448w" sizes="100vw" alt="ห้องนั่งเล่นเพดานสูงในพูลวิลล่า ตกแต่งด้วยผ้าม่านสีน้ำตาลอ่อนและม่านโปร่ง" width="1448" height="1086" fetchpriority="high">
       </picture>
       <picture class="hero-slide" aria-hidden="true">
         <source media="(min-width: 64rem)" data-srcset="images/portfolio/projects/khao-yai-house/house-project-livingroom.webp" width="1671" height="941">
@@ -130,12 +131,13 @@
       <h2 id="custom-curtains-title">ผ้าม่านสั่งตัด</h2>
       <p class="feature-intro">เราออกแบบ ตัดเย็บ และติดตั้งผ้าม่านสั่งทำอย่างพิถีพิถัน เพื่อให้เหมาะกับสไตล์และการใช้งานของแต่ละพื้นที่</p>
       <a data-gtm-event="ddd_nav_to_curtains" class="feature-link" href="curtains.html">ดูรายละเอียดผ้าม่าน <span aria-hidden="true">→</span></a>
-      <!-- Link to the full-size image; use a -thumb file for the img when one exists. -->
+      <!-- Link to the full-size image; use a -thumb file for the img when one exists.
+         data-defer-src: main.js sets the src after the hero has been painted (keeps the hero fast). -->
       <p class="gallery-label">ตัวอย่างผลงานติดตั้งจริงของเรา</p>
       <div class="feature-media">
         <figure class="feature-item feature-item--main">
           <a class="gallery-link feature-photo" href="images/misc/curtain-poolvilla.webp" data-gallery="curtains-blinds" data-alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนั่งเล่นพูลวิลล่า มองเห็นสระว่ายน้ำนอกบานเลื่อนกระจก" aria-label="Open image 1 in lightbox">
-            <img src="images/misc/curtain-poolvilla.webp" alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนั่งเล่นพูลวิลล่า มองเห็นสระว่ายน้ำนอกบานเลื่อนกระจก" width="1402" height="1122" loading="lazy">
+            <img data-defer-src="images/misc/curtain-poolvilla-thumb.webp" alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนั่งเล่นพูลวิลล่า มองเห็นสระว่ายน้ำนอกบานเลื่อนกระจก" width="1402" height="1122" loading="lazy">
           </a>
           <figcaption class="feature-caption">
             <strong class="feature-caption-title">เรียบหรู ทันสมัย</strong>
@@ -144,7 +146,7 @@
         </figure>
         <figure class="feature-item">
           <a class="gallery-link feature-photo" href="images/misc/pleated-bedroom.webp" data-gallery="curtains-blinds" data-alt="ผ้าม่านจีบสีเทาและม่านโปร่งสีขาวในห้องโล่ง ผนังสีฟ้าอ่อน" aria-label="Open image 2 in lightbox">
-            <img src="images/misc/pleated-bedroom-thumb.webp" alt="ผ้าม่านจีบสีเทาและม่านโปร่งสีขาวในห้องโล่ง ผนังสีฟ้าอ่อน" loading="lazy">
+            <img data-defer-src="images/misc/pleated-bedroom-thumb.webp" alt="ผ้าม่านจีบสีเทาและม่านโปร่งสีขาวในห้องโล่ง ผนังสีฟ้าอ่อน" loading="lazy">
           </a>
           <figcaption class="feature-caption">
             <strong class="feature-caption-title">ควบคุมแสง</strong>
@@ -153,7 +155,7 @@
         </figure>
         <figure class="feature-item">
           <a class="gallery-link feature-photo" href="images/misc/condo-curtain.webp" data-gallery="curtains-blinds" data-alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนอนคอนโด มองเห็นวิวเมือง" aria-label="Open image 3 in lightbox">
-            <img src="images/misc/condo-curtain-thumb.webp" alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนอนคอนโด มองเห็นวิวเมือง" loading="lazy">
+            <img data-defer-src="images/misc/condo-curtain-thumb.webp" alt="ผ้าม่านสีน้ำตาลอ่อนและม่านโปร่งในห้องนอนคอนโด มองเห็นวิวเมือง" loading="lazy">
           </a>
           <figcaption class="feature-caption">
             <strong class="feature-caption-title">การพักผ่อน</strong>
@@ -170,13 +172,14 @@
         <p class="feature-intro">ม่านม้วน มู่ลี่ และม่านปรับแสง ช่วยควบคุมแสงและความเป็นส่วนตัว พร้อมเติมลุคที่เรียบและทันสมัยให้กับพื้นที่ เรามีบริการวัดพื้นที่ ให้คำแนะนำ และติดตั้งโดยทีมงานมืออาชีพ</p>
         <a data-gtm-event="ddd_nav_to_blinds" class="feature-link" href="blinds.html">ดูรายละเอียดมู่ลี่ <span aria-hidden="true">→</span></a>
       </div>
-      <!-- Link to the full-size image; use a -thumb file for the img when one exists. -->
+      <!-- Link to the full-size image; use a -thumb file for the img when one exists.
+           data-defer-src: main.js sets the src after the hero has been painted (keeps the hero fast). -->
       <div class="feature-gallery">
         <p class="gallery-label">ตัวอย่างผลงานติดตั้งจริงของเรา</p>
         <div class="feature-portraits">
           <figure class="feature-item">
             <a class="gallery-link feature-photo feature-photo--portrait" href="images/misc/khao-yai-wooden-blinds-contrast.webp" data-gallery="curtains-blinds" data-alt="มู่ลี่ไม้สีธรรมชาติที่หน้าต่างบานสูง แสงลอดผ่านช่องระหว่างใบมู่ลี่" aria-label="Open blinds image 1 in lightbox">
-              <img src="images/misc/khao-yai-wooden-blinds-contrast-thumb.webp" alt="มู่ลี่ไม้สีธรรมชาติที่หน้าต่างบานสูง แสงลอดผ่านช่องระหว่างใบมู่ลี่" loading="lazy">
+              <img data-defer-src="images/misc/khao-yai-wooden-blinds-contrast-thumb.webp" alt="มู่ลี่ไม้สีธรรมชาติที่หน้าต่างบานสูง แสงลอดผ่านช่องระหว่างใบมู่ลี่" loading="lazy">
             </a>
             <figcaption class="feature-caption">
               <strong class="feature-caption-title">ความสง่างาม</strong>
@@ -185,7 +188,7 @@
           </figure>
           <figure class="feature-item">
             <a class="gallery-link feature-photo feature-photo--portrait" href="images/misc/condo-kitchen-rollerblinds.webp" data-gallery="curtains-blinds" data-alt="ม่านม้วนกรองแสงที่ประตูกระจกในครัวคอนโด เลื่อนลงบางส่วนให้เห็นวิวเมือง" aria-label="Open blinds image 2 in lightbox">
-              <img src="images/misc/condo-kitchen-rollerblinds-thumb.webp" alt="ม่านม้วนกรองแสงที่ประตูกระจกในครัวคอนโด เลื่อนลงบางส่วนให้เห็นวิวเมือง" loading="lazy">
+              <img data-defer-src="images/misc/condo-kitchen-rollerblinds-thumb.webp" alt="ม่านม้วนกรองแสงที่ประตูกระจกในครัวคอนโด เลื่อนลงบางส่วนให้เห็นวิวเมือง" loading="lazy">
             </a>
             <figcaption class="feature-caption">
               <strong class="feature-caption-title">แสงที่ลงตัว</strong>

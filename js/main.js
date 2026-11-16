@@ -442,7 +442,7 @@ if (deferredImages.length) {
     });
   };
 
-  const hero = document.querySelector('.overlay-hero-media img');
+  const hero = document.querySelector('.overlay-hero-media img, [data-hero-carousel] .hero-slide img');
   const canObservePaint = 'PerformanceObserver' in window
     && (PerformanceObserver.supportedEntryTypes || []).includes('largest-contentful-paint');
 
