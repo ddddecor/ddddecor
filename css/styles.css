@@ -4173,8 +4173,8 @@ img.footer-icon {
     aspect-ratio: auto;
   }
 
-  /* Wide variant (blinds page): full viewport width like the products hero, purple panel left and a large
-     photo filling the right column. Mobile is unchanged. */
+  /* Wide variant (currently unused; the blinds page used it before trying --full): full viewport width like the
+     products hero, purple panel left and a large photo filling the right column. Mobile is unchanged. */
   .overlay-hero--wide {
     grid-template-columns: minmax(20rem, 35fr) 65fr;
     width: 100%;
@@ -4222,8 +4222,8 @@ img.footer-icon {
     object-fit: cover;
   }
 
-  /* Full-width variant (curtains page, concept test): the photo spans the viewport with no purple panel, and the
-     text sits over its lower-left corner, aligned with the .container content edge. Mobile is unchanged. */
+  /* Full-width variant (curtains and blinds pages, concept test): the photo spans the viewport with no purple panel,
+     the logo and name at the top and the title and subtitle centered at the bottom. Mobile is unchanged. */
   .overlay-hero--full {
     display: block;
     width: 100%;
@@ -4293,6 +4293,18 @@ img.footer-icon {
     max-width: none;
     margin-top: var(--space-2);
     font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  }
+
+  /* Stronger top shade (blinds page): the logo sits over the bright blinds, so the top shade is darker and reaches
+     a little further down, and the logo shadow is stronger. The bottom shade is the same as the base --full hero. */
+  .overlay-hero--full.overlay-hero--shade-top .overlay-hero-text {
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 20%, rgba(0, 0, 0, 0) 36%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0) 60%);
+  }
+
+  .overlay-hero--full.overlay-hero--shade-top .overlay-hero-logo {
+    filter: drop-shadow(0 1px 8px rgb(0 0 0 / 0.5));
   }
 }
 
