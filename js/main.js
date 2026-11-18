@@ -23,9 +23,14 @@ if (menuButton && navigation) {
 
   // Back/forward can restore the page from the browser's back/forward cache with
   // the menu still open, so always start from the closed state.
+  // The clicked nav link also keeps focus, which holds the desktop submenu open
+  // via :focus-within, so drop that focus too.
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
       setMenuOpen(false);
+      if (navigation.contains(document.activeElement)) {
+        document.activeElement.blur();
+      }
     }
   });
 }
