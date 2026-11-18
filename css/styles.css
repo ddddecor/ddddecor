@@ -4221,6 +4221,79 @@ img.footer-icon {
     max-width: none;
     object-fit: cover;
   }
+
+  /* Full-width variant (curtains page, concept test): the photo spans the viewport with no purple panel, and the
+     text sits over its lower-left corner, aligned with the .container content edge. Mobile is unchanged. */
+  .overlay-hero--full {
+    display: block;
+    width: 100%;
+    max-width: none;
+  }
+
+  .overlay-hero--full .overlay-hero-media {
+    display: block;
+  }
+
+  /* 16:9 like the photo, so it is shown uncropped; when the 75vh cap applies, top and bottom are trimmed evenly. */
+  .overlay-hero--full .overlay-hero-media img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: 75vh;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  /* Centered column: logo and company name at the top (over the ceiling), title and subtitle at the bottom.
+     Bright photo: shades from the top and bottom keep the white text readable and leave the middle of the room clear. */
+  .overlay-hero--full .overlay-hero-text {
+    position: absolute;
+    inset: 0;
+    justify-content: flex-end;
+    align-items: center;
+    padding: var(--space-5) var(--page-gutter);
+    text-align: center;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 18%, rgba(0, 0, 0, 0) 32%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0) 60%);
+  }
+
+  /* The auto bottom margin pushes the brandmark to the top of the column. */
+  .overlay-hero--full .overlay-hero-brandmark {
+    margin-bottom: auto;
+  }
+
+  .overlay-hero--full .overlay-hero-logo {
+    margin-inline: auto;
+  }
+
+  .overlay-hero--full .overlay-hero-brand {
+    margin-bottom: 0;
+    font-size: clamp(0.6875rem, 0.9vw, 0.875rem);
+  }
+
+  .overlay-hero--full .overlay-hero-logo {
+    width: clamp(10rem, 14vw, 14rem);
+    filter: drop-shadow(0 1px 6px rgb(0 0 0 / 0.35));
+  }
+
+  .overlay-hero--full .overlay-hero-brand,
+  .overlay-hero--full .overlay-hero-text h1,
+  .overlay-hero--full .overlay-hero-subtitle {
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.4);
+  }
+
+  .overlay-hero--full .overlay-hero-text h1 {
+    font-size: clamp(2.25rem, 3.8vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .overlay-hero--full .overlay-hero-subtitle {
+    max-width: none;
+    margin-top: var(--space-2);
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  }
 }
 
 /* Short intro text under a hero and trust strip, styled as regular body text.
@@ -4253,6 +4326,81 @@ img.footer-icon {
 @media (max-width: 47.99rem) and (prefers-reduced-motion: no-preference) {
   .overlay-hero:not(.overlay-hero--static) .overlay-hero-media img {
     animation: overlay-hero-reveal 1.5s ease-out both;
+  }
+}
+
+/* Mini reviews on the full-width hero (concept test): two stacked over each side wall, vertically centered.
+   Sized and placed in viewport units so they stay on the walls (left wall ends around 19% of the photo width).
+   Desktop only; hidden below 64rem. */
+.overlay-hero-reviews {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .overlay-hero--full .overlay-hero-reviews {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 2.5vw;
+    pointer-events: none;
+  }
+
+  /* Two cards stacked on each side. */
+  .overlay-hero-reviews-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .hero-review {
+    width: clamp(8.5rem, 13vw, 12rem);
+    margin: 0;
+    padding: var(--space-2);
+    color: #ffffff;
+    text-align: center;
+    background: rgb(0 0 0 / 0.28);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .hero-review-stars {
+    display: flex;
+    justify-content: center;
+    gap: 0.2rem;
+    margin: 0 0 var(--space-1);
+    color: var(--color-gold-on-dark);
+  }
+
+  .hero-review-stars svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .hero-review-quote {
+    margin: 0;
+  }
+
+  /* Thai has no spaces between words, so the browser may wrap mid-phrase ("คุ้ม / ค่า"). Each phrase is a span
+     that doesn't wrap; lines break only at the spaces and <wbr> tags between the spans. */
+  .hero-review-quote span {
+    white-space: nowrap;
+  }
+
+  .hero-review-quote p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
+
+/* Full-width variant, desktop only (concept test): the photo brightens from dark, a little slower than on mobile.
+   Applies even with --static, which only controls the mobile animation. */
+@media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
+  .overlay-hero--full .overlay-hero-media img {
+    animation: overlay-hero-reveal 2.5s ease-out both;
   }
 }
 
