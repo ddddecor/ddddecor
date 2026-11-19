@@ -4332,6 +4332,44 @@ img.footer-icon {
   font-weight: var(--font-weight-emphasis);
 }
 
+/* Page intro with a price-estimate callout (blinds): stacked on mobile (text, then box);
+   from 64rem the intro text and the box sit side by side at roughly 2:1. */
+.page-intro-layout {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 64rem) {
+  .page-intro--with-callout .page-intro-layout {
+    grid-template-columns: 2fr 1fr;
+    column-gap: var(--space-6);
+    align-items: center;
+  }
+}
+
+/* Price-estimate callout: a light purple box (same background as .service-section) with a question,
+   a short answer and a standard LINE .cta-button below the text. */
+.price-callout-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  max-width: 42rem;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  background: var(--color-background-alt);
+}
+
+.price-callout-title {
+  margin: 0;
+  color: var(--color-purple-dark);
+  font-weight: var(--font-weight-emphasis);
+}
+
+.price-callout-text {
+  margin: var(--space-1) 0 0;
+}
+
 /* Overlay hero load animation, mobile only: the photo slowly brightens from dark (same effect as the home hero).
    Desktop and reduced-motion users get the static hero. The --static modifier turns it off on a page
    (used on Google Ads landing pages, where the photo should show at full brightness immediately). */

@@ -1,3 +1,6 @@
 # Windows download metadata (appears when copying files from Windows into WSL)
 *:Zone.Identifier
 *.Zone.Identifier
+
+# Private planning notes (not published)
+notes/
