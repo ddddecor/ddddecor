@@ -208,7 +208,7 @@ if (contactFab && contactFabToggle) {
   function setContactFabOpen(isOpen) {
     contactFab.classList.toggle('is-open', isOpen);
     contactFabToggle.setAttribute('aria-expanded', String(isOpen));
-    contactFabToggle.setAttribute('aria-label', isOpen ? 'Close contact options' : 'Open contact options');
+    contactFabToggle.setAttribute('aria-label', isOpen ? 'ปิดช่องทางติดต่อ' : 'ติดต่อเราทาง LINE โทรศัพท์ หรือ Facebook');
   }
 
   contactFabToggle.addEventListener('click', () => {
@@ -244,7 +244,7 @@ function whenHeroPainted(callback) {
     done = true;
     callback();
   };
-  const hero = document.querySelector('.overlay-hero-media img, [data-hero-carousel] .hero-slide img');
+  const hero = document.querySelector('.home-hero picture img, .overlay-hero-media img, [data-hero-carousel] .hero-slide img');
   const canObservePaint = 'PerformanceObserver' in window
     && (PerformanceObserver.supportedEntryTypes || []).includes('largest-contentful-paint');
 
@@ -275,7 +275,7 @@ function whenHeroPainted(callback) {
   }
 }
 
-// Pages that start Google Tag Manager late (curtains, blinds, products) define window.dddLoadGtm in their <head>.
+// Pages that start Google Tag Manager late (home, curtains, blinds, products) define window.dddLoadGtm in their <head>.
 // Their own load-event fallback is only for when this file fails to load, so main.js takes over here.
 if (typeof window.dddLoadGtm === 'function') {
   window.dddGtmManaged = true;

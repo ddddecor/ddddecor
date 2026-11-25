@@ -2,11 +2,14 @@
 <html lang="th">
 <head>
   <meta charset="utf-8">
-  <!-- Google Tag Manager -->
+  <!-- Google Tag Manager (started late on this page). dataLayer exists from the start, so nothing pushed before
+       GTM loads is lost. gtm.js is downloaded by window.dddLoadGtm, which js/main.js calls once the hero image has
+       been painted, so it doesn't compete with the hero. The page's load event is a fallback in case main.js fails to load. -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  new Date().getTime(),event:'gtm.js'});var started=false;w.dddLoadGtm=function(){if(started)return;started=true;
+  var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);};
+  w.addEventListener('load',function(){if(!w.dddGtmManaged)w.dddLoadGtm();});
   })(window,document,'script','dataLayer','GTM-KP8ZMVJ2');</script>
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,6 +49,7 @@
   <link rel="preload" as="font" type="font/woff2" href="fonts/prompt-thai-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/prompt-thai-500.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/jost-latin.woff2" crossorigin>
+  <link rel="preload" as="image" href="images/misc/hero-curtains-khaoyai-view.webp" imagesrcset="images/misc/hero-curtains-khaoyai-view-800.webp 800w, images/misc/hero-curtains-khaoyai-view.webp 1086w" imagesizes="100vw" type="image/webp" media="(max-width: 63.99rem)" fetchpriority="high">
   <link rel="stylesheet" href="vendor/glightbox/glightbox.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/styles.css">
   <script src="vendor/glightbox/glightbox.min.js" defer></script>
@@ -88,7 +92,7 @@
       <!-- Concept test: landscape photo for desktop (from 64rem up). -->
       <picture>
         <source media="(min-width: 64rem)" srcset="images/misc/arched-window.webp" width="2880" height="1237">
-        <img src="images/misc/hero-curtains-khaoyai-view.webp" alt="โต๊ะทำงานสีขาวหน้าหน้าต่างโค้งตกแต่งด้วยผ้าม่านทึบและผ้าม่านโปร่ง (ข้อความตัวอย่าง)" width="1086" height="1448" fetchpriority="high">
+        <img src="images/misc/hero-curtains-khaoyai-view.webp" srcset="images/misc/hero-curtains-khaoyai-view-800.webp 800w, images/misc/hero-curtains-khaoyai-view.webp 1086w" sizes="100vw" alt="โต๊ะทำงานสีขาวหน้าหน้าต่างโค้งตกแต่งด้วยผ้าม่านทึบและผ้าม่านโปร่ง (ข้อความตัวอย่าง)" width="1086" height="1448" fetchpriority="high">
       </picture>
       <div class="home-hero-text">
         <div class="home-hero-titles">
@@ -110,7 +114,7 @@
         <ul>
           <li class="category-grid-item category-grid-item--main">
             <a class="category-card" href="curtains.html">
-              <img src="images/portfolio/curtains-bedroom-pleated.webp" alt="" width="1448" height="1086">
+              <img data-defer-src="images/portfolio/curtains-bedroom-pleated.webp" alt="" width="1448" height="1086" loading="lazy">
               <span class="category-card-text">
                 <span class="category-card-eyebrow">Curtains</span>
                 <span class="category-card-name">ผ้าม่าน <span class="category-card-arrow" aria-hidden="true">→</span></span>
@@ -119,7 +123,7 @@
           </li>
           <li class="category-grid-item">
             <a class="category-card" href="blinds.html">
-              <img src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-blinds.webp" alt="" width="1448" height="1086" loading="lazy">
+              <img data-defer-src="images/portfolio/projects/khao-yai-poolvilla/khao-yai-poolvilla-blinds.webp" alt="" width="1448" height="1086" loading="lazy">
               <span class="category-card-text">
                 <span class="category-card-eyebrow">Blinds</span>
                 <span class="category-card-name">ม่านม้วนและมู่ลี่ <span class="category-card-arrow" aria-hidden="true">→</span></span>
@@ -128,7 +132,7 @@
           </li>
           <li class="category-grid-item">
             <a class="category-card" href="window-film.html">
-              <img src="images/misc/window-film-trees.webp" alt="" width="1426" height="1070" loading="lazy">
+              <img data-defer-src="images/misc/window-film-trees.webp" alt="" width="1426" height="1070" loading="lazy">
               <span class="category-card-text">
                 <span class="category-card-eyebrow">Window film</span>
                 <span class="category-card-name">ฟิล์มติดกระจก <span class="category-card-arrow" aria-hidden="true">→</span></span>
@@ -137,7 +141,7 @@
           </li>
           <li class="category-grid-item category-grid-item--wide">
             <a class="category-card" href="wallpaper.html">
-              <img src="images/misc/office-blinds-wallpaper.webp" alt="" width="1671" height="941" loading="lazy">
+              <img data-defer-src="images/misc/office-blinds-wallpaper.webp" alt="" width="1671" height="941" loading="lazy">
               <span class="category-card-text">
                 <span class="category-card-eyebrow">Wallpaper</span>
                 <span class="category-card-name">วอลล์เปเปอร์ <span class="category-card-arrow" aria-hidden="true">→</span></span>
@@ -146,7 +150,7 @@
           </li>
           <li class="category-grid-item category-grid-item--wide">
             <a class="category-card" href="furniture.html">
-              <img src="images/misc/furniture-livingroom-small.webp" alt="" width="1000" height="563" loading="lazy">
+              <img data-defer-src="images/misc/furniture-livingroom-small.webp" alt="" width="1000" height="563" loading="lazy">
               <span class="category-card-text">
                 <span class="category-card-eyebrow">Furniture</span>
                 <span class="category-card-name">เฟอร์นิเจอร์สั่งทำ <span class="category-card-arrow" aria-hidden="true">→</span></span>
@@ -168,28 +172,28 @@
               <h3>จุดเริ่มต้นของเรา</h3>
               <p>ด้วยประสบการณ์ในธุรกิจผ้าม่านและวอลล์เปเปอร์ทั้งงานขายส่งและค้าปลีก ผสานกับความรักในงานขายและความตั้งใจที่จะช่วยเติมเต็มบ้านของลูกค้าให้สวยงาม คุณเจย์จึงเริ่มรับเหมางานตกแต่งและก่อตั้ง DDD ในปี พ.ศ. 2555</p>
             </div>
-            <img src="images/misc/owner-sunglasses-square.webp" alt="ภาพตัวอย่างหัวข้อที่ 1 (ข้อความตัวอย่าง)" width="1086" height="1086" loading="lazy">
+            <img data-defer-src="images/misc/owner-sunglasses-square.webp" alt="ภาพตัวอย่างหัวข้อที่ 1 (ข้อความตัวอย่าง)" width="1086" height="1086" loading="lazy">
           </li>
           <li class="about-card">
             <div class="about-card-body">
               <h3>ไอเดียของคุณ คำแนะนำจากเรา</h3>
               <p>ทุกงานเริ่มต้นจากการพูดคุย เรารับฟังไอเดียและความต้องการของคุณ พร้อมดูตัวอย่างวัสดุไปด้วยกัน และช่วยเลือกองค์ประกอบต่าง ๆ ให้ลงตัวกับพื้นที่ของคุณ</p>
             </div>
-            <img src="images/misc/design-at-desk.webp" alt="การเลือกผ้าจากแคตตาล็อกและตัวอย่างผ้าบนโต๊ะประชุม (ข้อความตัวอย่าง)" width="1254" height="1254" loading="lazy">
+            <img data-defer-src="images/misc/design-at-desk.webp" alt="การเลือกผ้าจากแคตตาล็อกและตัวอย่างผ้าบนโต๊ะประชุม (ข้อความตัวอย่าง)" width="1254" height="1254" loading="lazy">
           </li>
           <li class="about-card">
             <div class="about-card-body">
               <h3>ประสบการณ์ที่หลากหลาย</h3>
               <p>ตั้งแต่คอนโดขนาดเล็ก พื้นที่เชิงพาณิชย์ ไปจนถึงโครงการหมู่บ้านจัดสรร เรามีประสบการณ์ดูแลงานหลากหลายขนาด พร้อมใส่ใจทุกรายละเอียดในทุกโครงการ และปรับแนวทางให้เหมาะกับความต้องการของลูกค้าแต่ละราย</p>
             </div>
-            <img src="images/misc/project-experience.webp" alt="ภาพรวมผลงานหลากหลายประเภท ได้แก่ ห้องประชุมสำนักงาน ห้องนั่งเล่นคอนโด และบ้านในโครงการหมู่บ้านจัดสรรที่กำลังก่อสร้าง (ข้อความตัวอย่าง)" width="900" height="900" loading="lazy">
+            <img data-defer-src="images/misc/project-experience.webp" alt="ภาพรวมผลงานหลากหลายประเภท ได้แก่ ห้องประชุมสำนักงาน ห้องนั่งเล่นคอนโด และบ้านในโครงการหมู่บ้านจัดสรรที่กำลังก่อสร้าง (ข้อความตัวอย่าง)" width="900" height="900" loading="lazy">
           </li>
           <li class="about-card">
             <div class="about-card-body">
               <h3>จากแบบสู่งานจริง</h3>
               <p>แม้แต่การออกแบบที่ดีที่สุดก็ต้องอาศัยการติดตั้งอย่างพิถีพิถัน ทีมช่างมากประสบการณ์ของเราใส่ใจทุกรายละเอียด เพื่อให้งานออกมาสวยงามและใช้งานได้อย่างลงตัว</p>
             </div>
-            <img src="images/misc/installers-square.webp" alt="ช่างติดตั้งผ้าม่านสีทองบนนั่งร้านในห้องนั่งเล่นเพดานสูง (ข้อความตัวอย่าง)" width="1087" height="1087" loading="lazy">
+            <img data-defer-src="images/misc/installers-square.webp" alt="ช่างติดตั้งผ้าม่านสีทองบนนั่งร้านในห้องนั่งเล่นเพดานสูง (ข้อความตัวอย่าง)" width="1087" height="1087" loading="lazy">
           </li>
         </ul>
       </div>
@@ -412,12 +416,12 @@
   </footer>
   <div class="contact-fab">
     <ul class="contact-fab-list" id="contact-fab-list">
-      <li><a data-gtm-event="ddd_line_chat" class="contact-fab-item contact-fab-line" href="https://lin.ee/VXNqA9U" target="_blank" rel="noopener noreferrer" aria-label="LINE"><img src="images/misc/line-app.png" alt="" width="56" height="56"></a></li>
-      <li><a data-gtm-event="ddd_phone_call" class="contact-fab-item contact-fab-phone" href="tel:0853298789" aria-label="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 16.4v2.7a2 2 0 0 1-2.2 2A18.9 18.9 0 0 1 3 5.2 2 2 0 0 1 5 3h2.7a2 2 0 0 1 2 1.7l.4 2.7a2 2 0 0 1-.6 1.7L8 10.6a15 15 0 0 0 5.4 5.4l1.5-1.5a2 2 0 0 1 1.7-.6l2.7.4a2 2 0 0 1 1.7 2Z"/></svg></a></li>
-      <!-- <li><a class="contact-fab-item contact-fab-email" href="mailto:" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3.5 6 8.5 7 8.5-7"/></svg></a></li> -->
-      <li><a data-gtm-event="ddd_facebook_click" class="contact-fab-item contact-fab-facebook" href="https://www.facebook.com/designdelights" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="images/misc/facebook-app.png" alt="" width="56" height="56"></a></li>
+      <li><a data-gtm-event="ddd_line_chat" class="contact-fab-item contact-fab-line" href="https://lin.ee/VXNqA9U" target="_blank" rel="noopener noreferrer" aria-label="ติดต่อเราทาง LINE"><img src="images/misc/line-app.png" alt="" width="56" height="56"></a></li>
+      <li><a data-gtm-event="ddd_phone_call" class="contact-fab-item contact-fab-phone" href="tel:0853298789" aria-label="ติดต่อเราทางโทรศัพท์"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 16.4v2.7a2 2 0 0 1-2.2 2A18.9 18.9 0 0 1 3 5.2 2 2 0 0 1 5 3h2.7a2 2 0 0 1 2 1.7l.4 2.7a2 2 0 0 1-.6 1.7L8 10.6a15 15 0 0 0 5.4 5.4l1.5-1.5a2 2 0 0 1 1.7-.6l2.7.4a2 2 0 0 1 1.7 2Z"/></svg></a></li>
+      <!-- <li><a class="contact-fab-item contact-fab-email" href="mailto:" aria-label="ติดต่อเราทางอีเมล"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3.5 6 8.5 7 8.5-7"/></svg></a></li> -->
+      <li><a data-gtm-event="ddd_facebook_click" class="contact-fab-item contact-fab-facebook" href="https://www.facebook.com/designdelights" target="_blank" rel="noopener noreferrer" aria-label="ติดต่อเราทาง Facebook"><img src="images/misc/facebook-app.png" alt="" width="56" height="56"></a></li>
     </ul>
-    <button class="contact-fab-toggle" type="button" aria-expanded="false" aria-controls="contact-fab-list" aria-label="Open contact options"><svg class="contact-fab-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5h16a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 3.5V16.5H4A1.5 1.5 0 0 1 2.5 15V6A1.5 1.5 0 0 1 4 4.5Z"/><path d="M7 9.5h10m-10 3h6"/></svg><svg class="contact-fab-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <button class="contact-fab-toggle" type="button" aria-expanded="false" aria-controls="contact-fab-list" aria-label="ติดต่อเราทาง LINE โทรศัพท์ หรือ Facebook"><svg class="contact-fab-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5h16a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 3.5V16.5H4A1.5 1.5 0 0 1 2.5 15V6A1.5 1.5 0 0 1 4 4.5Z"/><path d="M7 9.5h10m-10 3h6"/></svg><svg class="contact-fab-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
 </body>
 </html>

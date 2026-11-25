@@ -483,7 +483,7 @@ main.container {
    Reduced-motion users get the static hero. */
 @media (prefers-reduced-motion: no-preference) {
   .home-hero img {
-    animation: home-hero-reveal 3.5s ease-out both;
+    animation: home-hero-reveal 1.5s ease-out both;
   }
 }
 
@@ -5480,7 +5480,7 @@ img.footer-icon {
   max-width: 24rem;
 }
 
-/* Image on the left and text on the right on desktop; on mobile the text comes first, then the image */
+/* Image on the left and text on the right on desktop; on mobile they stack in HTML order */
 @media (min-width: 40rem) {
   .guide-subsection--split {
     display: grid;
@@ -5498,6 +5498,11 @@ img.footer-icon {
   .guide-subsection--split .guide-subsection-text {
     grid-column: 2;
     grid-row: 1;
+  }
+
+  /* Narrower image column, e.g. for tall portrait images */
+  .guide-subsection--split-narrow {
+    grid-template-columns: 14rem minmax(0, 34rem);
   }
 }
 
