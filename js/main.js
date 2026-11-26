@@ -35,6 +35,31 @@ if (menuButton && navigation) {
   });
 }
 
+// Where on the page a tracked element is: the data-gtm-location of its nearest tagged ancestor (e.g. "fab",
+// "footer", "cta_bottom"). Sections are tagged in the HTML, so new links inside them are covered automatically.
+// Always pushed, even when missing, so GTM doesn't carry over the previous event's value.
+function getClickLocation(element) {
+  const location = element && element.closest('[data-gtm-location]');
+  if (location) return location.dataset.gtmLocation;
+  console.warn('Tracked element has no data-gtm-location ancestor', element);
+  return 'unknown';
+}
+
+// Push a tracking event to GTM. GTM remembers every key until it is overwritten, so every push resets all of our
+// parameters; otherwise e.g. a LINE click after a lightbox view would inherit interaction: 'navigate'.
+// Add new parameter names to the reset list here.
+function pushGtmEvent(event, params) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    link_url: undefined,
+    interaction: undefined,
+    attempted_event: undefined,
+    click_location: undefined,
+    ...params,
+    event,
+  });
+}
+
 if (document.querySelector('.gallery-link, .project-gallery-link') && typeof GLightbox === 'function') {
   const lightbox = GLightbox({ selector: '.gallery-link, .project-gallery-link' });
   let lightboxOpen = false;
@@ -48,6 +73,7 @@ if (document.querySelector('.gallery-link, .project-gallery-link') && typeof GLi
     ['[data-gallery="curtains-blinds-mini"]', 'ddd_image_curtains'],
     ['[data-gallery="blinds-mini"]', 'ddd_image_blinds'],
     ['[data-gallery="blinds-uses"]', 'ddd_image_blinds'],
+    ['[data-gallery="curtains-page-blinds"]', 'ddd_image_blinds'],
     ['[data-gallery="wallpaper-mini"]', 'ddd_image_wallpaper'],
     ['[data-gallery="window-film-mini"]', 'ddd_image_film'],
     ['[data-gallery^="furniture-"]', 'ddd_image_furniture'],
@@ -59,11 +85,10 @@ if (document.querySelector('.gallery-link, .project-gallery-link') && typeof GLi
     if (!match) return;
     const eventName = match[1];
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: eventName,
+    pushGtmEvent(eventName, {
       link_url: anchor.href || undefined,
       interaction,
+      click_location: getClickLocation(anchor),
     });
   }
 
@@ -216,8 +241,7 @@ if (contactFab && contactFabToggle) {
     setContactFabOpen(willOpen);
 
     if (willOpen) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'ddd_contact_menu_open' });
+      pushGtmEvent('ddd_contact_menu_open', { click_location: getClickLocation(contactFabToggle) });
     }
   });
 
@@ -425,11 +449,10 @@ document.addEventListener('click', (event) => {
     console.warn(`Unknown data-gtm-event "${eventName}"`, tracked);
   }
 
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: isKnown ? eventName : 'gtm_unknown_event',
+  pushGtmEvent(isKnown ? eventName : 'gtm_unknown_event', {
     attempted_event: isKnown ? undefined : eventName,
     link_url: tracked.href || undefined,
+    click_location: getClickLocation(tracked),
   });
 });
 
